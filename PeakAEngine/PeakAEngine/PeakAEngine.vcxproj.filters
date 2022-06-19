@@ -5,9 +5,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Engine Files\Imgui">
-      <UniqueIdentifier>{4af00df1-7e5c-445c-8aea-8bd86c5a26cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Singletons">
       <UniqueIdentifier>{aebd687d-0041-4a26-9c58-57fdec4d36e2}</UniqueIdentifier>
     </Filter>
@@ -23,34 +20,49 @@
     <Filter Include="UtilityFiles\Other">
       <UniqueIdentifier>{30aa478f-923a-4adc-a513-05c492a4d6cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Imgui">
+      <UniqueIdentifier>{4af00df1-7e5c-445c-8aea-8bd86c5a26cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneHierarchy">
+      <UniqueIdentifier>{447f32ab-b38c-4044-a8f4-d0d101ba5cbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneHierarchy\Components">
+      <UniqueIdentifier>{b1aec433-79b6-4dbf-9e2f-6b5899051365}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneHierarchy\Physics">
+      <UniqueIdentifier>{8356f78e-41f2-4758-8a7c-4fe979a664f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneHierarchy\Components\Physics">
+      <UniqueIdentifier>{db23e6a5-53da-4662-b329-8fab0adce667}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3rdParty\imgui-1.87\imconfig.h">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\imgui.h">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\imgui_internal.h">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_rectpack.h">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_textedit.h">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\backends\imgui_impl_opengl2.h">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\backends\imgui_impl_sdl.h">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\imgui_plot.h">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClInclude>
     <ClInclude Include="PeakAEnginePCH.h" />
     <ClInclude Include="PeakAEnginePCH.h" />
@@ -99,31 +111,55 @@
     <ClInclude Include="RenderTarget.h">
       <Filter>ResourceWrappers</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>SceneHierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>SceneHierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>SceneHierarchy\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsHandler.h">
+      <Filter>SceneHierarchy\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>SceneHierarchy\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>SceneHierarchy\Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>SceneHierarchy\Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui.cpp">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_demo.cpp">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_draw.cpp">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_tables.cpp">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.87\backends\imgui_impl_opengl2.cpp">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.87\backends\imgui_impl_sdl.cpp">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_plot.cpp">
-      <Filter>Engine Files\Imgui</Filter>
+      <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="PeakAEnginePCH.cpp" />
     <ClCompile Include="Logger.cpp">
@@ -155,6 +191,30 @@
       <Filter>Singletons</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>SceneHierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>SceneHierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>SceneHierarchy\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsHandler.cpp">
+      <Filter>SceneHierarchy\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>SceneHierarchy\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>SceneHierarchy\Components\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>SceneHierarchy\Components\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
       <Filter>Singletons</Filter>
     </ClCompile>
   </ItemGroup>
