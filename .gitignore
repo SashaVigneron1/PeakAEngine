@@ -1,32 +1,12 @@
-# Prerequisites
-*.d
+# Build results
+PeakAEngine/Builds
+PeakAEngine/lib
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Intermediate
+PeakAEngine/Intermediate
 
-# Precompiled Headers
-*.gch
-*.pch
+# Visual Studio 2015/2017 cache/options directory
+PeakAEngine/.vs/
+x64
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+Engine.txt

@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Engine Files\Imgui">
+      <UniqueIdentifier>{4af00df1-7e5c-445c-8aea-8bd86c5a26cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Singletons">
+      <UniqueIdentifier>{aebd687d-0041-4a26-9c58-57fdec4d36e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourceWrappers">
+      <UniqueIdentifier>{b0e71017-6206-42ba-890e-5b180fb60dba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UtilityFiles">
+      <UniqueIdentifier>{ee763edb-5850-421b-b259-911e4e85283e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ToSort">
+      <UniqueIdentifier>{a1b121a2-9758-4b25-9a8d-807c4a8669c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UtilityFiles\Other">
+      <UniqueIdentifier>{30aa478f-923a-4adc-a513-05c492a4d6cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\3rdParty\imgui-1.87\imconfig.h">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.87\imgui.h">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.87\imgui_internal.h">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.87\imstb_rectpack.h">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.87\imstb_textedit.h">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.87\backends\imgui_impl_opengl2.h">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.87\backends\imgui_impl_sdl.h">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.87\imgui_plot.h">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="PeakAEnginePCH.h" />
+    <ClInclude Include="PeakAEnginePCH.h" />
+    <ClInclude Include="Logger.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="PeakAEngine.h">
+      <Filter>Engine Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>ToSort</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObserver.h">
+      <Filter>ToSort</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>UtilityFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Dictionary.h">
+      <Filter>UtilityFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Reflection.h">
+      <Filter>UtilityFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonParser.h">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="FileIO.h">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>ResourceWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTarget.h">
+      <Filter>ResourceWrappers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\3rdParty\imgui-1.87\imgui.cpp">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_demo.cpp">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_draw.cpp">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_tables.cpp">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.87\backends\imgui_impl_opengl2.cpp">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.87\backends\imgui_impl_sdl.cpp">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_plot.cpp">
+      <Filter>Engine Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="PeakAEnginePCH.cpp" />
+    <ClCompile Include="Logger.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="PeakAEngine.cpp">
+      <Filter>Engine Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObserver.cpp">
+      <Filter>ToSort</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>ToSort</Filter>
+    </ClCompile>
+    <ClCompile Include="PeakAEnginePCH.cpp" />
+    <ClCompile Include="JsonParser.cpp">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="FileIO.cpp">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

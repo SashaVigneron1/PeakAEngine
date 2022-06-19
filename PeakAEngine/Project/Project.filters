@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Game Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Game Files\Achievements">
+      <UniqueIdentifier>{08bd8082-6ce0-49d2-a84b-3696f8c70b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Files\Components">
+      <UniqueIdentifier>{bf3e5d21-234e-497e-b163-475af6e008be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Files\Input">
+      <UniqueIdentifier>{f2f64d44-c4c4-4137-8221-54801da860de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Files\Prefabs">
+      <UniqueIdentifier>{9250aaa0-c16b-45bf-b2b4-ffe4efb4f355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Files\Utils">
+      <UniqueIdentifier>{dd8deef6-0477-455e-bae0-c9c501993697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Files\Components\Burger">
+      <UniqueIdentifier>{c219720e-c50f-4bd6-9b8d-9a37252bf09c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Files\Components\UI">
+      <UniqueIdentifier>{9fe0c3d2-4442-4ce7-bbbf-d87f6c72c210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Files\Components\Level">
+      <UniqueIdentifier>{46555c23-040b-42e0-b1f1-234021088eef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Engine Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Engine Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTime.cpp">
+      <Filter>Engine Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Achievements.cpp">
+      <Filter>Game Files\Achievements</Filter>
+    </ClCompile>
+    <ClCompile Include="PeterPepper.cpp">
+      <Filter>Game Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands.cpp">
+      <Filter>Game Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Prefabs.cpp">
+      <Filter>Game Files\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Game Files\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Game Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Game Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerCatcher.cpp">
+      <Filter>Game Files\Components\Burger</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerPiece.cpp">
+      <Filter>Game Files\Components\Burger</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerPiecePart.cpp">
+      <Filter>Game Files\Components\Burger</Filter>
+    </ClCompile>
+    <ClCompile Include="HighScoreCounter.cpp">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesCounter.cpp">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelCounter.cpp">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PepperCounter.cpp">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreCounter.cpp">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Game Files\Components\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelCompleter.cpp">
+      <Filter>Game Files\Components\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Ladder.cpp">
+      <Filter>Game Files\Components\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawner.cpp">
+      <Filter>Game Files\Components\Level</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BurgerTime.h">
+      <Filter>Engine Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Engine Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Achievements.h">
+      <Filter>Game Files\Achievements</Filter>
+    </ClInclude>
+    <ClInclude Include="PeterPepper.h">
+      <Filter>Game Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Events.h">
+      <Filter>Game Files\Achievements</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands.h">
+      <Filter>Game Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Prefabs.h">
+      <Filter>Game Files\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Game Files\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Game Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderLayers.h" />
+    <ClInclude Include="Enemy.h">
+      <Filter>Game Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerCatcher.h">
+      <Filter>Game Files\Components\Burger</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerPiece.h">
+      <Filter>Game Files\Components\Burger</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerPiecePart.h">
+      <Filter>Game Files\Components\Burger</Filter>
+    </ClInclude>
+    <ClInclude Include="HighScoreCounter.h">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesCounter.h">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelCounter.h">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PepperCounter.h">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreCounter.h">
+      <Filter>Game Files\Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Game Files\Components\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelCompleter.h">
+      <Filter>Game Files\Components\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Ladder.h">
+      <Filter>Game Files\Components\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawner.h">
+      <Filter>Game Files\Components\Level</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
