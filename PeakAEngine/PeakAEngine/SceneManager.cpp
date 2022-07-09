@@ -5,27 +5,27 @@
 
 void SceneManager::DrawImGui() const
 {
-	m_ActiveScene->DrawImGui();
+	if (m_ActiveScene) m_ActiveScene->DrawImGui();
 }
 
 void SceneManager::Update() const
 {
-	m_ActiveScene->Update();
+	if (m_ActiveScene) m_ActiveScene->Update();
 }
 
 void SceneManager::FixedUpdate() const
 {
-	m_ActiveScene->FixedUpdate();
+	if (m_ActiveScene) m_ActiveScene->FixedUpdate();
 }
 
 void SceneManager::Render() const
 {
-	m_ActiveScene->Render();
+	if (m_ActiveScene) m_ActiveScene->Render();
 }
 
 void SceneManager::RenderGizmos() const
 {
-	m_ActiveScene->RenderGizmos();
+	if (m_ActiveScene) m_ActiveScene->RenderGizmos();
 }
 
 void SceneManager::ChangeSceneGraph()
@@ -42,7 +42,7 @@ void SceneManager::ChangeSceneGraph()
 		m_NewSceneShouldLoad = false;
 	}
 
-	m_ActiveScene->ChangeSceneGraph();
+	if (m_ActiveScene) m_ActiveScene->ChangeSceneGraph();
 }
 
 void SceneManager::RegisterScene(const std::string& name, const std::function<void(Scene*)>& instructions)

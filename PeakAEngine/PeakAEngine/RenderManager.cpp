@@ -91,7 +91,7 @@ void RenderManager::Render()
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-
+	// Render Logic
 
 	// Present
 	SDL_GL_SwapWindow(m_Window);

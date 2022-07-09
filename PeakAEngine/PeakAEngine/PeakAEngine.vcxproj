@@ -129,14 +129,15 @@ robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " S
 robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(Platform) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
 echo Done copying files!
 EXIT /B 0</Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform);$(SolutionDir)\3rdParty\Box2D\lib\x86\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x86\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
       <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
@@ -166,14 +167,15 @@ robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " S
 robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(Platform) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
 echo Done copying files!
 EXIT /B 0</Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform);$(SolutionDir)\3rdParty\Box2D\lib\x64\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x64\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
       <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
@@ -207,14 +209,15 @@ robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " S
 robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(Platform) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
 echo Done copying files!
 EXIT /B 0</Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform);$(SolutionDir)\3rdParty\Box2D\lib\x86\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x86\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
       <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
@@ -248,14 +251,15 @@ robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " S
 robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(Platform) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
 echo Done copying files!
 EXIT /B 0</Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform);$(SolutionDir)\3rdParty\Box2D\lib\x64\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x64\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
       <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>

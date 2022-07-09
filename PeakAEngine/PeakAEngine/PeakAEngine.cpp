@@ -12,6 +12,7 @@
 #include "Time.h"
 #include "InputManager.h"
 #include "ResourceManager.h"
+#include "SceneManager.h"
 
 void Engine::Initialize()
 {
@@ -74,6 +75,7 @@ void Engine::Run()
 	auto& renderer = RENDERER;
 	auto& timer = TIME;
 	auto& input = INPUTMANAGER;
+	auto& sceneManager = SCENEMANAGER;
 
 	constexpr float fixedUpdateInterval = 16 / 100.f;
 	timer.SetFixedTime(fixedUpdateInterval);
@@ -86,12 +88,13 @@ void Engine::Run()
 		fixedUpdateTimer += Time::DeltaTime();
 
 		isRunning = input.ProcessInput();
+		sceneManager.Update();
 
 		// Fixed Update
 		int currFrame = 0;
 		while (fixedUpdateTimer >= fixedUpdateInterval && currFrame <= 50)
 		{
-			//sceneManager.FixedUpdate();
+			sceneManager.FixedUpdate();
 			fixedUpdateTimer -= fixedUpdateInterval;
 			currFrame++;
 		}
