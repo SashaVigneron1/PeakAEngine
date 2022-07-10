@@ -19,6 +19,7 @@ void Engine::Initialize()
 	InitializeSettings();
 
 	// Get Engine Settings
+	//// WINDOW
 	m_EngineSettings.GetData(EngineSettings::gameResolutionX.data(), m_ResolutionWidth);
 	m_EngineSettings.GetData(EngineSettings::gameResolutionY.data(), m_ResolutionHeight);
 	int w, h;
@@ -28,6 +29,13 @@ void Engine::Initialize()
 	m_EngineSettings.GetData(EngineSettings::gameWindowMaximized.data(), maximizeWindow);
 	bool fullscreen{};
 	m_EngineSettings.GetData(EngineSettings::gameFullscreen.data(), fullscreen);
+
+	//// PHYSICS
+	m_EngineSettings.GetData(EngineSettings::fixedUpdateInterval.data(), m_FixedUpdateInterval);
+	m_EngineSettings.GetData(EngineSettings::maxFixedUpdatesPerFrame.data(), m_MaxFixedUpdatesPerFrame);
+
+	//// OTHER
+	m_EngineSettings.GetData(EngineSettings::resourcePath.data(), m_ResourcesPath);
 
 	// Use OpenGL 3.11
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
@@ -57,7 +65,7 @@ void Engine::Initialize()
 	}
 
 	RENDERER.Init(m_Window);
-	RESOURCEMANAGER.Init("Resources/");
+	RESOURCEMANAGER.Init(m_ResourcesPath);
 }
 
 void Engine::Cleanup()
@@ -77,11 +85,12 @@ void Engine::Run()
 	auto& timer = TIME;
 	auto& input = INPUTMANAGER;
 	auto& sceneManager = SCENEMANAGER;
-
-	constexpr float fixedUpdateInterval = 16 / 100.f;
-	timer.SetFixedTime(fixedUpdateInterval);
+	
+	// Initialize Timer
+	timer.SetFixedTime(m_FixedUpdateInterval);
 	float fixedUpdateTimer = 0.0f;
 	bool isRunning = true;
+
 	while (isRunning)
 	{
 		// Add, Remove, Enable, Disable ...
@@ -98,10 +107,10 @@ void Engine::Run()
 
 		// Fixed Update
 		int currFrame = 0;
-		while (fixedUpdateTimer >= fixedUpdateInterval && currFrame <= 50)
+		while (fixedUpdateTimer >= m_FixedUpdateInterval && currFrame <= m_MaxFixedUpdatesPerFrame)
 		{
 			sceneManager.FixedUpdate();
-			fixedUpdateTimer -= fixedUpdateInterval;
+			fixedUpdateTimer -= m_FixedUpdateInterval;
 			currFrame++;
 		}
 
@@ -145,28 +154,47 @@ void Engine::InitializeSettings()
 	m_EngineSettings.Insert(EngineSettings::gameStartScene.data(), std::string("/"));
 	m_EngineSettings.Insert(EngineSettings::gameTitle.data(), std::string("Game Made With PeakAEngine"));
 
+	m_EngineSettings.Insert(EngineSettings::fixedUpdateInterval.data(), std::string("0.16f"));
+	m_EngineSettings.Insert(EngineSettings::maxFixedUpdatesPerFrame.data(), std::string("50"));
+
 	// Load the engineconfig.ini file
 	Logger::LogInfo("[Engine] Loading Engine Settings...");
 	auto fstream = std::ifstream(EngineSettings::engineConfig.data());
 
+	// If None, Create engineconfig.ini file
 	if (!fstream.is_open())
 	{
-		// Create engineconfig.ini file
 
 		Logger::LogWarning("[Engine] No Engine Settings Found. Creating New File...");
 
 		FileIO settingsFile{ EngineSettings::engineConfig.data(), false, false };
 
+		settingsFile.WriteLine("-------------------------");
+		settingsFile.WriteLine("WINDOW");
+		settingsFile.WriteLine("-------------------------");
 		settingsFile.WriteLine("GameResolutionWidth 1280");
 		settingsFile.WriteLine("GameResolutionHeight 720");
 		settingsFile.WriteLine("GameWindowSizeWidth 1280");
 		settingsFile.WriteLine("GameWindowSizeHeight 720");
 		settingsFile.WriteLine("GameWindowMaximized 0");
 		settingsFile.WriteLine("GameFullscreen 0");
+		settingsFile.WriteLine("GameTitle PeakAEngine");
+		settingsFile.WriteLine("");
+
+		settingsFile.WriteLine("-------------------------");
+		settingsFile.WriteLine("PHYSICS");
+		settingsFile.WriteLine("-------------------------");
+		settingsFile.WriteLine("FixedUpdateInterval 0.16f");
+		settingsFile.WriteLine("MaxFixedUpdatesPerFrame 50");
+		settingsFile.WriteLine("");
+
+		settingsFile.WriteLine("-------------------------");
+		settingsFile.WriteLine("OTHER");
+		settingsFile.WriteLine("-------------------------");
+		settingsFile.WriteLine("StartScene 0");
 		settingsFile.WriteLine("RendererLayers 3");
 		settingsFile.WriteLine("ResourcesPath Resources/");
-		settingsFile.WriteLine("GameTitle PeakAEngine");
-		settingsFile.WriteLine("StartScene 0");
+		settingsFile.WriteLine("");
 
 		fstream = std::ifstream(EngineSettings::engineConfig.data());
 	}
