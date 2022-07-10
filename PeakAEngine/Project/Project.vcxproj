@@ -114,7 +114,7 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)Lib\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command> echo Copying .dll files
+      <Command>echo Copying .dll files
 robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " SDL2.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
@@ -124,6 +124,10 @@ robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(O
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
 robocopy "$(SolutionDir)3rdParty\Box2D\lib\$(PlatformTarget)\$(Configuration) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+
+echo Copying settings files
+copy "engineconfig.ini" "$(OutputPath)" 
+
 echo Done copying files!
 EXIT /B 0</Command>
     </PostBuildEvent>
@@ -154,7 +158,7 @@ EXIT /B 0</Command>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)Lib\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command> echo Copying .dll files
+      <Command>echo Copying .dll files
 robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " SDL2.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
@@ -164,6 +168,10 @@ robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(O
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
 robocopy "$(SolutionDir)3rdParty\Box2D\lib\$(PlatformTarget)\$(Configuration) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+
+echo Copying settings files
+copy "engineconfig.ini" "$(OutputPath)" 
+
 echo Done copying files!
 EXIT /B 0</Command>
     </PostBuildEvent>
@@ -190,7 +198,7 @@ EXIT /B 0</Command>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)Lib\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command> echo Copying .dll files
+      <Command>echo Copying .dll files
 robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " SDL2.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
@@ -200,6 +208,10 @@ robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(O
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
 robocopy "$(SolutionDir)3rdParty\Box2D\lib\$(PlatformTarget)\$(Configuration) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+
+echo Copying settings files
+copy "engineconfig.ini" "$(OutputPath)" 
+
 echo Done copying files!
 EXIT /B 0</Command>
     </PostBuildEvent>
@@ -230,7 +242,7 @@ EXIT /B 0</Command>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)Lib\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command> echo Copying .dll files
+      <Command>echo Copying .dll files
 robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " SDL2.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
@@ -240,6 +252,10 @@ robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(O
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
 robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
 robocopy "$(SolutionDir)3rdParty\Box2D\lib\$(PlatformTarget)\$(Configuration) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
+
+echo Copying settings files
+copy "engineconfig.ini" "$(OutputPath)" 
+
 echo Done copying files!
 EXIT /B 0</Command>
     </PostBuildEvent>

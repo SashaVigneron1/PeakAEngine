@@ -5,7 +5,7 @@
 class FileIO final
 {
 public:
-	FileIO(const std::string& inputFilePath, bool useLogger = true);
+	FileIO(const std::string& inputFilePath, bool deleteIfExisting = false, bool useLogger = true);
 	~FileIO();
 
 	FileIO(const FileIO& other) = delete;

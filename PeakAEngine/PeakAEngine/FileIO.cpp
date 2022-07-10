@@ -3,13 +3,18 @@
 
 
 
-FileIO::FileIO(const std::string& filePath, bool useLogger)
+FileIO::FileIO(const std::string& filePath, bool deleteIfExisting, bool useLogger)
 	: m_FilePath{ filePath }
     , m_FileStream{  }
     , m_UseLogger{ useLogger }
 {
     m_FileStream.open(m_FilePath, std::ios::in | std::ios::out);
-    if (!m_FileStream.is_open())
+
+    if (deleteIfExisting && m_FileStream.is_open())
+    {
+        DeleteAllLines();
+    }
+    else if (!m_FileStream.is_open())
 	{
 		if (m_UseLogger) Logger::LogError("[FileIO] Failed to open file: " + m_FilePath);
 
@@ -18,7 +23,11 @@ FileIO::FileIO(const std::string& filePath, bool useLogger)
 		std::fstream fs;
         fs.open(m_FilePath, std::ios::out);
         fs.close();
+
+        m_FileStream.open(m_FilePath, std::ios::in | std::ios::out);
 	}
+
+   
 }
 
 FileIO::~FileIO()

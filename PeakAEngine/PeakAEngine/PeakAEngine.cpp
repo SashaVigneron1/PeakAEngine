@@ -18,6 +18,7 @@ void Engine::Initialize()
 {
 	InitializeSettings();
 
+	// Get Engine Settings
 	m_EngineSettings.GetData(EngineSettings::gameResolutionX.data(), m_ResolutionWidth);
 	m_EngineSettings.GetData(EngineSettings::gameResolutionY.data(), m_ResolutionHeight);
 	int w, h;
@@ -30,7 +31,7 @@ void Engine::Initialize()
 
 	// Use OpenGL 3.11
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 11);
 
 	// Create window
 	std::string windowTitle;
@@ -83,10 +84,15 @@ void Engine::Run()
 	bool isRunning = true;
 	while (isRunning)
 	{
+		// Add, Remove, Enable, Disable ...
+		sceneManager.ChangeSceneGraph();
+
+		// Time Calculations
 		const auto startTime = std::chrono::high_resolution_clock::now();
 		timer.CalculateTime();
 		fixedUpdateTimer += Time::DeltaTime();
 
+		// Update
 		isRunning = input.ProcessInput();
 		sceneManager.Update();
 
@@ -99,21 +105,12 @@ void Engine::Run()
 			currFrame++;
 		}
 
+		// Render
 		renderer.Render();
 
+		// Wait for next frame
 		const auto sleepTime = startTime + std::chrono::milliseconds(16) - std::chrono::high_resolution_clock::now();
-		std::this_thread::sleep_for(sleepTime); // In Short: Doesn't work properly because nr of milliseconds are rounded off to floor
-
-		//// Somewhat closer to actual time
-		//// Get The Duration We Need To Sleep For
-		//const auto sleepTime = startTime + std::chrono::milliseconds(MsPerFrame) - std::chrono::high_resolution_clock::now();
-		//// Get The Nr Of Milliseconds
-		//auto nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(sleepTime);
-		//int nrNanos = (int)nanoseconds.count();
-		//float nrMillis = nrNanos / 1000000.0f;
-
-		//// Sleep
-		//std::this_thread::sleep_until(std::chrono::high_resolution_clock::now() + std::chrono::milliseconds((int)round(nrMillis)));
+		std::this_thread::sleep_for(sleepTime);
 	}
 
 	Cleanup();
@@ -126,7 +123,7 @@ const Dictionary& Engine::GetSettings() const
 
 void Engine::InitializeSettings()
 {
-	// Load default values
+	// Insert default values
 	int integer{ 1920 };
 	m_EngineSettings.Insert(EngineSettings::gameResolutionX.data(), integer);
 	m_EngineSettings.Insert(EngineSettings::gameWindowSizeX.data(), integer);
@@ -149,12 +146,32 @@ void Engine::InitializeSettings()
 	m_EngineSettings.Insert(EngineSettings::gameTitle.data(), std::string("Game Made With PeakAEngine"));
 
 	// Load the engineconfig.ini file
+	Logger::LogInfo("[Engine] Loading Engine Settings...");
 	auto fstream = std::ifstream(EngineSettings::engineConfig.data());
 
-	std::cout << "Loading Info...";
-	if (!fstream.is_open()) return;
-	std::cout << "There is Info...";
+	if (!fstream.is_open())
+	{
+		// Create engineconfig.ini file
 
+		Logger::LogWarning("[Engine] No Engine Settings Found. Creating New File...");
+
+		FileIO settingsFile{ EngineSettings::engineConfig.data(), false, false };
+
+		settingsFile.WriteLine("GameResolutionWidth 1280");
+		settingsFile.WriteLine("GameResolutionHeight 720");
+		settingsFile.WriteLine("GameWindowSizeWidth 1280");
+		settingsFile.WriteLine("GameWindowSizeHeight 720");
+		settingsFile.WriteLine("GameWindowMaximized 0");
+		settingsFile.WriteLine("GameFullscreen 0");
+		settingsFile.WriteLine("RendererLayers 3");
+		settingsFile.WriteLine("ResourcesPath Resources/");
+		settingsFile.WriteLine("GameTitle PeakAEngine");
+		settingsFile.WriteLine("StartScene 0");
+
+		fstream = std::ifstream(EngineSettings::engineConfig.data());
+	}
+
+	// Load Settings
 	std::string line;
 	while (fstream)
 	{
@@ -164,4 +181,5 @@ void Engine::InitializeSettings()
 			m_EngineSettings.StreamChange(sstream);
 		}
 	}
+	Logger::LogSuccess("[Engine] Loaded Engine Settings...");
 }
