@@ -90,8 +90,8 @@ template<typename componentType, typename... argTypes>
 componentType* GameObject::CreateComponent(argTypes&&... args)
 {
 	// Can't create more than 1 transform
-	if (typeid(componentType) == typeid(Transform) && GetComponent<Transform>() != nullptr)
-		return nullptr;
+	/*if (typeid(componentType) == typeid(Transform) && GetComponent<Transform>() != nullptr)
+		return nullptr;*/
 
 	// Create component and add it
 	auto component = std::shared_ptr<componentType>(new componentType(args...));

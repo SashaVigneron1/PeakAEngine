@@ -3,23 +3,23 @@
 class PhysicsHandler;
 class GameObject;
 
-class Scene final
+class Scene
 {
 public:
-	~Scene();
+	Scene();
+	virtual ~Scene();
 
 	const std::string& GetName() const;
+	void SetName(const std::string& name);
 
-	GameObject* CreateChildObject(const std::string& name);
+	GameObject* AddChild(const std::string& name);
 	std::vector<GameObject*> GetObjects() const;
 
 	PhysicsHandler* GetPhysicsHandler() const { return m_pPhysicsHandler.get(); }
 
-private:
-	friend class SceneManager;
-	explicit Scene(const std::string& name);
-
-	void Initialize() const;
+	virtual void Initialize() {}
+	
+	void RootInitialize();
 	void DrawImGui();
 	void Update() const;
 	void FixedUpdate() const;
@@ -27,11 +27,7 @@ private:
 	void RenderGizmos() const;
 	void ChangeSceneGraph();
 
-	void DisplaySceneGraph();
-	void DisplayObjectInSceneGraph(GameObject* pObject);
-
-	GameObject* m_pSelectedObjectInHierarchy{};
-
+private: 
 	std::string m_Name;
 
 	std::unique_ptr<PhysicsHandler> m_pPhysicsHandler{};

@@ -23,17 +23,17 @@
     <Filter Include="Imgui">
       <UniqueIdentifier>{4af00df1-7e5c-445c-8aea-8bd86c5a26cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneHierarchy">
+    <Filter Include="Scenegraph">
       <UniqueIdentifier>{447f32ab-b38c-4044-a8f4-d0d101ba5cbc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneHierarchy\Components">
+    <Filter Include="Scenegraph\Components">
       <UniqueIdentifier>{b1aec433-79b6-4dbf-9e2f-6b5899051365}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneHierarchy\Physics">
-      <UniqueIdentifier>{8356f78e-41f2-4758-8a7c-4fe979a664f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SceneHierarchy\Components\Physics">
+    <Filter Include="Scenegraph\Components\Physics">
       <UniqueIdentifier>{db23e6a5-53da-4662-b329-8fab0adce667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenegraph\Physics">
+      <UniqueIdentifier>{8356f78e-41f2-4758-8a7c-4fe979a664f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -112,25 +112,25 @@
       <Filter>ResourceWrappers</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>SceneHierarchy</Filter>
+      <Filter>Scenegraph</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>SceneHierarchy</Filter>
+      <Filter>Scenegraph</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>SceneHierarchy\Components</Filter>
+      <Filter>Scenegraph\Components</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsHandler.h">
-      <Filter>SceneHierarchy\Physics</Filter>
+      <Filter>Scenegraph\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>SceneHierarchy\Components</Filter>
+      <Filter>Scenegraph\Components</Filter>
     </ClInclude>
     <ClInclude Include="BoxCollider.h">
-      <Filter>SceneHierarchy\Components\Physics</Filter>
+      <Filter>Scenegraph\Components\Physics</Filter>
     </ClInclude>
     <ClInclude Include="RigidBody.h">
-      <Filter>SceneHierarchy\Components\Physics</Filter>
+      <Filter>Scenegraph\Components\Physics</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Singletons</Filter>
@@ -194,25 +194,25 @@
       <Filter>Singletons</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>SceneHierarchy</Filter>
+      <Filter>Scenegraph</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>SceneHierarchy</Filter>
+      <Filter>Scenegraph</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>SceneHierarchy\Components</Filter>
+      <Filter>Scenegraph\Components</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsHandler.cpp">
-      <Filter>SceneHierarchy\Physics</Filter>
+      <Filter>Scenegraph\Physics</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>SceneHierarchy\Components</Filter>
+      <Filter>Scenegraph\Components</Filter>
     </ClCompile>
     <ClCompile Include="BoxCollider.cpp">
-      <Filter>SceneHierarchy\Components\Physics</Filter>
+      <Filter>Scenegraph\Components\Physics</Filter>
     </ClCompile>
     <ClCompile Include="RigidBody.cpp">
-      <Filter>SceneHierarchy\Components\Physics</Filter>
+      <Filter>Scenegraph\Components\Physics</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Singletons</Filter>

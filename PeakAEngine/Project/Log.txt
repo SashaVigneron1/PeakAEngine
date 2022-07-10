@@ -1,2 +1,75 @@
-[Sun Jul 10 11:44:23 2022] [INFO] [Engine] Loading Engine Settings...
-[Sun Jul 10 11:44:23 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Sun Jul 10 13:29:32 2022] [INFO] [Engine] Loading Engine Settings...
+[Sun Jul 10 13:29:32 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Sun Jul 10 13:29:32 2022] [INFO] I am the testscene!
+[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Sun Jul 10 13:29:32 2022] [INFO] I am the testscene!
+[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Added Scene: TestScene2
+[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Switching Scene...
+[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene2
+[Sun Jul 10 13:29:32 2022] [INFO] Yes
+[Sun Jul 10 13:29:32 2022] [INFO] Yes
+[Sun Jul 10 13:29:32 2022] [INFO] Yes
+[Sun Jul 10 13:29:32 2022] [INFO] Yes
+[Sun Jul 10 13:29:32 2022] [INFO] Yes
+[Sun Jul 10 13:29:32 2022] [INFO] Yes
+[Sun Jul 10 13:29:32 2022] [INFO] Yes
+[Sun Jul 10 13:29:32 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:33 2022] [INFO] Yes
+[Sun Jul 10 13:29:34 2022] [INFO] Yes

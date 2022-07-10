@@ -79,8 +79,6 @@ void Engine::Cleanup()
 
 void Engine::Run()
 {
-	Initialize();
-
 	auto& renderer = RENDERER;
 	auto& timer = TIME;
 	auto& input = INPUTMANAGER;

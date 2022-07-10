@@ -30,32 +30,55 @@ void SceneManager::RenderGizmos() const
 
 void SceneManager::ChangeSceneGraph()
 {
-	if (m_NewSceneShouldLoad)
-	{
-		// make sure wanted scene exists
-		assert(m_SceneInstructions.find(m_WantedSceneName) != m_SceneInstructions.end());
+	//if (m_NewSceneShouldLoad)
+	//{
+	//	//// make sure wanted scene exists
+	//	//assert(m_Scenes.find(m_WantedSceneName) != m_Scenes.end());
 
 
-		const auto scene = std::shared_ptr<Scene>(new Scene(m_WantedSceneName));
-		m_SceneInstructions.at(m_WantedSceneName)(scene.get());
-		m_ActiveScene = scene;
-		m_NewSceneShouldLoad = false;
-	}
+	//	//const auto scene = std::shared_ptr<Scene>(new Scene(m_WantedSceneName));
+	//	//m_Scenes.at(m_WantedSceneName)(scene.get());
+	//	//m_ActiveScene = scene;
+	//	//m_NewSceneShouldLoad = false;
+	//}
 
 	if (m_ActiveScene) m_ActiveScene->ChangeSceneGraph();
 }
 
-void SceneManager::RegisterScene(const std::string& name, const std::function<void(Scene*)>& instructions)
+SceneManager::~SceneManager()
+{
+	for (auto scenePair : m_Scenes) 
+{
+		delete scenePair.second;
+	}
+}
+
+void SceneManager::AddScene(const std::string& name, Scene* scene)
 {
 	// Make sure scene doesn't already exist
-	assert(m_SceneInstructions.find(name) == m_SceneInstructions.end());
+	assert(m_Scenes.find(name) == m_Scenes.end());
 
 	// Add scene
-	m_SceneInstructions.insert(std::make_pair(name, instructions));
+	scene->SetName(name);
+	scene->RootInitialize();
+	m_Scenes.insert(std::make_pair(name, scene));
+
+	// If this is the first and only scene, set this active
+	if (m_Scenes.size() == 1)
+		m_ActiveScene = scene;
+
+	Logger::LogInfo("[SceneManager] Added Scene: " + name);
+	Logger::LogInfo("[SceneManager] Currently Active Scene: " + m_ActiveScene->GetName());
 }
 
 void SceneManager::LoadScene(const std::string& sceneName)
 {
-	m_WantedSceneName = sceneName;
-	m_NewSceneShouldLoad = true;
+	// Make sure scene exists
+	assert(m_Scenes.find(sceneName) != m_Scenes.end());
+
+	// Set active
+	m_ActiveScene = m_Scenes[sceneName];
+
+	Logger::LogInfo("[SceneManager] Switching Scene...");
+	Logger::LogInfo("[SceneManager] Currently Active Scene: " + m_ActiveScene->GetName());
 }
