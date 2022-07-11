@@ -12,7 +12,7 @@ void RenderComponent::Render() const
 	if (m_Texture && transform)
 	{
 		RENDERER.RenderTexture(m_Texture, transform->GetWorldPosition(), transform->GetWorldScale(), transform->GetWorldRotation(),
-			m_Pivot, &m_SourceRect, m_RenderLayer);
+			m_Pivot, m_SourceRect, m_RenderLayer);
 	}
 }
 

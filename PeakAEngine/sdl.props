@@ -6,10 +6,12 @@
   <ItemDefinitionGroup>
     <Link>
       <AdditionalLibraryDirectories>
-	      $(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget);
-	      $(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget);
-	      $(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget);
-	      $(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget);
+		  $(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget);
+		  $(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget);
+		  $(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget);
+		  $(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget);
+		  
+		  $(SolutionDir)3rdParty\GLEW\lib\$(PlatformTarget);
 		  %(AdditionalLibraryDirectories)
 	  </AdditionalLibraryDirectories>
       <AdditionalDependencies>
@@ -17,6 +19,9 @@
 		  SDL2main.lib;
 		  SDL2_image.lib;
 		  SDL2_ttf.lib;
+
+		  glew32.lib;
+		  glu32.lib;
 		  %(AdditionalDependencies)
 	  </AdditionalDependencies>
     </Link>
@@ -24,16 +29,18 @@
       <AdditionalIncludeDirectories>
 		  $(SolutionDir)3rdParty\SDL2_ttf\include;
 		  $(SolutionDir)3rdParty\SDL2_image\include;
-		  $(SolutionDir)3rdParty\glm;
 		  $(SolutionDir)3rdParty\SDL2\include;
-		  $(SolutionDir)\3rdParty\DearImGui;
+
+		  $(SolutionDir)3rdParty\glm;
+		  $(SolutionDir)3rdParty\GLEW\include;
+		  
+		  $(SolutionDir)3rdParty\DearImGui;
+
 		  %(AdditionalIncludeDirectories)
 	  </AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
-      <Command>
-		 
-	  </Command>
+      <Command></Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />

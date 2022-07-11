@@ -110,7 +110,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\Box2D\include;$(SolutionDir)\3rdParty\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\Box2D\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>PeakAEnginePCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -124,21 +124,12 @@
     </Link>
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command> echo Copying .dll files
-robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " SDL2.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
-echo Done copying files!
-EXIT /B 0</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x86\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\3rdParty\Box2D\lib\x86\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -149,7 +140,7 @@ EXIT /B 0</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\Box2D\include;$(SolutionDir)\3rdParty\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\Box2D\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>PeakAEnginePCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -162,21 +153,12 @@ EXIT /B 0</Command>
     </Link>
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command> echo Copying .dll files
-robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " SDL2.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
-echo Done copying files!
-EXIT /B 0</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x64\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\3rdParty\Box2D\lib\x64\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -188,7 +170,7 @@ EXIT /B 0</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\Box2D\include;$(SolutionDir)\3rdParty\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\Box2D\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>PeakAEnginePCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -204,21 +186,12 @@ EXIT /B 0</Command>
     </Link>
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command> echo Copying .dll files
-robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " SDL2.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
-echo Done copying files!
-EXIT /B 0</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x86\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\3rdParty\Box2D\lib\x86\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -231,7 +204,7 @@ EXIT /B 0</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\Box2D\include;$(SolutionDir)\3rdParty\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\Box2D\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>PeakAEnginePCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -246,21 +219,12 @@ EXIT /B 0</Command>
     </Link>
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command> echo Copying .dll files
-robocopy "$(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget) " "$(OutputPath) " SDL2.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\glew-2.1.0\bin\Release\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " *.dll /njh /njs /ndl /nc /ns /np /xo /nfl
-robocopy "$(SolutionDir)3rdParty\vld\bin\$(PlatformTarget) " "$(OutputPath) " Microsoft.DTfW.DHL.manifest /njh /njs /ndl /nc /ns /np /xo
-echo Done copying files!
-EXIT /B 0</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x64\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\3rdParty\Box2D\lib\x64\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>

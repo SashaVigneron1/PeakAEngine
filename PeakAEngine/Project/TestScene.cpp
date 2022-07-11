@@ -43,12 +43,15 @@ void TestScene::Initialize()
 
 	auto go = AddChild("SpriteTestObject");
 	SpriteRenderer* spriteRenderer = go->CreateComponent<SpriteRenderer>();
-	spriteRenderer->AddSprite("Death", new  Sprite("Character/PeterPepper_Death.png",
+	spriteRenderer->AddSprite("Walking", new  Sprite("Character/PeterPepper_Walking.png",
 		{
-				SpriteRow{Direction::FacingCamera, 0}
+				SpriteRow{Direction::FacingCamera, 0},
+				SpriteRow{Direction::FacingLeft, 1},
+				SpriteRow{Direction::FacingRight, 1, true},
+				SpriteRow{Direction::FacingAwayFromCamera, 2},
 		},
-		6, 1 / 6.0f, {1,1}, 1));
-	spriteRenderer->SetActiveSprite("Death");
+		3, 1 / 6.0f, {1,1}, 3));
+	spriteRenderer->SetActiveSprite("Walking");
 	spriteRenderer->SetEnabled(true);
 
 	auto test = go->CreateComponent<TestComponent>();

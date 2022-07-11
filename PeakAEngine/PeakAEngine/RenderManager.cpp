@@ -12,8 +12,6 @@
 
 #include "GUIManager.h"
 
-
-
 void RenderManager::Init(SDL_Window* window)
 {
 	auto& settings = ENGINE.GetSettings();
@@ -31,13 +29,13 @@ void RenderManager::Init(SDL_Window* window)
 	m_pContext = SDL_GL_CreateContext(window);
 	if (m_pContext == nullptr)
 	{
-		std::cerr << "Core::Initialize( ), error when calling SDL_GL_CreateContext: " << SDL_GetError() << std::endl;
+		Logger::LogError("[RenderManager] Error When Calling SDL_GL_CreateContext: " + std::string{ SDL_GetError() });
 		return;
 	}
 
 	if (glewInit() != GLEW_OK)
 	{
-		std::cerr << "Failed to initialize GLEW " << SDL_GetError() << std::endl;
+		Logger::LogError("[RenderManager] Failed To Initialize GLEW: " + std::string{ SDL_GetError() });
 	}
 
 	// Set the swap interval for the current OpenGL context,
@@ -46,7 +44,7 @@ void RenderManager::Init(SDL_Window* window)
 	{
 		if (SDL_GL_SetSwapInterval(1) < 0)
 		{
-			std::cerr << "Core::Initialize( ), error when calling SDL_GL_SetSwapInterval: " << SDL_GetError() << std::endl;
+			Logger::LogError("[RenderManager] Error When Calling SDL_GL_SetSwapInterval: " + std::string{ SDL_GetError() });
 			return;
 		}
 	}
@@ -127,7 +125,7 @@ void RenderManager::Destroy()
 	GUI.Destroy();
 }
 
-void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation, const glm::vec2& pivot, const SDL_FRect* srcRect, int renderTarget)
+void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation, const glm::vec2& pivot, const SDL_FRect& srcRect, int renderTarget)
 {
 	m_RenderCommands.push_back(
 		{
@@ -141,13 +139,18 @@ void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, con
 }
 
 void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::vec2& pos, const glm::vec2& scale, float rotation,
-	const glm::vec2& pivot, const SDL_FRect* srcRect) const
+	const glm::vec2& pivot, const SDL_FRect& srcRect) const
 {
 	{
 		const glm::vec2 invertedYPos{ pos.x, pos.y };
 
-		float width = (srcRect) ? srcRect->w : static_cast<float>(w);
-		float height = (srcRect) ? srcRect->h : static_cast<float>(h);
+		float width = srcRect.w;
+		float height = srcRect.h;
+		if (srcRect.w < 0) 
+		{
+			width = float(w);
+			height = float(h);
+		}
 
 		glm::vec2 vertices[4]{};
 
@@ -183,12 +186,12 @@ void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::
 		float textBottom{ 1 };
 		float textTop{ 0 };
 
-		if (srcRect)
+		if (srcRect.w > 0)
 		{
-			textLeft = srcRect->x / w;
-			textRight = (srcRect->x + srcRect->w) / w;
-			textTop = (srcRect->y) / h;
-			textBottom = (srcRect->y + srcRect->h) / h;
+			textLeft = srcRect.x / w;
+			textRight = (srcRect.x + srcRect.w) / w;
+			textTop = (srcRect.y) / h;
+			textBottom = (srcRect.y + srcRect.h) / h;
 		}
 
 

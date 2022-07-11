@@ -23,11 +23,11 @@ public:
 	void Destroy();
 
 	void RenderTexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation,
-		const glm::vec2& pivot, const SDL_FRect* srcRect, int renderTarget);
+		const glm::vec2& pivot, const SDL_FRect& srcRect, int renderTarget);
 
 private:
 	void ActuallyRenderTexture(GLuint glId, int w, int h, const glm::vec2& pos, const glm::vec2& scale, float rotation,
-		const glm::vec2& pivot, const SDL_FRect* srcRect) const;
+		const glm::vec2& pivot, const SDL_FRect& srcRect = {-1,-1,-1,-1}) const;
 
 	struct RenderCommand
 	{
