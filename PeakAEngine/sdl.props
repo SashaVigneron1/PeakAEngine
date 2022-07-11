@@ -22,10 +22,11 @@
     </Link>
     <ClCompile>
       <AdditionalIncludeDirectories>
-	      $(SolutionDir)3rdParty\SDL2_ttf\include;
-	      $(SolutionDir)3rdParty\SDL2_image\include;
+		  $(SolutionDir)3rdParty\SDL2_ttf\include;
+		  $(SolutionDir)3rdParty\SDL2_image\include;
 		  $(SolutionDir)3rdParty\glm;
 		  $(SolutionDir)3rdParty\SDL2\include;
+		  $(SolutionDir)\3rdParty\DearImGui;
 		  %(AdditionalIncludeDirectories)
 	  </AdditionalIncludeDirectories>
     </ClCompile>

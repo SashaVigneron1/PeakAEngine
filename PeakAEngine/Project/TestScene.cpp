@@ -21,6 +21,8 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
+	GetSettings().enableGUI = true;
+
 	//auto go = AddChild("TestObject");
 	///*auto comp =	go->CreateComponent<TestComponent>();
 	//comp->SetEnabled(true);*/

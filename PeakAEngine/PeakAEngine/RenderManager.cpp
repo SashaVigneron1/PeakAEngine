@@ -10,6 +10,8 @@
 
 #include "SceneManager.h"
 
+#include "GUIManager.h"
+
 
 
 void RenderManager::Init(SDL_Window* window)
@@ -73,6 +75,9 @@ void RenderManager::Init(SDL_Window* window)
 	// Enable color blending and use alpha blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	// INITIALIZE GUI
+	GUI.Initialize(window);
 }
 
 void RenderManager::Render()
@@ -90,14 +95,11 @@ void RenderManager::Render()
 			return a.Layer < b.Layer;
 		});
 
-
-
 	// Render Logic
 	glPushMatrix();
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		//glTranslatef(0, -static_cast<float>(m_GameResHeight), 0);
 		
 		// Create Render Commands
 		SCENEMANAGER.Render();
@@ -107,9 +109,13 @@ void RenderManager::Render()
 			renderCommand.Command();
 
 		m_RenderCommands.clear();
-
 	}
 	glPopMatrix();
+
+	// GUI Logic
+	GUI.StartFrame();
+	SCENEMANAGER.DrawImGui();
+	GUI.Render();
 
 	// Present
 	SDL_GL_SwapWindow(m_Window);
@@ -118,12 +124,11 @@ void RenderManager::Render()
 void RenderManager::Destroy()
 {
 	SDL_GL_DeleteContext(m_pContext);
+	GUI.Destroy();
 }
 
 void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation, const glm::vec2& pivot, const SDL_FRect* srcRect, int renderTarget)
 {
-
-
 	m_RenderCommands.push_back(
 		{
 			[=]()
@@ -147,10 +152,10 @@ void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::
 		glm::vec2 vertices[4]{};
 
 		// Vertex coordinates for centered orientation
-		float vertexLeft{ (1 - pivot.x) - 1.f };
-		float vertexBottom{ (1 - pivot.y) - 1.f };
-		float vertexRight{ 1 - pivot.x };
-		float vertexTop{ 1 - pivot.y };
+		float vertexLeft{ (1.f - pivot.x) - 1.f };
+		float vertexBottom{ (1.f - pivot.y) - 1.f };
+		float vertexRight{ 1.f - pivot.x };
+		float vertexTop{ 1.f - pivot.y };
 
 		vertexLeft *= width * scale.x;
 		vertexRight *= width * scale.x;

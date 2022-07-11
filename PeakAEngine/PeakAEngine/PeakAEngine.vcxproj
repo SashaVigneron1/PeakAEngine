@@ -138,7 +138,7 @@ EXIT /B 0</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x86\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -176,7 +176,7 @@ EXIT /B 0</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x64\Debug;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -218,7 +218,7 @@ EXIT /B 0</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x86\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -260,25 +260,26 @@ EXIT /B 0</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(PlatformTarget);$(SolutionDir)\3rdParty\Box2D\lib\x64\Release;%(AdditionalLibraryDirectories);$(SolutionDir)3rdParty\glew-2.1.0\lib\Release\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;box2d.lib;glew32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\3rdParty\imgui-1.87\backends\imgui_impl_opengl2.h" />
-    <ClInclude Include="..\3rdParty\imgui-1.87\backends\imgui_impl_sdl.h" />
-    <ClInclude Include="..\3rdParty\imgui-1.87\imconfig.h" />
-    <ClInclude Include="..\3rdParty\imgui-1.87\imgui.h" />
-    <ClInclude Include="..\3rdParty\imgui-1.87\imgui_internal.h" />
-    <ClInclude Include="..\3rdParty\imgui-1.87\imgui_plot.h" />
-    <ClInclude Include="..\3rdParty\imgui-1.87\imstb_rectpack.h" />
-    <ClInclude Include="..\3rdParty\imgui-1.87\imstb_textedit.h" />
-    <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h" />
+    <ClInclude Include="..\3rdParty\DearImGui\backends\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\3rdParty\DearImGui\backends\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="..\3rdParty\DearImGui\backends\imgui_impl_sdl.h" />
+    <ClInclude Include="..\3rdParty\DearImGui\imconfig.h" />
+    <ClInclude Include="..\3rdParty\DearImGui\imgui.h" />
+    <ClInclude Include="..\3rdParty\DearImGui\imgui_internal.h" />
+    <ClInclude Include="..\3rdParty\DearImGui\imstb_rectpack.h" />
+    <ClInclude Include="..\3rdParty\DearImGui\imstb_textedit.h" />
+    <ClInclude Include="..\3rdParty\DearImGui\imstb_truetype.h" />
     <ClInclude Include="BaseObserver.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GUIManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="JsonParser.h" />
     <ClInclude Include="Logger.h" />
@@ -302,57 +303,43 @@ EXIT /B 0</Command>
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\3rdParty\imgui-1.87\backends\imgui_impl_opengl2.cpp">
+    <ClCompile Include="..\3rdParty\DearImGui\backends\imgui_impl_opengl3.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\backends\imgui_impl_sdl.cpp">
+    <ClCompile Include="..\3rdParty\DearImGui\backends\imgui_impl_sdl.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui.cpp">
+    <ClCompile Include="..\3rdParty\DearImGui\imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_demo.cpp">
+    <ClCompile Include="..\3rdParty\DearImGui\imgui_demo.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_draw.cpp">
+    <ClCompile Include="..\3rdParty\DearImGui\imgui_draw.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_plot.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</TreatWarningAsError>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</TreatWarningAsError>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</TreatWarningAsError>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TurnOffAllWarnings</WarningLevel>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TurnOffAllWarnings</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_tables.cpp">
+    <ClCompile Include="..\3rdParty\DearImGui\imgui_tables.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp">
+    <ClCompile Include="..\3rdParty\DearImGui\imgui_widgets.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -363,6 +350,7 @@ EXIT /B 0</Command>
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="InputManager.cpp">
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</TreatWarningAsError>
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</TreatWarningAsError>

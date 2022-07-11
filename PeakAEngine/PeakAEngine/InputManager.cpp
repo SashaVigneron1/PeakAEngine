@@ -6,11 +6,14 @@
 #include <Xinput.h>
 #include <SDL.h>
 
+#include "GUIManager.h"
+
 #pragma comment(lib, "XInput.lib")
 
 //ToDo: Test
 //ToDo: Add Commands
 //ToDo: Enable warnings as errors again
+
 
 #pragma region Impl
 class InputManager::InputManagerImpl
@@ -212,12 +215,13 @@ bool InputManager::ProcessInput()
 		{
 			m_Keys[(char)e.key.keysym.sym] = KeyInput{ false, false, true };
 		}
-		else if (e.type == SDL_MOUSEBUTTONDOWN) {
+		else if (e.type == SDL_MOUSEBUTTONDOWN) 
+		{
 
 		}
 
 		// ImGui Process Events
-		//ImGui_ImplSDL2_ProcessEvent(&e);
+		GUI.HandleInput(&e);
 	}
 
 	return true;

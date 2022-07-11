@@ -20,9 +20,6 @@
     <Filter Include="UtilityFiles\Other">
       <UniqueIdentifier>{30aa478f-923a-4adc-a513-05c492a4d6cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Imgui">
-      <UniqueIdentifier>{4af00df1-7e5c-445c-8aea-8bd86c5a26cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scenegraph">
       <UniqueIdentifier>{447f32ab-b38c-4044-a8f4-d0d101ba5cbc}</UniqueIdentifier>
     </Filter>
@@ -35,35 +32,14 @@
     <Filter Include="Scenegraph\Physics">
       <UniqueIdentifier>{8356f78e-41f2-4758-8a7c-4fe979a664f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{1fa24407-fcd2-4b07-9e88-dac70fa68191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImGui\backends">
+      <UniqueIdentifier>{722d7989-74fb-4a2a-9194-755acb276330}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\3rdParty\imgui-1.87\imconfig.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.87\imgui.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.87\imgui_internal.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.87\imstb_rectpack.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.87\imstb_textedit.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.87\backends\imgui_impl_opengl2.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.87\backends\imgui_impl_sdl.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.87\imgui_plot.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
     <ClInclude Include="PeakAEnginePCH.h" />
     <ClInclude Include="PeakAEnginePCH.h" />
     <ClInclude Include="Logger.h">
@@ -144,32 +120,38 @@
     <ClInclude Include="Sprite.h">
       <Filter>UtilityFiles\Other</Filter>
     </ClInclude>
+    <ClInclude Include="GUIManager.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\DearImGui\imconfig.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\DearImGui\imgui.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\DearImGui\imgui_internal.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\DearImGui\imstb_rectpack.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\DearImGui\imstb_textedit.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\DearImGui\imstb_truetype.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\DearImGui\backends\imgui_impl_opengl3.h">
+      <Filter>ImGui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\DearImGui\backends\imgui_impl_opengl3_loader.h">
+      <Filter>ImGui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\DearImGui\backends\imgui_impl_sdl.h">
+      <Filter>ImGui\backends</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_demo.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_draw.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_tables.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\backends\imgui_impl_opengl2.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\backends\imgui_impl_sdl.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.87\imgui_plot.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
     <ClCompile Include="PeakAEnginePCH.cpp" />
     <ClCompile Include="Logger.cpp">
       <Filter>Singletons</Filter>
@@ -234,6 +216,30 @@
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>UtilityFiles\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIManager.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\DearImGui\imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\DearImGui\imgui_demo.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\DearImGui\imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\DearImGui\imgui_tables.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\DearImGui\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\DearImGui\backends\imgui_impl_opengl3.cpp">
+      <Filter>ImGui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\DearImGui\backends\imgui_impl_sdl.cpp">
+      <Filter>ImGui\backends</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

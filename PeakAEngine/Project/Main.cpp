@@ -7,8 +7,11 @@
 int main()
 {
 #ifndef _DEBUG
-    //HWND hWnd = GetConsoleWindow();
-    //ShowWindow(hWnd, SW_HIDE);
+    HWND hWnd = GetConsoleWindow();
+    ShowWindow(hWnd, SW_HIDE);
+#else
+    HWND hWnd = GetConsoleWindow();
+    ShowWindow(hWnd, SW_SHOW);
 #endif
 
 

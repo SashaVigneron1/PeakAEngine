@@ -32,6 +32,7 @@ Sprite::Sprite(const std::string& fileName, const std::vector<SpriteRow>& rows, 
 	, m_LayerId{ layerId }
 	, m_Pivot{ pivot }
 	, m_Scale{ scale }
+	, m_pGameObject{ nullptr }
 {
 	// Add Rows
 	std::vector<int> indices;
@@ -67,17 +68,20 @@ void Sprite::Update()
 }
 void Sprite::Render() const
 {
-	SDL_FRect srcRect;
-	srcRect.w = m_pTexture->GetWidth() / (float)m_NrCols;
-	srcRect.h = m_pTexture->GetHeight() / (float)m_NrRows;
-	srcRect.x = m_ActFrame * srcRect.w;
-	srcRect.y = m_CurrentRow * srcRect.h;
+	if (m_pGameObject)
+	{
+		SDL_FRect srcRect;
+		srcRect.w = m_pTexture->GetWidth() / (float)m_NrCols;
+		srcRect.h = m_pTexture->GetHeight() / (float)m_NrRows;
+		srcRect.x = m_ActFrame * srcRect.w;
+		srcRect.y = m_CurrentRow * srcRect.h;
 
-	glm::vec2 pos{ m_pGameObject->GetTransform()->GetWorldPosition().x, m_pGameObject->GetTransform()->GetWorldPosition().y };
-	glm::vec2 scale{ m_pGameObject->GetTransform()->GetWorldScale().x * m_Scale.x, m_pGameObject->GetTransform()->GetWorldScale().y * m_Scale.y };
-	float rotation{ 0 };
+		glm::vec2 pos{ m_pGameObject->GetTransform()->GetWorldPosition().x, m_pGameObject->GetTransform()->GetWorldPosition().y };
+		glm::vec2 scale{ m_pGameObject->GetTransform()->GetWorldScale().x * m_Scale.x, m_pGameObject->GetTransform()->GetWorldScale().y * m_Scale.y };
+		float rotation{ 0 };
 
-	RENDERER.RenderTexture(m_pTexture, pos, scale, rotation, m_Pivot, &srcRect, m_LayerId);
+		RENDERER.RenderTexture(m_pTexture, pos, scale, rotation, m_Pivot, &srcRect, m_LayerId);
+	}
 }
 
 void Sprite::SetTexture(const std::string& fileName)

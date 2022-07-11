@@ -3,6 +3,11 @@
 class PhysicsHandler;
 class GameObject;
 
+struct SceneSettings 
+{
+	bool enableGUI = false;
+};
+
 class Scene
 {
 public:
@@ -27,7 +32,10 @@ public:
 	void RenderGizmos() const;
 	void ChangeSceneGraph();
 
+	SceneSettings& GetSettings() { return m_Settings; }
 private: 
+	SceneSettings m_Settings{};
+
 	std::string m_Name;
 
 	std::unique_ptr<PhysicsHandler> m_pPhysicsHandler{};

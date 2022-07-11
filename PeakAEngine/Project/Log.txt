@@ -1,10 +1,6 @@
-[Mon Jul 11 10:47:15 2022] [INFO] [Engine] Loading Engine Settings...
-[Mon Jul 11 10:47:15 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Mon Jul 11 10:47:15 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
-[Mon Jul 11 10:47:15 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
-[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Added Scene: TestScene2
-[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Switching Scene...
-[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Currently Active Scene: TestScene2
+[Mon Jul 11 12:51:50 2022] [INFO] [Engine] Loading Engine Settings...
+[Mon Jul 11 12:51:50 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Mon Jul 11 12:51:50 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
+[Mon Jul 11 12:51:50 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
+[Mon Jul 11 12:51:50 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Mon Jul 11 12:51:50 2022] [INFO] [SceneManager] Currently Active Scene: TestScene

@@ -7,5 +7,9 @@ public:
 	TestComponent();
 
 	virtual void Update() override;
+	virtual void DrawImGui() override;
+
+private: 
+	bool m_IsMoving{ false };
 };
 

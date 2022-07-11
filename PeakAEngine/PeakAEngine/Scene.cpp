@@ -4,6 +4,8 @@
 #include "PhysicsHandler.h"
 #include "GameObject.h"
 
+#include "imgui.h"
+
 unsigned int Scene::m_IdCounter = 0;
 
 Scene::Scene()
@@ -56,11 +58,22 @@ void Scene::RootInitialize()
 
 void Scene::DrawImGui()
 {
-	for (const auto& object : m_Objects)
+	if (m_Settings.enableGUI)
 	{
-		if (object->IsEnabled())
-			object->DrawImGui();
+		std::string title{ "Scene: " + m_Name };
+		ImGui::Begin(title.c_str());
+		
+
+		for (const auto& object : m_Objects)
+		{
+			if (object->IsEnabled())
+				object->DrawImGui();
+		}
+
+		ImGui::End();
 	}
+
+	
 }
 
 void Scene::Update() const
