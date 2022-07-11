@@ -1,75 +1,10 @@
-[Sun Jul 10 13:29:32 2022] [INFO] [Engine] Loading Engine Settings...
-[Sun Jul 10 13:29:32 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Sun Jul 10 13:29:32 2022] [INFO] I am the testscene!
-[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Sun Jul 10 13:29:32 2022] [INFO] I am the testscene!
-[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Added Scene: TestScene2
-[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Switching Scene...
-[Sun Jul 10 13:29:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene2
-[Sun Jul 10 13:29:32 2022] [INFO] Yes
-[Sun Jul 10 13:29:32 2022] [INFO] Yes
-[Sun Jul 10 13:29:32 2022] [INFO] Yes
-[Sun Jul 10 13:29:32 2022] [INFO] Yes
-[Sun Jul 10 13:29:32 2022] [INFO] Yes
-[Sun Jul 10 13:29:32 2022] [INFO] Yes
-[Sun Jul 10 13:29:32 2022] [INFO] Yes
-[Sun Jul 10 13:29:32 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:33 2022] [INFO] Yes
-[Sun Jul 10 13:29:34 2022] [INFO] Yes
+[Mon Jul 11 10:47:15 2022] [INFO] [Engine] Loading Engine Settings...
+[Mon Jul 11 10:47:15 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Mon Jul 11 10:47:15 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
+[Mon Jul 11 10:47:15 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
+[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Added Scene: TestScene2
+[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Switching Scene...
+[Mon Jul 11 10:47:15 2022] [INFO] [SceneManager] Currently Active Scene: TestScene2

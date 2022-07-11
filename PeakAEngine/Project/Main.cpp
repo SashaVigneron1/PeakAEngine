@@ -6,17 +6,22 @@
 
 int main()
 {
+#ifndef _DEBUG
+    //HWND hWnd = GetConsoleWindow();
+    //ShowWindow(hWnd, SW_HIDE);
+#endif
+
 
     ENGINE.Initialize();
 
     // Add Scenes
     Scene* pScene = new TestScene();
-    Scene* pScene2 = new TestScene();
+    //Scene* pScene2 = new TestScene();
 
     SCENEMANAGER.AddScene("TestScene", pScene);
-    SCENEMANAGER.AddScene("TestScene2", pScene2);
+    //SCENEMANAGER.AddScene("TestScene2", pScene2);
 
-    SCENEMANAGER.LoadScene("TestScene2");
+    //SCENEMANAGER.LoadScene("TestScene2");
 
     ENGINE.Run();
 

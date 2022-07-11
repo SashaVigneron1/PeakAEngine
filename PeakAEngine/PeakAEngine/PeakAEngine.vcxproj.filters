@@ -135,6 +135,15 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Singletons</Filter>
     </ClInclude>
+    <ClInclude Include="RenderComponent.h">
+      <Filter>Scenegraph\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Scenegraph\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui.cpp">
@@ -216,6 +225,15 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderComponent.cpp">
+      <Filter>Scenegraph\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Scenegraph\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>UtilityFiles\Other</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

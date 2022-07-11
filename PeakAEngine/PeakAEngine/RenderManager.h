@@ -9,6 +9,10 @@
 
 #define RENDERER RenderManager::GetInstance()
 
+class Texture2D;
+
+
+
 class RenderManager final : public Singleton<RenderManager>
 {
 	friend class Singleton<RenderManager>;
@@ -18,12 +22,24 @@ public:
 	void Render();
 	void Destroy();
 
+	void RenderTexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation,
+		const glm::vec2& pivot, const SDL_FRect* srcRect, int renderTarget);
+
 private:
+	void ActuallyRenderTexture(GLuint glId, int w, int h, const glm::vec2& pos, const glm::vec2& scale, float rotation,
+		const glm::vec2& pivot, const SDL_FRect* srcRect) const;
+
+	struct RenderCommand
+	{
+		std::function<void()> Command;
+		int Layer;
+	};
 
 	SDL_Window* m_Window{};
 	SDL_GLContext m_pContext{};
-	std::vector<std::shared_ptr<RenderTarget>> m_RenderLayers;
-	std::vector<std::function<void()>> m_PostDrawGLCalls;
+
+	std::vector<RenderCommand> m_RenderCommands;
+
 	std::mutex m_OpenGlLock;
 	int m_WindowResWidth{};
 	int m_WindowResHeight{};

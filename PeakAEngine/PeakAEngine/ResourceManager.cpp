@@ -65,16 +65,18 @@ std::shared_ptr<Texture2D> ResourceManager::LoadTexture(const std::string& file)
 {
 	if (!m_Textures.contains(file))
 	{
-		//Logger::LogInfo("[ResourceManager] Loading Texture: " + file);
+		Logger::LogInfo("[ResourceManager] Loading Texture: " + file);
 
 		const auto fullPath = m_DataPath + file;
 		auto texture = IMG_Load(fullPath.c_str());
 		if (texture == nullptr)
 		{
+			Logger::LogError("[ResourceManager] Failed to load texture: " + std::string{ SDL_GetError() });
 			throw std::runtime_error(std::string("Failed to load texture: ") + SDL_GetError());
 		}
 
 		m_Textures[file] = LoadTexture(texture);
+		Logger::LogSuccess("[ResourceManager] Texture Succesfully Loaded: " + file);
 	}
 
 	std::shared_ptr<Texture2D> texture = m_Textures[file];
