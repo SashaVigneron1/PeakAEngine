@@ -10,9 +10,9 @@
 
 #pragma comment(lib, "XInput.lib")
 
-//ToDo: Test
-//ToDo: Add Commands
-//ToDo: Enable warnings as errors again
+//ToDoo: Test
+//ToDoo: Add Commands
+//ToDoo: Enable warnings as errors again
 
 
 #pragma region Impl

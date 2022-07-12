@@ -199,7 +199,7 @@ void BoxCollider::RenderGizmos() const
 	pos.x -= size.x / 2;
 	pos.y -= size.y / 2;
 
-	//ToDo: Rotation
+	//ToDoo: Rotation
 
 	RENDERER.RenderDebugRect({ pos.x, pos.y, size.x, size.y }, true, m_DebugColor);
 }

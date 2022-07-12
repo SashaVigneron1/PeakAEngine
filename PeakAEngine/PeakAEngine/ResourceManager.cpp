@@ -47,8 +47,7 @@ std::shared_ptr<RenderTarget> ResourceManager::CreateRenderTexture(int width, in
 	GLuint status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	if (status != GL_FRAMEBUFFER_COMPLETE)
 	{
-		//ToDo: Switch To Logger
-		//std::cout << glewGetErrorString(status);
+		Logger::LogError(std::string(reinterpret_cast<const char*>(glewGetErrorString(status))));
 		throw std::runtime_error("Was unable to create the render texture");
 	}
 

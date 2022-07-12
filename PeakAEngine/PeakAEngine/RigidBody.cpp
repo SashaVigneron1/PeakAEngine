@@ -20,7 +20,16 @@ RigidBody::RigidBody(BodyType type, bool fixedRotation, float gravityScale)
 	: m_InitialType{ type }
 	, m_InitialFixedRotation{ fixedRotation }
 	, m_InitialGravityScale{ gravityScale }
+	, m_PhysicsMaterial{ }
 {}
+
+RigidBody::RigidBody(BodyType type, const PhysicsMaterial& material, bool fixedRotation, float gravityScale)
+	: m_InitialType{ type }
+	, m_InitialFixedRotation{ fixedRotation }
+	, m_InitialGravityScale{ gravityScale }
+	, m_PhysicsMaterial{ material }
+{
+}
 
 void RigidBody::Initialize()
 {
@@ -66,11 +75,10 @@ void RigidBody::AddBoxCollider(BoxCollider* boxCollider) const
 	fixtureDef.isSensor = boxCollider->IsTrigger();
 	fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(boxCollider);
 
-	// TODO: Physics Material
-	fixtureDef.density = 1.f;
-	fixtureDef.friction = 0.5f;
-	fixtureDef.restitution = 0.5f;
-	fixtureDef.restitutionThreshold = 0.5f;
+	fixtureDef.density = m_PhysicsMaterial.density;
+	fixtureDef.friction = m_PhysicsMaterial.friction;
+	fixtureDef.restitution = m_PhysicsMaterial.restitution;
+	fixtureDef.restitutionThreshold = m_PhysicsMaterial.restitutionThreshold;
 
 	const auto fixture = m_RunTimeBody->CreateFixture(&fixtureDef);
 

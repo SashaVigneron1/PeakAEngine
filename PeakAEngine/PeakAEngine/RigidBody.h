@@ -12,8 +12,16 @@ public:
 		Kinematic,
 		Dynamic
 	};
+	struct PhysicsMaterial 
+	{
+		float density = 1.f;
+		float friction = 0.5f;
+		float restitution = 0.5f;
+		float restitutionThreshold = 0.5f;
+	};
 
 	RigidBody(BodyType type, bool fixedRotation = false, float gravityScale = 1.0f);
+	RigidBody(BodyType type, const PhysicsMaterial& material, bool fixedRotation = false, float gravityScale = 1.0f);
 	virtual ~RigidBody() override = default;
 
 	RigidBody(const RigidBody& other) = delete;
@@ -61,5 +69,7 @@ private:
 	float m_InitialGravityScale;
 
 	b2Body* m_RunTimeBody = nullptr;
+
+	PhysicsMaterial m_PhysicsMaterial;
 };
 
