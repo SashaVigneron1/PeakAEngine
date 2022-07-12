@@ -142,29 +142,67 @@ bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
 	glm::vec2 size{ m_pGameObject->GetTransform()->GetWorldScale().x * m_Size.x, 
 		m_pGameObject->GetTransform()->GetWorldScale().y * m_Size.y };
 
-	thisPos.x -= size.x / 2;
-	thisPos.y -= size.y / 2;
+	//thisPos.x -= size.x / 2;
+	//thisPos.y -= size.y / 2;
 
-	//ToDoo: Rotation
 
-	glm::vec4 rect
-	{
-		thisPos.x,
-		thisPos.y,
-		size.x, size.y
-	};
+	// Create Vertices
+	float vertexLeft{ -size.x/2 };
+	float vertexBottom{ -size.y/2 };
+	float vertexRight{ size.x/2 };
+	float vertexTop{ size.y/2 };
 
+	// Apply Rotation
+	constexpr float inverse180{ 1.f / 180.f * float(M_PI) };
+	float rotation = m_pGameObject->GetTransform()->GetWorldRotation();
+
+	float cosAngle = cos(rotation * inverse180);
+	float sinAngle = sin(rotation * inverse180);
+
+	glm::vec2 vertices[4]{};
+	vertices[0] = { vertexLeft * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexLeft * sinAngle };
+	vertices[1] = { vertexLeft * cosAngle - vertexTop * sinAngle, vertexTop * cosAngle + vertexLeft * sinAngle };
+	vertices[2] = { vertexRight * cosAngle - vertexTop * sinAngle, vertexTop * cosAngle + vertexRight * sinAngle };
+	vertices[3] = { vertexRight * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexRight * sinAngle };
+
+	// Apply Transformation
+	vertices[0] += thisPos;
+	vertices[1] += thisPos;
+	vertices[2] += thisPos;
+	vertices[3] += thisPos;
+
+	// Apply Screen Space
 	if (convertToScreenSpace)
-		rect *= RENDERER.GetPixelsPerUnit();
+	{
+		vertices[0] *= RENDERER.GetPixelsPerUnit();
+		vertices[1] *= RENDERER.GetPixelsPerUnit();
+		vertices[2] *= RENDERER.GetPixelsPerUnit();
+		vertices[3] *= RENDERER.GetPixelsPerUnit();
+	}
 
 	// Check If Overlapping
+	float minX{FLT_MAX};
+	float minY{FLT_MAX};
+	float maxX{FLT_MIN};
+	float maxY{FLT_MIN};
+
+	for (auto vPos : vertices)
+		(vPos.x < minX) ? minX = vPos.x : minX = minX;
+	for (auto vPos : vertices)
+		(vPos.y < minY) ? minY = vPos.y : minY = minY;
+	for (auto vPos : vertices)
+		(vPos.x > maxX) ? maxX = vPos.x : maxX = maxX;
+	for (auto vPos : vertices)
+		(vPos.y > maxY) ? maxY = vPos.y : maxY = maxY;
+
 	return (
-		position.x > rect.x
-		&& position.x < rect.x + rect.z
-		&& position.y > rect.y
-		&& position.y < rect.y + rect.w
+		position.x > minX
+		&& position.x < maxX
+		&& position.y > minY
+		&& position.y < maxY
 		);
 
+	//Todoo: Fix: If the collider is rotated; The corners of the rotated rectangle also count
 	// NOTE: HASNT BEEN TESTED IN WORLD SPACE YET
 }
 
@@ -239,9 +277,7 @@ void BoxCollider::RenderGizmos() const
 	pos.x -= size.x / 2;
 	pos.y -= size.y / 2;
 
-	//ToDoo: Rotation
-
-	RENDERER.RenderDebugRect({ pos.x, pos.y, size.x, size.y }, true, m_DebugColor);
+	RENDERER.RenderDebugRect({ pos.x, pos.y, size.x, size.y }, true, m_DebugColor, m_pGameObject->GetTransform()->GetWorldRotation());
 }
 
 //void BoxCollider::DrawProperties()

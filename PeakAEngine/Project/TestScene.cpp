@@ -55,6 +55,7 @@ void TestScene::Initialize()
 
 	go->GetTransform()->SetWorldPosition({ 0,0 });
 	go->GetTransform()->SetWorldScale({ 1, 1 });
+	go->GetTransform()->Rotate(45.f);
 
 	// CAMERA
 	auto cameraObj = AddChild("Camera");

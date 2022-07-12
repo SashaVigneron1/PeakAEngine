@@ -257,37 +257,88 @@ void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::
 
 
 
-void RenderManager::SetColor(const SDL_Color& color)
+void RenderManager::SetColor(const SDL_Color& color) const
 {
 	glColor4ub(color.r, color.g, color.b, color.a);
 }
 
-void RenderManager::RenderDebugRect(const SDL_FRect& rect, bool filled, const SDL_Color& pColor)
+void RenderManager::RenderDebugRect(const SDL_FRect& rect, bool filled, const SDL_Color& pColor, float rotation)
 {
 	m_DebugRenderCommands.push_back(
 		{
 			[=]()
 			{
-				ActuallyRenderDebugRect(rect, filled, pColor);
+				ActuallyRenderDebugRect(rect, filled, pColor, rotation);
 			},
 			1
 		}
 	);
 }
 
-void RenderManager::ActuallyRenderDebugRect(const SDL_FRect& rect, bool filled, const SDL_Color& pColor)
+void RenderManager::RenderDebugPolygon(const glm::vec2* points, size_t size, bool filled, const SDL_Color& color)
 {
-	SetColor(pColor);
+	m_DebugRenderCommands.push_back(
+		{
+			[=]()
+			{
+				ActuallyRenderDebugPolygon(points, size, filled, color);
+			},
+			1
+		}
+	);
+}
+
+void RenderManager::ActuallyRenderDebugRect(const SDL_FRect& rect, bool filled, const SDL_Color& color, float rotation) const
+{
+	SetColor(color);
 
 	SDL_FRect newRect{ rect.x * m_PixelsPerUnit,
 	rect.y * m_PixelsPerUnit,
 	rect.w * m_PixelsPerUnit,
 	rect.h * m_PixelsPerUnit };
 
+	// Create Vertices
+	float vertexLeft{ -newRect.w/2 };
+	float vertexBottom{ -newRect.h/2 };
+	float vertexRight{ newRect.w/2 };
+	float vertexTop{ newRect.h/2 };
+
+	glm::vec2 vertices[4]{};
+
+	// Apply Rotation
+	constexpr float inverse180{ 1.f / 180.f * float(M_PI) };
+
+	float cosAngle = cos(rotation * inverse180);
+	float sinAngle = sin(rotation * inverse180);
+
+	vertices[0] = { vertexLeft * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexLeft * sinAngle };
+	vertices[1] = { vertexLeft * cosAngle - vertexTop * sinAngle, vertexTop * cosAngle + vertexLeft * sinAngle };
+	vertices[2] = { vertexRight * cosAngle - vertexTop * sinAngle, vertexTop * cosAngle + vertexRight * sinAngle };
+	vertices[3] = { vertexRight * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexRight * sinAngle };
+
+	// Apply Transformation
+	vertices[0] += glm::vec2{newRect.x + newRect.w / 2, newRect.y + newRect.h / 2 };
+	vertices[1] += glm::vec2{newRect.x + newRect.w / 2, newRect.y + newRect.h / 2 };
+	vertices[2] += glm::vec2{newRect.x + newRect.w / 2, newRect.y + newRect.h / 2 };
+	vertices[3] += glm::vec2{newRect.x + newRect.w / 2, newRect.y + newRect.h / 2 };
+
+	// Draw Vertices
 	glBegin(filled ? GL_POLYGON : GL_LINE_LOOP);
-	glVertex2f(newRect.x, newRect.y);
-	glVertex2f(newRect.x + newRect.w, newRect.y);
-	glVertex2f(newRect.x + newRect.w, newRect.y + newRect.h);
-	glVertex2f(newRect.x, newRect.y + newRect.h);
+	glVertex2f(vertices[0].x, vertices[0].y);
+	glVertex2f(vertices[1].x, vertices[1].y);
+	glVertex2f(vertices[2].x, vertices[2].y);
+	glVertex2f(vertices[3].x, vertices[3].y);
+	glEnd();
+}
+
+void RenderManager::ActuallyRenderDebugPolygon(const glm::vec2* points, size_t size, bool filled, const SDL_Color& color) const
+{
+	SetColor(color);
+
+	glBegin(filled ? GL_POLYGON : GL_LINE_LOOP);
+	for (size_t i{}; i < size; ++i)
+	{
+		glVertex2f(points[i].x, points[i].y);
+	}
 	glEnd();
 }

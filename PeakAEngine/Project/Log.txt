@@ -1,25 +1,22 @@
-[Tue Jul 12 16:10:40 2022] [INFO] [Engine] Loading Engine Settings...
-[Tue Jul 12 16:10:40 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Tue Jul 12 16:10:40 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Tue Jul 12 16:10:40 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Tue Jul 12 16:10:40 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Tue Jul 12 16:10:40 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Tue Jul 12 16:10:40 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Tue Jul 12 16:10:40 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Tue Jul 12 16:10:41 2022] [INFO] Begin Hover
-[Tue Jul 12 16:10:42 2022] [INFO] End Hover
-[Tue Jul 12 16:10:42 2022] [INFO] Begin Hover
-[Tue Jul 12 16:10:43 2022] [INFO] Click
-[Tue Jul 12 16:10:43 2022] [INFO] End Hover
-[Tue Jul 12 16:10:43 2022] [INFO] Begin Hover
-[Tue Jul 12 16:10:44 2022] [INFO] Click
-[Tue Jul 12 16:10:44 2022] [INFO] End Hover
-[Tue Jul 12 16:10:44 2022] [INFO] Begin Hover
-[Tue Jul 12 16:10:45 2022] [INFO] Click
-[Tue Jul 12 16:10:45 2022] [INFO] End Hover
-[Tue Jul 12 16:10:46 2022] [INFO] Begin Hover
-[Tue Jul 12 16:10:46 2022] [INFO] End Hover
-[Tue Jul 12 16:10:46 2022] [INFO] Begin Hover
-[Tue Jul 12 16:10:46 2022] [INFO] End Hover
-[Tue Jul 12 16:10:47 2022] [INFO] Begin Hover
-[Tue Jul 12 16:10:47 2022] [INFO] End Hover
+[Tue Jul 12 21:44:49 2022] [INFO] [Engine] Loading Engine Settings...
+[Tue Jul 12 21:44:49 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Tue Jul 12 21:44:49 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Tue Jul 12 21:44:49 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Tue Jul 12 21:44:49 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Tue Jul 12 21:44:49 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Tue Jul 12 21:44:49 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Tue Jul 12 21:44:49 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Tue Jul 12 21:44:50 2022] [INFO] Begin Hover
+[Tue Jul 12 21:44:50 2022] [INFO] End Hover
+[Tue Jul 12 21:44:50 2022] [INFO] Begin Hover
+[Tue Jul 12 21:44:51 2022] [INFO] End Hover
+[Tue Jul 12 21:44:52 2022] [INFO] Begin Hover
+[Tue Jul 12 21:44:52 2022] [INFO] End Hover
+[Tue Jul 12 21:44:53 2022] [INFO] Begin Hover
+[Tue Jul 12 21:44:53 2022] [INFO] End Hover
+[Tue Jul 12 21:44:54 2022] [INFO] Begin Hover
+[Tue Jul 12 21:44:54 2022] [INFO] End Hover
+[Tue Jul 12 21:44:55 2022] [INFO] Begin Hover
+[Tue Jul 12 21:44:55 2022] [INFO] End Hover
+[Tue Jul 12 21:44:56 2022] [INFO] Begin Hover
+[Tue Jul 12 21:44:56 2022] [INFO] End Hover
