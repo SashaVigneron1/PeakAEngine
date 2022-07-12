@@ -139,8 +139,8 @@ void Engine::InitializeSettings()
 	m_EngineSettings.Insert(EngineSettings::gameResolutionY.data(), integer);
 	m_EngineSettings.Insert(EngineSettings::gameWindowSizeY.data(), integer);
 
-	integer = 3;
-	m_EngineSettings.Insert(EngineSettings::renderLayers.data(), integer);
+	integer = 10;
+	m_EngineSettings.Insert(EngineSettings::rendererPixelsPerUnit.data(), integer);
 
 	bool boolean{ true };
 	m_EngineSettings.Insert(EngineSettings::gameWindowMaximized.data(), boolean);
@@ -152,7 +152,8 @@ void Engine::InitializeSettings()
 	m_EngineSettings.Insert(EngineSettings::gameStartScene.data(), std::string("/"));
 	m_EngineSettings.Insert(EngineSettings::gameTitle.data(), std::string("Game Made With PeakAEngine"));
 
-	m_EngineSettings.Insert(EngineSettings::fixedUpdateInterval.data(), std::string("0.16f"));
+	float decimal{ 0.5f };
+	m_EngineSettings.Insert(EngineSettings::fixedUpdateInterval.data(), decimal);
 	m_EngineSettings.Insert(EngineSettings::maxFixedUpdatesPerFrame.data(), std::string("50"));
 
 	// Load the engineconfig.ini file
@@ -182,7 +183,7 @@ void Engine::InitializeSettings()
 		settingsFile.WriteLine("-------------------------");
 		settingsFile.WriteLine("PHYSICS");
 		settingsFile.WriteLine("-------------------------");
-		settingsFile.WriteLine("FixedUpdateInterval 0.16f");
+		settingsFile.WriteLine("FixedUpdateInterval 0.01f");
 		settingsFile.WriteLine("MaxFixedUpdatesPerFrame 50");
 		settingsFile.WriteLine("");
 
@@ -190,7 +191,7 @@ void Engine::InitializeSettings()
 		settingsFile.WriteLine("OTHER");
 		settingsFile.WriteLine("-------------------------");
 		settingsFile.WriteLine("StartScene 0");
-		settingsFile.WriteLine("RendererLayers 3");
+		settingsFile.WriteLine("RendererPixelsPerUnit 10");
 		settingsFile.WriteLine("ResourcesPath Resources/");
 		settingsFile.WriteLine("");
 

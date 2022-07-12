@@ -12,12 +12,17 @@
 
 #include "GUIManager.h"
 
+#include "GameObject.h"
+#include "Transform.h"
+#include "CameraComponent.h"
+
 void RenderManager::Init(SDL_Window* window)
 {
 	auto& settings = ENGINE.GetSettings();
 
 	settings.GetData(EngineSettings::gameResolutionX.data(), m_GameResWidth);
 	settings.GetData(EngineSettings::gameResolutionY.data(), m_GameResHeight);
+	settings.GetData(EngineSettings::rendererPixelsPerUnit.data(), m_PixelsPerUnit);
 
 	m_Window = window;
 
@@ -99,14 +104,35 @@ void RenderManager::Render()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
+		// First translate [0, 0] to the center of the screen
+		glTranslatef((float)m_GameResWidth / 2.f, (float)m_GameResHeight / 2.f, 0.0f);
+
+		// Translate To Camera Pos
+		if (m_pCamera)
+		{
+			auto camScale = m_pCamera->GetGameObject()->GetTransform()->GetWorldScale();
+			glScalef(camScale.x, camScale.y, 1);
+
+			auto camPos = m_pCamera->GetGameObject()->GetTransform()->GetWorldPosition();
+			camPos /= m_PixelsPerUnit;
+			glTranslatef(-camPos.x, -camPos.y, 0.0f);
+		}
+
 		// Create Render Commands
 		SCENEMANAGER.Render();
 
 		// Execute Render Commands
 		for (auto& renderCommand : m_RenderCommands)
 			renderCommand.Command();
-
 		m_RenderCommands.clear();
+
+		// Create DebugRender Commands
+		SCENEMANAGER.RenderGizmos();
+
+		// Execute Debug Render Commands
+		for (auto& renderCommand : m_DebugRenderCommands)
+			renderCommand.Command();
+		m_DebugRenderCommands.clear();
 	}
 	glPopMatrix();
 
@@ -131,7 +157,7 @@ void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, con
 		{
 			[=]()
 			{
-				ActuallyRenderTexture(texture->GetId(), texture->GetWidth(), texture->GetHeight(), pos, scale, rotation, pivot, srcRect);
+				ActuallyRenderTexture(texture->GetId(), texture->GetWidth(), texture->GetHeight(), pos, scale, rotation, pivot, texture.get()->GetPixelsPerUnit(), srcRect);
 			},
 			renderTarget
 		}
@@ -139,7 +165,7 @@ void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, con
 }
 
 void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::vec2& pos, const glm::vec2& scale, float rotation,
-	const glm::vec2& pivot, const SDL_FRect& srcRect) const
+	const glm::vec2& pivot, int pixelsPerUnit, const SDL_FRect& srcRect) const
 {
 	{
 		const glm::vec2 invertedYPos{ pos.x, pos.y };
@@ -160,10 +186,10 @@ void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::
 		float vertexRight{ 1.f - pivot.x };
 		float vertexTop{ 1.f - pivot.y };
 
-		vertexLeft *= width * scale.x;
-		vertexRight *= width * scale.x;
-		vertexTop *= height * scale.y;
-		vertexBottom *= height * scale.y;
+		vertexLeft *= width * scale.x / pixelsPerUnit;
+		vertexRight *= width * scale.x / pixelsPerUnit;
+		vertexTop *= height * scale.y / pixelsPerUnit;
+		vertexBottom *= height * scale.y / pixelsPerUnit;
 
 		constexpr float inverse180{ 1.f / 180.f * float(M_PI) };
 
@@ -179,6 +205,11 @@ void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::
 		vertices[1] += invertedYPos;
 		vertices[2] += invertedYPos;
 		vertices[3] += invertedYPos;
+
+		vertices[0] *= m_PixelsPerUnit;
+		vertices[1] *= m_PixelsPerUnit;
+		vertices[2] *= m_PixelsPerUnit;
+		vertices[3] *= m_PixelsPerUnit;
 
 		// Texture coordinates
 		float textLeft{ 0 };
@@ -224,3 +255,39 @@ void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::
 	//SetRenderTargetScreen();
 }
 
+
+
+void RenderManager::SetColor(const SDL_Color& color)
+{
+	glColor4ub(color.r, color.g, color.b, color.a);
+}
+
+void RenderManager::RenderDebugRect(const SDL_FRect& rect, bool filled, const SDL_Color& pColor)
+{
+	m_DebugRenderCommands.push_back(
+		{
+			[=]()
+			{
+				ActuallyRenderDebugRect(rect, filled, pColor);
+			},
+			1
+		}
+	);
+}
+
+void RenderManager::ActuallyRenderDebugRect(const SDL_FRect& rect, bool filled, const SDL_Color& pColor)
+{
+	SetColor(pColor);
+
+	SDL_FRect newRect{ rect.x * m_PixelsPerUnit,
+	rect.y * m_PixelsPerUnit,
+	rect.w * m_PixelsPerUnit,
+	rect.h * m_PixelsPerUnit };
+
+	glBegin(filled ? GL_POLYGON : GL_LINE_LOOP);
+	glVertex2f(newRect.x, newRect.y);
+	glVertex2f(newRect.x + newRect.w, newRect.y);
+	glVertex2f(newRect.x + newRect.w, newRect.y + newRect.h);
+	glVertex2f(newRect.x, newRect.y + newRect.h);
+	glEnd();
+}

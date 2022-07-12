@@ -88,6 +88,20 @@ void Sprite::SetTexture(const std::string& fileName)
 {
 	m_pTexture = ResourceManager::GetInstance().LoadTexture(fileName);
 }
+void Sprite::SetPixelsPerUnit(int value)
+{
+	m_pTexture.get()->SetPixelsPerUnit(value);
+}
+int Sprite::GetPixelsPerUnit() const
+{
+	return m_pTexture.get()->GetPixelsPerUnit();
+}
+glm::vec2 Sprite::GetSpriteDimension() const
+{
+
+	return { m_pTexture.get()->GetWidth() / m_NrCols, m_pTexture.get()->GetHeight() / (m_Rows.size()-1) };
+
+}
 void Sprite::SetDirection(Direction direction)
 {
 	for (auto spriteRow : m_Rows)

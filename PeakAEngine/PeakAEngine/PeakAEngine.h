@@ -56,7 +56,7 @@ namespace EngineSettings
 
 	// OTHER
 	inline std::string_view gameStartScene{ "StartScene" };
-	inline std::string_view renderLayers{ "RenderLayers" };
+	inline std::string_view rendererPixelsPerUnit{ "RendererPixelsPerUnit" };
 	inline std::string_view resourcePath{ "ResourcesPath" };
 }
 

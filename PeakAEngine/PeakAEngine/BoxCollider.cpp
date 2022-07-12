@@ -5,6 +5,8 @@
 #include "RigidBody.h"
 #include "Transform.h"
 
+#include "RenderManager.h"
+
 #pragma warning(push, 0)
 #include <b2_fixture.h>
 #pragma warning(pop)
@@ -153,50 +155,26 @@ void BoxCollider::AttachToRigidbody(const GameObject* gameObject)
 		}
 		else
 		{
-			std::cout << "[BoxCollider] Could not find RigidBodyComponent to attach to." << std::endl;
+			Logger::LogError("[BoxCollider] Could not find RigidBodyComponent to attach to.");
 		}
 	}
 }
 
 
-
-
-
-
 void BoxCollider::RenderGizmos() const
 {
-	/*const auto wPos = GetGameObject()->GetTransform()->GetWorldPosition();
-	const auto wSize = GetGameObject()->GetTransform()->GetWorldScale() * m_Size;
-	const auto wRot = GetGameObject()->GetTransform()->GetWorldRotation() + m_Rotation;
+	if (!m_DrawDebugRect)
+		return;
 
-	std::vector<glm::vec2> positions{
-		{ -wSize.x / 2 + m_Offset.x, -wSize.y / 2 + m_Offset.y },
-		{ -wSize.x / 2 + m_Offset.x, wSize.y / 2 + m_Offset.y },
-		{ wSize.x / 2 + m_Offset.x, wSize.y / 2 + m_Offset.y },
-		{ wSize.x / 2 + m_Offset.x, -wSize.y / 2 + m_Offset.y }
-	};
+	glm::vec2 pos{ m_pGameObject->GetTransform()->GetWorldPosition().x + m_Offset.x, m_pGameObject->GetTransform()->GetWorldPosition().y + m_Offset.y };
+	glm::vec2 size{ m_pGameObject->GetTransform()->GetWorldScale().x * m_Size.x, m_pGameObject->GetTransform()->GetWorldScale().y * m_Size.y};
 
-	const float rotInRad = glm::radians(wRot);
-	for (auto& pos : positions)
-	{
-		pos = glm::vec2{
-			pos.x * cos(rotInRad) - pos.y * sin(rotInRad),
-			pos.x * sin(rotInRad) + pos.y * cos(rotInRad)
-		};
+	pos.x -= size.x / 2;
+	pos.y -= size.y / 2;
 
-		pos += wPos;
-	}
+	//ToDo: Rotation
 
-	if (m_RunTimeFixture != nullptr)
-	{
-		ServiceLocator::GetRenderer()->RenderPolygonFilled(positions, glm::vec4(0.0f, 1.0f, 0.0f, 0.3f));
-		ServiceLocator::GetRenderer()->RenderPolygonOutline(positions, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
-	}
-	else
-	{
-		ServiceLocator::GetRenderer()->RenderPolygonFilled(positions, glm::vec4(1.0f, 0.0f, 0.0f, 0.3f));
-		ServiceLocator::GetRenderer()->RenderPolygonOutline(positions, true, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-	}*/
+	RENDERER.RenderDebugRect({ pos.x, pos.y, size.x, size.y }, true, m_DebugColor);
 }
 
 //void BoxCollider::DrawProperties()

@@ -24,6 +24,12 @@ public:
 
 	void AddSprite(const std::string& name, Sprite* pSprite);
 	void SetActiveSprite(const std::string& name) { m_pActiveSprite = m_Sprites[name]; }
+
+	void SetPixelsPerUnit(int value) { for (auto sprite : m_Sprites) sprite.second->SetPixelsPerUnit(value); }
+	int GetPixelsPerUnit();
+
+	glm::vec2 GetSpriteDimensions() const;
+
 private:
 	Sprite* m_pActiveSprite;
 	std::unordered_map<std::string, Sprite*> m_Sprites;

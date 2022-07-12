@@ -28,6 +28,8 @@ public:
 	bool IsTrigger() const;
 	void SetTrigger(bool isTrigger);
 
+	void EnableDebugDrawing(bool value) { m_DrawDebugRect = value; }
+	void SetDebugColor(const SDL_Color& color) { m_DebugColor = color; }
 private:
 	friend class PhysicsHandler;
 	friend class RigidBody;
@@ -60,5 +62,7 @@ private:
 	// storage for runtime
 	b2Fixture* m_RunTimeFixture = nullptr;
 
+	bool m_DrawDebugRect{ false };
+	SDL_Color m_DebugColor{ 255,0,0,100 };
 };
 

@@ -53,6 +53,10 @@ public:
 	void SetTexture(const std::string& fileName);
 	void SetTexture(std::shared_ptr<Texture2D> newTexture) { m_pTexture = newTexture; }
 
+	void SetPixelsPerUnit(int value);
+	int GetPixelsPerUnit() const;
+
+	glm::vec2 GetSpriteDimension() const;
 private:
 	GameObject* m_pGameObject;
 

@@ -239,6 +239,7 @@
     <ClInclude Include="..\3rdParty\DearImGui\imstb_truetype.h" />
     <ClInclude Include="BaseObserver.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="FileIO.h" />
@@ -311,6 +312,7 @@
     </ClCompile>
     <ClCompile Include="BaseObserver.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="GameObject.cpp" />

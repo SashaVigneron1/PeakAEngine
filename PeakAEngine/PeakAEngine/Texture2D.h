@@ -49,10 +49,14 @@ public:
 	inline bool IsValid() { return m_Id; }
 	inline operator bool() { return IsValid(); }
 
+	void SetPixelsPerUnit(int value) { m_PixelsPerUnit = value; }
+	int GetPixelsPerUnit() const { return m_PixelsPerUnit; }
 private:
 	GLuint m_Id{};
 	int m_Width{};
 	int m_Height{};
+
+	int m_PixelsPerUnit{ 1 };
 
 	std::filesystem::path m_sourceFile{};
 };

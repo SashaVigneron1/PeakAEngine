@@ -1,6 +1,8 @@
-[Mon Jul 11 14:06:59 2022] [INFO] [Engine] Loading Engine Settings...
-[Mon Jul 11 14:06:59 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Mon Jul 11 14:06:59 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Mon Jul 11 14:06:59 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Mon Jul 11 14:06:59 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Mon Jul 11 14:06:59 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Tue Jul 12 11:52:21 2022] [INFO] [Engine] Loading Engine Settings...
+[Tue Jul 12 11:52:21 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Tue Jul 12 11:52:21 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Tue Jul 12 11:52:21 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Tue Jul 12 11:52:21 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Tue Jul 12 11:52:21 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Tue Jul 12 11:52:21 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Tue Jul 12 11:52:21 2022] [INFO] [SceneManager] Currently Active Scene: TestScene

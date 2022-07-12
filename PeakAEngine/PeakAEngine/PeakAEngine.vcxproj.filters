@@ -150,6 +150,9 @@
     <ClInclude Include="..\3rdParty\DearImGui\backends\imgui_impl_sdl.h">
       <Filter>ImGui\backends</Filter>
     </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Scenegraph\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
@@ -240,6 +243,9 @@
     </ClCompile>
     <ClCompile Include="..\3rdParty\DearImGui\backends\imgui_impl_sdl.cpp">
       <Filter>ImGui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Scenegraph\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

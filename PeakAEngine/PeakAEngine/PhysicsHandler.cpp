@@ -72,8 +72,8 @@ void PhysicsHandler::UpdatePhysics() const
 	m_pContactListener->ResetContacts();
 
 	// Take physics steps
-	constexpr int32_t velocityIterations = 6;
-	constexpr int32_t positionIterations = 2;
+	constexpr int32_t velocityIterations = 10;
+	constexpr int32_t positionIterations = 10;
 
 	const float timeStep = Time::FixedTime();
 	m_pPhysicsWorld->Step(timeStep, velocityIterations, positionIterations);
