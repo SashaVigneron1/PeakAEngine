@@ -84,6 +84,21 @@ private:
 
 	bool m_IsEnabled{ true };
 	bool m_ShouldBeEnabled{ true };
+
+
+	void SetBoxCollider(BoxCollider* pCollider) { m_BoxCollider = pCollider; }
+
+	bool IsHovering(const glm::vec2& mousePos) const;
+	bool IsHovered() const { return m_CursorIsHoveringThis; }
+	bool SetHovering(bool value) { m_CursorIsHoveringThis = value; }
+
+	void OnBeginHover();
+	void OnEndHover();
+	void OnClick();
+
+	bool m_CursorIsHoveringThis = false;
+
+	BoxCollider* m_BoxCollider = nullptr;
 };
 
 template<typename componentType, typename... argTypes>

@@ -8,8 +8,10 @@
 
 #include "imgui.h"
 
+//ToDoo: For some reason if switch boxcollider & rendermanager doesnt work (header dependency)
 #include "PeakAEngine/RigidBody.h"
 #include "PeakAEngine/RenderManager.h"
+#include "PeakAEngine/BoxCollider.h"	
 
 TestComponent::TestComponent() 
 	: Component()
@@ -19,9 +21,22 @@ TestComponent::TestComponent()
 
 void TestComponent::Update()
 {
+	/*if (INPUTMANAGER.GetMouseButton(MouseButton::LMB))
+	{
+		Logger::LogInfo("LMB Was Holded");
+	}*/
+	/*if (INPUTMANAGER.GetMouseButtonPressed(MouseButton::LMB))
+	{
+		Logger::LogInfo("LMB Was Clicked");
+	}*/
+	/*if (INPUTMANAGER.GetMouseButtonUp(MouseButton::LMB))
+	{
+		Logger::LogInfo("LMB Was Released");
+	}*/
+
 	if (INPUTMANAGER.IsDown('d'))
 	{
-		m_pGameObject->GetTransform()->Translate({ 100 * Time::DeltaTime(),0 });
+		m_pGameObject->GetTransform()->Translate({ 10 * Time::DeltaTime(),0 });
 
 		//m_pGameObject->GetComponent<RigidBody>()->ApplyImpulse({ 100,0 }, true);
 
@@ -42,4 +57,26 @@ void TestComponent::RenderGizmos() const
 	/*SDL_Color color{ 0,0,255,255 };
 	glm::vec2 pos{ m_pGameObject->GetTransform()->GetWorldPosition().x, m_pGameObject->GetTransform()->GetWorldPosition().y };
 	RENDERER.RenderDebugRect({ pos.x, pos.y,100,100 }, true, color);*/
+}
+
+
+void TestComponent::OnBeginHover()
+{
+	Logger::LogInfo("Begin Hover");
+	SDL_Color color{ 0, 0, 255, 100 };
+	GetGameObject()->GetComponent<BoxCollider>()->SetDebugColor(color);
+}
+
+void TestComponent::OnEndHover()
+{
+	Logger::LogInfo("End Hover");
+	SDL_Color color{ 255, 0, 0, 100 };
+	GetGameObject()->GetComponent<BoxCollider>()->SetDebugColor(color);
+}
+
+void TestComponent::OnClick()
+{
+	Logger::LogInfo("Click");
+	SDL_Color color{ 0, 255, 0, 100 };
+	GetGameObject()->GetComponent<BoxCollider>()->SetDebugColor(color);
 }

@@ -45,6 +45,16 @@ void SceneManager::ChangeSceneGraph()
 	if (m_ActiveScene) m_ActiveScene->ChangeSceneGraph();
 }
 
+void SceneManager::OnHover(const glm::vec2& mousePos)
+{
+	if (m_ActiveScene) m_ActiveScene->OnHover(mousePos);
+}
+
+void SceneManager::OnClick()
+{
+	if (m_ActiveScene) m_ActiveScene->OnClick();
+}
+
 SceneManager::~SceneManager()
 {
 	for (auto scenePair : m_Scenes) 

@@ -147,3 +147,36 @@ void Scene::ChangeSceneGraph()
 	}
 }
 
+void Scene::OnHover(const glm::vec2& mousePos)
+{
+	// For All (active) Components
+	for (const auto& object : m_Objects)
+	{
+		if (object->IsEnabled())
+		{
+			// Check if hovering
+			bool wasHovering = object->IsHovered();
+			bool isHovering = object->IsHovering(mousePos);
+
+			// If is hovering: OnBeginHover
+			if (!wasHovering && isHovering)
+				object->OnBeginHover();
+			// Else if was hovering but now not: OnEndHover
+			else if (wasHovering && !isHovering)
+				object->OnEndHover();
+		}
+	}
+}
+
+void Scene::OnClick()
+{
+	// For All (active) Hovered Components
+	for (const auto& object : m_Objects)
+	{
+		if (object->IsEnabled() && object->IsHovered())
+		{
+			object->OnClick();
+		}
+	}
+}
+

@@ -40,6 +40,7 @@ void BoxCollider::Initialize()
 		{
 			m_Size = glm::vec2{ spriteRenderer->GetSpriteDimensions().x / spriteRenderer->GetPixelsPerUnit(),
 			spriteRenderer->GetSpriteDimensions().y / spriteRenderer->GetPixelsPerUnit() };
+			m_SpriteRenderer = spriteRenderer;
 		}
 		else
 		{
@@ -47,6 +48,7 @@ void BoxCollider::Initialize()
 		}
 	}
 
+	GetGameObject()->SetBoxCollider(this);
 	AttachToRigidbody(GetGameObject());
 }
 
@@ -126,6 +128,44 @@ void BoxCollider::SetTrigger(bool isTrigger)
 {
 	m_RunTimeFixture->SetSensor(isTrigger);
 	m_IsTrigger = isTrigger;
+}
+
+bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
+{
+	// Put Mouse Relative To Center Of Screen
+	auto position = pos;
+	position -= RENDERER.GetWindowSize() / 2.f;
+
+	// Calculate ScreenPos
+	glm::vec2 thisPos{ m_pGameObject->GetTransform()->GetWorldPosition().x + m_Offset.x
+		, m_pGameObject->GetTransform()->GetWorldPosition().y + m_Offset.y };
+	glm::vec2 size{ m_pGameObject->GetTransform()->GetWorldScale().x * m_Size.x, 
+		m_pGameObject->GetTransform()->GetWorldScale().y * m_Size.y };
+
+	thisPos.x -= size.x / 2;
+	thisPos.y -= size.y / 2;
+
+	//ToDoo: Rotation
+
+	glm::vec4 rect
+	{
+		thisPos.x,
+		thisPos.y,
+		size.x, size.y
+	};
+
+	if (convertToScreenSpace)
+		rect *= RENDERER.GetPixelsPerUnit();
+
+	// Check If Overlapping
+	return (
+		position.x > rect.x
+		&& position.x < rect.x + rect.z
+		&& position.y > rect.y
+		&& position.y < rect.y + rect.w
+		);
+
+	// NOTE: HASNT BEEN TESTED IN WORLD SPACE YET
 }
 
 void BoxCollider::RigidBodyChanged()

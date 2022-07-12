@@ -29,6 +29,10 @@ public:
 	virtual void OnDisable() {}
 	virtual void OnDestroy() {}
 
+	virtual void OnBeginHover() {}
+	virtual void OnEndHover() {}
+	virtual void OnClick() {}
+
 	void SetGameObject(GameObject* pGameObject);
 	GameObject* GetGameObject() const { return m_pGameObject; }
 
@@ -38,10 +42,12 @@ public:
 	bool IsEnabled() const { return m_IsEnabled; }
 	void SetEnabled(bool enabled) { m_IsEnabled = enabled; }
 
+	
 protected:
 	GameObject* m_pGameObject = nullptr;
 	
 	bool m_IsMarkedForDestroy = false;
 	bool m_IsEnabled = false;
+
 };
 

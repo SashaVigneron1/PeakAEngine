@@ -6,7 +6,6 @@
 #include "Singleton.h"
 #include "RenderTarget.h"
 
-
 #define RENDERER RenderManager::GetInstance()
 
 class Texture2D;
@@ -28,6 +27,10 @@ public:
 
 	// DebugRendering
 	void RenderDebugRect(const SDL_FRect& rect, bool filled, const SDL_Color& pColor);
+
+	glm::vec2 GetWindowSize() const { return {m_GameResWidth, m_GameResHeight}; }
+
+	int GetPixelsPerUnit() const { return m_PixelsPerUnit; }
 private:
 	void ActuallyRenderTexture(GLuint glId, int w, int h, const glm::vec2& pos, const glm::vec2& scale, float rotation,
 		const glm::vec2& pivot, int pixelsPerUnit, const SDL_FRect& srcRect = {-1,-1,-1,-1}) const;

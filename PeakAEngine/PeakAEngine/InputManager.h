@@ -12,6 +12,21 @@ enum class ControllerButton
 	ButtonX = 0x4000,
 	ButtonY = 0x8000
 };
+enum class MouseButton
+{
+	LMB = 0,
+	RMB = 1,
+	MMB = 2,
+	None = 3
+};
+struct MouseState
+{
+	bool isDown = false;
+	bool isPressed = false;
+	bool isReleased = false;
+	MouseButton button = MouseButton::None;
+	glm::vec2 position = {0,0};
+};
 
 class Command;
 
@@ -53,6 +68,12 @@ public:
 	bool IsPressed(char sdlKey);
 	bool IsUp(ControllerButton button, int controllerIndex = 0) const;
 	bool IsUp(char sdlKey);
+
+	bool GetMouseButton(MouseButton index);
+	bool GetMouseButtonPressed(MouseButton index);
+	bool GetMouseButtonUp(MouseButton index);
+
+	MouseState GetMouseState() const { return m_MouseState; }
 private:
 	class InputManagerImpl;
 	InputManagerImpl* m_pInputManager;
@@ -60,5 +81,7 @@ private:
 	std::unordered_map<ControllerButton, std::vector<Command*>> m_ControllerCommands;
 	std::unordered_map<char, std::vector<Command*>> m_KeyCommands;
 	std::unordered_map<char, KeyInput> m_Keys;
+
+	MouseState m_MouseState;
 };
 

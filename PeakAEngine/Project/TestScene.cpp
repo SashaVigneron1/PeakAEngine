@@ -44,7 +44,7 @@ void TestScene::Initialize()
 	spriteRenderer->SetEnabled(true);
 	spriteRenderer->SetPixelsPerUnit(16);
 
-	go->CreateComponent<RigidBody>(RigidBody::BodyType::Dynamic, RigidBody::PhysicsMaterial{ 1.f,0.f,1.f,1.f }, true, 10.f);
+	go->CreateComponent<RigidBody>(RigidBody::BodyType::Dynamic, RigidBody::PhysicsMaterial{ 1.f,0.f,0.f,1.f }, true, 10.f);
 	auto collider = go->CreateComponent<BoxCollider>(glm::vec2{0,0}, 0.f, false);
 	collider->SetEnabled(true);
 	collider->SetDebugColor({ 0,0,255,100 });
@@ -83,7 +83,7 @@ void TestScene::Initialize()
 	go->GetTransform()->SetWorldPosition({ 0,-1 });
 	go->GetTransform()->SetWorldScale({ 30, 1 });
 
-	go->CreateComponent<RigidBody>(RigidBody::BodyType::Static, RigidBody::PhysicsMaterial{ 1.f,0.f,1.f,1.f });
+	go->CreateComponent<RigidBody>(RigidBody::BodyType::Static, RigidBody::PhysicsMaterial{ 1.f,0.f,0.f,1.f });
 	collider = go->CreateComponent<BoxCollider>(glm::vec2{0,0}, 0.f, false);
 	collider->SetEnabled(true);
 	collider->SetDebugColor({ 0,255,0,100 });

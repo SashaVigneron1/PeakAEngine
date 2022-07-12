@@ -10,6 +10,10 @@ public:
 	virtual void DrawImGui() override;
 	virtual void RenderGizmos() const override;
 
+	virtual void OnBeginHover() override;
+	virtual void OnEndHover() override;
+	virtual void OnClick() override;
+
 private: 
 	bool m_IsMoving{ false };
 };

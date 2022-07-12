@@ -153,6 +153,9 @@
     <ClInclude Include="CameraComponent.h">
       <Filter>Scenegraph\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>UtilityFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
@@ -246,6 +249,9 @@
     </ClCompile>
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Scenegraph\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>UtilityFiles</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

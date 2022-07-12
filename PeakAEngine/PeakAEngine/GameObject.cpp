@@ -87,6 +87,7 @@ void GameObject::DrawProperties() const
 {
 	for (const auto& pComponent : m_Components)
 	{
+		//ToDoo: Remove DrawProperties
 		pComponent;
 		//pComponent->DrawProperties();
 	}
@@ -203,6 +204,64 @@ void GameObject::OnDestroy() const
 	for (const auto& pComponent : m_Components)
 	{
 		pComponent->OnDestroy();
+	}
+}
+
+
+bool GameObject::IsHovering(const glm::vec2& mousePos) const
+{
+	if (!m_BoxCollider)
+		return false;
+
+	return m_BoxCollider->IsOverlapping(mousePos, true);
+}
+
+void GameObject::OnBeginHover()
+{
+	for (const auto& pComponent : m_Components)
+	{
+		if (pComponent->IsEnabled())
+			pComponent->OnBeginHover();
+	}
+
+	for (const auto& pChild : m_Children)
+	{
+		if (pChild->IsEnabled())
+			pChild->OnBeginHover();
+	}
+
+	m_CursorIsHoveringThis = true;
+}
+
+void GameObject::OnEndHover()
+{
+	for (const auto& pComponent : m_Components)
+	{
+		if (pComponent->IsEnabled())
+			pComponent->OnEndHover();
+	}
+
+	for (const auto& pChild : m_Children)
+	{
+		if (pChild->IsEnabled())
+			pChild->OnEndHover();
+	}
+
+	m_CursorIsHoveringThis = false;
+}
+
+void GameObject::OnClick()
+{
+	for (const auto& pComponent : m_Components)
+	{
+		if (pComponent->IsEnabled())
+			pComponent->OnClick();
+	}
+
+	for (const auto& pChild : m_Children)
+	{
+		if (pChild->IsEnabled())
+			pChild->OnClick();
 	}
 }
 

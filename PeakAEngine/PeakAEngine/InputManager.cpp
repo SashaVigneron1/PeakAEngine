@@ -6,6 +6,8 @@
 #include <Xinput.h>
 #include <SDL.h>
 
+#include "RenderManager.h"
+#include "SceneManager.h"
 #include "GUIManager.h"
 
 #pragma comment(lib, "XInput.lib")
@@ -194,12 +196,17 @@ bool InputManager::ProcessInput()
 {
 	m_pInputManager->ProcessInput();
 
+	// Reset previous frame
 	for (auto& [button, key] : m_Keys)
 	{
 		key.isPressed = false;
 		key.isReleased = false;
 	}
 
+	m_MouseState.isPressed = false;
+	m_MouseState.isReleased = false;
+
+	// Poll Events
 	SDL_Event e;
 	while (SDL_PollEvent(&e))
 	{
@@ -215,9 +222,35 @@ bool InputManager::ProcessInput()
 		{
 			m_Keys[(char)e.key.keysym.sym] = KeyInput{ false, false, true };
 		}
+		else if (e.type == SDL_MOUSEMOTION)
+		{
+			m_MouseState.position = { e.motion.x, RENDERER.GetWindowSize().y - e.motion.y };
+
+			// Check OnHover Events
+			SCENEMANAGER.OnHover(m_MouseState.position);
+		}
 		else if (e.type == SDL_MOUSEBUTTONDOWN) 
 		{
+			m_MouseState.isDown = true;
+			m_MouseState.isPressed = true;
+			
+			if (e.button.button == SDL_BUTTON_LEFT)
+			{
+				m_MouseState.button = MouseButton::LMB;
 
+				// Check OnClick Events
+				SCENEMANAGER.OnClick();
+			}
+			else if (e.button.button == SDL_BUTTON_RIGHT)
+				m_MouseState.button = MouseButton::RMB;
+			else
+				m_MouseState.button = MouseButton::MMB;
+		}
+		else if (e.type == SDL_MOUSEBUTTONUP) 
+		{
+			m_MouseState.isDown = false;
+			m_MouseState.isReleased = true;
+			//m_MouseState.button = MouseButton::None; This had to be removed for the GetMouseButtonUp call
 		}
 
 		// ImGui Process Events
@@ -251,5 +284,18 @@ bool InputManager::IsDown(char sdlKey)
 bool InputManager::IsUp(char sdlKey)
 {
 	return m_Keys[(char)sdlKey].isReleased;
+}
+
+bool InputManager::GetMouseButton(MouseButton index)
+{
+	return m_MouseState.button == index && m_MouseState.isDown;
+}
+bool InputManager::GetMouseButtonPressed(MouseButton index)
+{
+	return m_MouseState.button == index && m_MouseState.isPressed;
+}
+bool InputManager::GetMouseButtonUp(MouseButton index)
+{
+	return m_MouseState.button == index && m_MouseState.isReleased;
 }
 #pragma endregion

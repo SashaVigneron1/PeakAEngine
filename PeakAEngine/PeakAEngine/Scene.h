@@ -32,6 +32,9 @@ public:
 	void RenderGizmos() const;
 	void ChangeSceneGraph();
 
+	void OnHover(const glm::vec2& mousePos);
+	void OnClick();
+
 	SceneSettings& GetSettings() { return m_Settings; }
 private: 
 	SceneSettings m_Settings{};

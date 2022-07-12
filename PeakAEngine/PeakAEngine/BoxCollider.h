@@ -2,6 +2,7 @@
 #include "Component.h"
 
 class b2Fixture;
+class SpriteRenderer;
 
 class BoxCollider final : public Component
 {
@@ -31,6 +32,8 @@ public:
 
 	void EnableDebugDrawing(bool value) { m_DrawDebugRect = value; }
 	void SetDebugColor(const SDL_Color& color) { m_DebugColor = color; }
+
+	bool IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace = false);
 private:
 	friend class PhysicsHandler;
 	friend class RigidBody;
@@ -66,6 +69,10 @@ private:
 	bool m_DrawDebugRect{ false };
 	SDL_Color m_DebugColor{ 255,0,0,100 };
 
+
+	// SpriteRenderer Dependencies
+	SpriteRenderer* m_SpriteRenderer{ nullptr };
 	bool m_ShouldCalculateSize{ false };
+
 };
 
