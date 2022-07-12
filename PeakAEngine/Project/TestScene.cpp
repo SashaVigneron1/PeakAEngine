@@ -45,8 +45,7 @@ void TestScene::Initialize()
 	spriteRenderer->SetPixelsPerUnit(16);
 
 	go->CreateComponent<RigidBody>(RigidBody::BodyType::Dynamic, true, 10.f);
-	auto collider = go->CreateComponent<BoxCollider>(glm::vec2{ spriteRenderer->GetSpriteDimensions().x / spriteRenderer->GetPixelsPerUnit(), 
-		spriteRenderer->GetSpriteDimensions().y / spriteRenderer->GetPixelsPerUnit() }, glm::vec2{0,0}, 0.f, false);
+	auto collider = go->CreateComponent<BoxCollider>(glm::vec2{0,0}, 0.f, false);
 	collider->SetEnabled(true);
 	collider->SetDebugColor({ 0,0,255,100 });
 	collider->EnableDebugDrawing(true);
@@ -85,8 +84,7 @@ void TestScene::Initialize()
 	go->GetTransform()->SetWorldScale({ 30, 1 });
 
 	go->CreateComponent<RigidBody>(RigidBody::BodyType::Static);
-	collider = go->CreateComponent<BoxCollider>(glm::vec2{ spriteRenderer->GetSpriteDimensions().x / spriteRenderer->GetPixelsPerUnit(), 
-		spriteRenderer->GetSpriteDimensions().y / spriteRenderer->GetPixelsPerUnit()}, glm::vec2{0,0}, 0.f, false);
+	collider = go->CreateComponent<BoxCollider>(glm::vec2{0,0}, 0.f, false);
 	collider->SetEnabled(true);
 	collider->SetDebugColor({ 0,255,0,100 });
 	collider->EnableDebugDrawing(true);

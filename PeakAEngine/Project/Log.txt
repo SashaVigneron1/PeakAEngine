@@ -1,8 +1,7 @@
-[Tue Jul 12 11:52:21 2022] [INFO] [Engine] Loading Engine Settings...
-[Tue Jul 12 11:52:21 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Tue Jul 12 11:52:21 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Tue Jul 12 11:52:21 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Tue Jul 12 11:52:21 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Tue Jul 12 11:52:21 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Tue Jul 12 11:52:21 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Tue Jul 12 11:52:21 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Tue Jul 12 12:07:38 2022] [INFO] [Engine] Loading Engine Settings...
+[Tue Jul 12 12:07:38 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Tue Jul 12 12:07:38 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Tue Jul 12 12:07:38 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Tue Jul 12 12:07:38 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Tue Jul 12 12:07:38 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Tue Jul 12 12:07:38 2022] [ERROR] [BoxCollider] No Sprite Renderer Was Found. Using A Default Size Of {1,1}

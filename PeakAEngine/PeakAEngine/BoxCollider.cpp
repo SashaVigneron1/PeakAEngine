@@ -7,6 +7,8 @@
 
 #include "RenderManager.h"
 
+#include "SpriteRenderer.h"
+
 #pragma warning(push, 0)
 #include <b2_fixture.h>
 #pragma warning(pop)
@@ -16,10 +18,35 @@ BoxCollider::BoxCollider(const glm::vec2& size, const glm::vec2& offset, float a
 	, m_Offset(offset)
 	, m_Rotation(angle)
 	, m_IsTrigger{ isTrigger }
+	, m_ShouldCalculateSize{ false }
 {}
+
+BoxCollider::BoxCollider(const glm::vec2& offset, float angle, bool isTrigger)
+	: m_Size(1,1)
+	, m_Offset(offset)
+	, m_Rotation(angle)
+	, m_IsTrigger{ isTrigger }
+	, m_ShouldCalculateSize{ true }
+{
+	
+}
 
 void BoxCollider::Initialize()
 {
+	if (m_ShouldCalculateSize)
+	{
+		SpriteRenderer* spriteRenderer = GetGameObject()->GetComponent<SpriteRenderer>();
+		if (spriteRenderer)
+		{
+			m_Size = glm::vec2{ spriteRenderer->GetSpriteDimensions().x / spriteRenderer->GetPixelsPerUnit(),
+			spriteRenderer->GetSpriteDimensions().y / spriteRenderer->GetPixelsPerUnit() };
+		}
+		else
+		{
+			Logger::LogError("[BoxCollider] No Sprite Renderer Was Found. Using A Default Size Of {1,1}");
+		}
+	}
+
 	AttachToRigidbody(GetGameObject());
 }
 

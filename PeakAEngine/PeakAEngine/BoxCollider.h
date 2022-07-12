@@ -8,6 +8,7 @@ class BoxCollider final : public Component
 
 public:
 	BoxCollider(const glm::vec2& size, const glm::vec2& offset, float angle, bool isTrigger = false);
+	BoxCollider(const glm::vec2& offset, float angle, bool isTrigger = false);
 
 	void Initialize() override;
 	void OnEnable() override;
@@ -64,5 +65,7 @@ private:
 
 	bool m_DrawDebugRect{ false };
 	SDL_Color m_DebugColor{ 255,0,0,100 };
+
+	bool m_ShouldCalculateSize{ false };
 };
 
