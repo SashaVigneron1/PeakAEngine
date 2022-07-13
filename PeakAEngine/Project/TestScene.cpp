@@ -3,6 +3,7 @@
 
 #include "PeakAEngine/GameObject.h"
 
+#include "PeakAEngine/InputManager.h"
 #include "PeakAEngine/ResourceManager.h"
 #include "TestComponent.h"
 #include "PeakAEngine/RenderComponent.h"
@@ -62,6 +63,11 @@ void TestScene::Initialize()
 	go->GetTransform()->SetWorldScale({ 1, 1 });
 	go->GetTransform()->Rotate(45.f);
 
+
+	/*auto command = new TestCommand(test);
+	command->SetButtonAction(ButtonActionType::IsDown);
+	INPUTMANAGER.AddCommand('d', command);*/
+
 	// CAMERA
 	auto cameraObj = AddChild("Camera");
 	cameraObj->CreateComponent<CameraComponent>();
@@ -94,4 +100,7 @@ void TestScene::Initialize()
 	collider->SetEnabled(true);
 	collider->SetDebugColor({ 0,255,0,100 });
 	collider->EnableDebugDrawing(true);
+
+
+
 }

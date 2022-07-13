@@ -117,9 +117,6 @@
     <ClInclude Include="SpriteRenderer.h">
       <Filter>Scenegraph\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>UtilityFiles\Other</Filter>
-    </ClInclude>
     <ClInclude Include="GUIManager.h">
       <Filter>Singletons</Filter>
     </ClInclude>
@@ -159,11 +156,17 @@
     <ClInclude Include="SoundManager.h">
       <Filter>Singletons</Filter>
     </ClInclude>
-    <ClInclude Include="AudioClip.h">
-      <Filter>UtilityFiles\Other</Filter>
-    </ClInclude>
     <ClInclude Include="ServiceLocator.h">
       <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>ToSort</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioClip.h">
+      <Filter>ToSort</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>ToSort</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -229,9 +232,6 @@
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Scenegraph\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>UtilityFiles\Other</Filter>
-    </ClCompile>
     <ClCompile Include="GUIManager.cpp">
       <Filter>Singletons</Filter>
     </ClCompile>
@@ -265,11 +265,14 @@
     <ClCompile Include="SoundManager.cpp">
       <Filter>Singletons</Filter>
     </ClCompile>
-    <ClCompile Include="AudioClip.cpp">
-      <Filter>UtilityFiles\Other</Filter>
-    </ClCompile>
     <ClCompile Include="ServiceLocator.cpp">
       <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>ToSort</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioClip.cpp">
+      <Filter>ToSort</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,20 +1,24 @@
-[Wed Jul 13 16:21:22 2022] [INFO] [Engine] Loading Engine Settings...
-[Wed Jul 13 16:21:22 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Wed Jul 13 16:21:23 2022] [INFO] [SoundSystem] Loading Clip...
-[Wed Jul 13 16:21:23 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
-[Wed Jul 13 16:21:23 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Wed Jul 13 16:21:23 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Wed Jul 13 16:21:23 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Wed Jul 13 16:21:23 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Wed Jul 13 16:21:23 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Wed Jul 13 16:21:23 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Wed Jul 13 16:21:23 2022] [INFO] Begin Hover
-[Wed Jul 13 16:21:23 2022] [INFO] End Hover
-[Wed Jul 13 16:21:32 2022] [INFO] Begin Hover
-[Wed Jul 13 16:21:32 2022] [INFO] End Hover
-[Wed Jul 13 16:21:33 2022] [INFO] Begin Hover
-[Wed Jul 13 16:21:33 2022] [INFO] End Hover
-[Wed Jul 13 16:21:34 2022] [INFO] Begin Hover
-[Wed Jul 13 16:21:34 2022] [INFO] End Hover
-[Wed Jul 13 16:21:34 2022] [INFO] Begin Hover
-[Wed Jul 13 16:21:34 2022] [INFO] End Hover
+[Wed Jul 13 17:35:32 2022] [INFO] [Engine] Loading Engine Settings...
+[Wed Jul 13 17:35:32 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Wed Jul 13 17:35:32 2022] [INFO] [SoundSystem] Loading Clip...
+[Wed Jul 13 17:35:32 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
+[Wed Jul 13 17:35:32 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Wed Jul 13 17:35:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Wed Jul 13 17:35:32 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Wed Jul 13 17:35:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Wed Jul 13 17:35:32 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Wed Jul 13 17:35:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 13 17:35:32 2022] [INFO] This is a test
+[Wed Jul 13 17:35:32 2022] [INFO] This is a test
+[Wed Jul 13 17:35:32 2022] [INFO] This is a test
+[Wed Jul 13 17:35:32 2022] [INFO] This is a test
+[Wed Jul 13 17:35:32 2022] [INFO] This is a test
+[Wed Jul 13 17:35:32 2022] [INFO] This is a test
+[Wed Jul 13 17:35:33 2022] [INFO] This is a test
+[Wed Jul 13 17:35:33 2022] [INFO] This is a test
+[Wed Jul 13 17:35:33 2022] [INFO] This is a test
+[Wed Jul 13 17:35:33 2022] [INFO] This is a test
+[Wed Jul 13 17:35:33 2022] [INFO] This is a test
+[Wed Jul 13 17:35:33 2022] [INFO] This is a test
+[Wed Jul 13 17:35:33 2022] [INFO] This is a test
+[Wed Jul 13 17:35:33 2022] [INFO] This is a test

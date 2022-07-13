@@ -51,7 +51,6 @@ private:
 	void Update() const;
 	void FixedUpdate() const;
 	void DrawImGui() const;
-	void DrawProperties() const;
 	void Render() const;
 	void RenderGizmos() const;
 

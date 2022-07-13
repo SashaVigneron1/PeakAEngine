@@ -8,7 +8,7 @@
 
 #include "imgui.h"
 
-//ToDoo: For some reason if switch boxcollider & rendermanager doesnt work (header dependency)
+//ToDoo: Remove Header Dependency-ish (boxcollider & rendermanager)
 #include "PeakAEngine/RigidBody.h"
 #include "PeakAEngine/RenderManager.h"
 #include "PeakAEngine/BoxCollider.h"	
@@ -79,4 +79,15 @@ void TestComponent::OnClick()
 	Logger::LogInfo("Click");
 	SDL_Color color{ 0, 255, 0, 100 };
 	GetGameObject()->GetComponent<BoxCollider>()->SetDebugColor(color);
+}
+
+TestCommand::TestCommand(TestComponent* pTestComponent)
+	: Command{}
+	, m_pTestComponent{ pTestComponent }
+{
+}
+
+void TestCommand::Execute()
+{
+	Logger::LogInfo("This is a test");
 }

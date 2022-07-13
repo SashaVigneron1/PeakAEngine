@@ -83,15 +83,7 @@ void GameObject::DrawImGui() const
 	}
 }
 
-void GameObject::DrawProperties() const
-{
-	for (const auto& pComponent : m_Components)
-	{
-		//ToDoo: Remove DrawProperties
-		pComponent;
-		//pComponent->DrawProperties();
-	}
-}
+
 
 void GameObject::Render() const
 {

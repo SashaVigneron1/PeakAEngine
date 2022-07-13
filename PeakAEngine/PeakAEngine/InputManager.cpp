@@ -10,11 +10,10 @@
 #include "SceneManager.h"
 #include "GUIManager.h"
 
+#include "Command.h"
+
 #pragma comment(lib, "XInput.lib")
 
-//ToDoo: Test
-//ToDoo: Add Commands
-//ToDoo: Enable warnings as errors again
 
 
 #pragma region Impl
@@ -107,26 +106,26 @@ InputManager::~InputManager()
 {
 	delete m_pInputManager;
 
-	/*for (const auto& [button, commands] : m_ControllerCommands)
+	for (const auto& [button, commands] : m_ControllerCommands)
 	{
 		for (Command* pCommand : commands) delete pCommand;
-	}*/
+	}
 }
 
-void InputManager::AddCommand(ControllerButton /*button*/, Command* /*pCommand*/, int /*controllerIndex*/)
+void InputManager::AddCommand(ControllerButton button, Command* pCommand, int controllerIndex)
 {
-	/*pCommand->SetControllerIndex(controllerIndex);
-	m_ControllerCommands[button].push_back(pCommand);*/
+	pCommand->SetControllerIndex(controllerIndex);
+	m_ControllerCommands[button].push_back(pCommand);
 }
 void InputManager::AddCommand(char sdlKey, Command* pCommand)
 {
 	m_KeyCommands[sdlKey].push_back(pCommand);
 }
 
-void InputManager::RemoveCommand(Command* /*pCommand*/)
+void InputManager::RemoveCommand(Command* pCommand)
 {
 
-	/*if (m_ControllerCommands.size() > 0)
+	if (m_ControllerCommands.size() > 0)
 	{
 		for (auto& [button, commands] : m_ControllerCommands)
 		{
@@ -156,7 +155,7 @@ void InputManager::RemoveCommand(Command* /*pCommand*/)
 				}
 			}
 		}
-	}*/
+	}
 
 
 }
@@ -164,32 +163,50 @@ void InputManager::RemoveCommand(Command* /*pCommand*/)
 void InputManager::HandleInput()
 {
 	// Controller
-	//for (const auto& [button, commands] : m_ControllerCommands)
-	//{
-	//	// Could serve as a potential optimization, but also as a pessimization depending on the size of the vector
-	//	/*if (IsPressed(button))
-	//	{*/
-	//	for (Command* pCommand : commands)
-	//	{
-	//		if (IsPressed(button, pCommand->GetControllerIndex()))
-	//		{
-	//			pCommand->Execute();
-	//		}
-	//	}
-	//	//}
-	//}
+	for (const auto& [button, commands] : m_ControllerCommands)
+	{
+		for (Command* pCommand : commands)
+		{
+			switch (pCommand->GetButtonAction())
+			{
+			case ButtonActionType::IsDown:
+				if (IsDown(button, pCommand->GetControllerIndex()))
+					pCommand->Execute();
+				break;
+			case ButtonActionType::IsPressed:
+				if (IsPressed(button, pCommand->GetControllerIndex()))
+					pCommand->Execute();
+				break;
+			case ButtonActionType::IsReleased:
+				if (IsUp(button, pCommand->GetControllerIndex()))
+					pCommand->Execute();
+				break;
+			}
+		}
+	}
 
-	//// Keyboard
-	//for (const auto& [button, commands] : m_KeyCommands)
-	//{
-	//	for (Command* pCommand : commands)
-	//	{
-	//		if (IsPressed(button))
-	//		{
-	//			pCommand->Execute();
-	//		}
-	//	}
-	//}
+	// Keyboard
+	for (const auto& [button, commands] : m_KeyCommands)
+	{
+		for (Command* pCommand : commands)
+		{
+			switch (pCommand->GetButtonAction())
+			{
+			case ButtonActionType::IsDown:
+				if (IsDown(button))
+					pCommand->Execute();
+				break;
+			case ButtonActionType::IsPressed:
+				if (IsPressed(button))
+					pCommand->Execute();
+				break;
+			case ButtonActionType::IsReleased:
+				if (IsUp(button))
+					pCommand->Execute();
+				break;
+			}
+		}
+	}
 
 }
 bool InputManager::ProcessInput()

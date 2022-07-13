@@ -101,6 +101,7 @@ void Engine::Run()
 
 		// Update
 		isRunning = input.ProcessInput();
+		input.HandleInput();
 		sceneManager.Update();
 
 		// Fixed Update

@@ -241,6 +241,7 @@
     <ClInclude Include="BaseObserver.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="Command.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="FileIO.h" />
@@ -323,8 +324,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="InputManager.cpp">
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</TreatWarningAsError>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</TreatWarningAsError>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</TreatWarningAsError>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</TreatWarningAsError>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level4</WarningLevel>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level4</WarningLevel>
     </ClCompile>
