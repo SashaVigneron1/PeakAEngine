@@ -103,7 +103,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -158,7 +158,7 @@ EXIT /B 0</Command>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -213,7 +213,7 @@ EXIT /B 0</Command>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include\;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include\;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -268,7 +268,7 @@ EXIT /B 0</Command>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>

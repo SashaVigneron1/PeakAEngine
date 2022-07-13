@@ -18,6 +18,7 @@
 		  SDL2.lib;
 		  SDL2main.lib;
 		  SDL2_image.lib;
+		  SDL2_mixer.lib;
 		  SDL2_ttf.lib;
 
 		  glew32.lib;
@@ -29,6 +30,7 @@
       <AdditionalIncludeDirectories>
 		  $(SolutionDir)3rdParty\SDL2_ttf\include;
 		  $(SolutionDir)3rdParty\SDL2_image\include;
+		  $(SolutionDir)3rdParty\SDL2_Mixer\include;
 		  $(SolutionDir)3rdParty\SDL2\include;
 
 		  $(SolutionDir)3rdParty\glm;

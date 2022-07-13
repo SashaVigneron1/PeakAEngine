@@ -156,6 +156,15 @@
     <ClInclude Include="Utils.h">
       <Filter>UtilityFiles</Filter>
     </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioClip.h">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceLocator.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
@@ -252,6 +261,15 @@
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>UtilityFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioClip.cpp">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceLocator.cpp">
+      <Filter>Singletons</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

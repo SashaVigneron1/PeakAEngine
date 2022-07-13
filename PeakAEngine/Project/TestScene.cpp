@@ -13,6 +13,8 @@
 #include "PeakAEngine/CameraComponent.h"
 #include <PeakAEngine/SpriteRenderer.h>
 
+#include "PeakAEngine/ServiceLocator.h"
+
 TestScene::TestScene()
 	: Scene{ }
 {
@@ -27,7 +29,10 @@ void TestScene::Initialize()
 	// SETTINGS
 	GetSettings().enableGUI = true;
 
-
+	// SOUND TEST
+	SERVICELOCATOR.RegisterSoundSystem(new Logged_SoundSystem());
+	int id = SERVICELOCATOR.GetSoundSystem()->AddClip("Resources/Sounds/BackgroundMusic.wav", -1);
+	SERVICELOCATOR.GetSoundSystem()->Play(id);
 
 	// PLAYER OBJ
 	auto go = AddChild("PlayerObj");
