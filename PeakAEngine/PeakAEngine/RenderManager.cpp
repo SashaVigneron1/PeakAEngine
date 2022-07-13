@@ -114,7 +114,7 @@ void RenderManager::Render()
 			glScalef(camScale.x, camScale.y, 1);
 
 			auto camPos = m_pCamera->GetGameObject()->GetTransform()->GetWorldPosition();
-			camPos /= m_PixelsPerUnit;
+			camPos *= m_PixelsPerUnit;
 			glTranslatef(-camPos.x, -camPos.y, 0.0f);
 		}
 

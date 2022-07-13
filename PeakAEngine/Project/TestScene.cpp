@@ -70,7 +70,7 @@ void TestScene::Initialize()
 	INPUTMANAGER.AddCommand('d', command);*/
 
 	// CAMERA
-	auto cameraObj = AddChild("Camera");
+	auto cameraObj = go->CreateChildObject("Camera");
 	cameraObj->CreateComponent<CameraComponent>();
 	cameraObj->GetTransform()->Scale({1, 1});
 
