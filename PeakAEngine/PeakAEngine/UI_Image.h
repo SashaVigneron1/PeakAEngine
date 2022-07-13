@@ -1,6 +1,8 @@
 #pragma once
 #include "UIElement.h"
 
+class Texture2D;
+
 class UI_Image final : public UIElement
 {
 public:
@@ -19,6 +21,6 @@ public:
 	virtual void Render();
 
 private:
-
+	std::shared_ptr<Texture2D> m_pTexture;
 };
 

@@ -133,8 +133,15 @@ void RenderManager::Render()
 		for (auto& renderCommand : m_DebugRenderCommands)
 			renderCommand.Command();
 		m_DebugRenderCommands.clear();
+
+		
 	}
 	glPopMatrix();
+
+	// Execute UI Render Commands
+	for (auto& renderCommand : m_UIRenderCommands)
+		renderCommand.Command();
+	m_UIRenderCommands.clear();
 
 	// GUI Logic
 	GUI.StartFrame();
@@ -160,6 +167,19 @@ void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, con
 				ActuallyRenderTexture(texture->GetId(), texture->GetWidth(), texture->GetHeight(), pos, scale, rotation, pivot, texture.get()->GetPixelsPerUnit(), srcRect);
 			},
 			renderTarget
+		}
+	);
+}
+
+void RenderManager::RenderUITexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation)
+{
+	m_UIRenderCommands.push_back(
+		{
+			[=]()
+			{
+				ActuallyRenderUITexture(texture, pos, scale, rotation);
+			},
+			1
 		}
 	);
 }
@@ -341,4 +361,70 @@ void RenderManager::ActuallyRenderDebugPolygon(const glm::vec2* points, size_t s
 		glVertex2f(points[i].x, points[i].y);
 	}
 	glEnd();
+}
+
+void RenderManager::ActuallyRenderUITexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation) const
+{
+	GLuint glId = texture->GetId();
+
+	const glm::vec2 invertedYPos{ pos.x, pos.y };
+
+	glm::vec2 vertices[4]{};
+
+	// Vertex coordinates for centered orientation
+	float vertexLeft{ 0.f };
+	float vertexBottom{ 0.f };
+	float vertexRight{ 1.0f };
+	float vertexTop{ 1.0f };
+
+	vertexLeft *= scale.x;
+	vertexRight *= scale.x;
+	vertexTop *= scale.y;
+	vertexBottom *= scale.y;
+
+	constexpr float inverse180{ 1.f / 180.f * float(M_PI) };
+
+	float cosAngle = cos(rotation * inverse180);
+	float sinAngle = sin(rotation * inverse180);
+
+	vertices[0] = { vertexLeft * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexLeft * sinAngle };
+	vertices[1] = { vertexLeft * cosAngle - vertexTop * sinAngle, vertexTop * cosAngle + vertexLeft * sinAngle };
+	vertices[2] = { vertexRight * cosAngle - vertexTop * sinAngle, vertexTop * cosAngle + vertexRight * sinAngle };
+	vertices[3] = { vertexRight * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexRight * sinAngle };
+
+	vertices[0] += invertedYPos;
+	vertices[1] += invertedYPos;
+	vertices[2] += invertedYPos;
+	vertices[3] += invertedYPos;
+
+	// Texture coordinates
+	float textLeft{ 0 };
+	float textRight{ 1 };
+	float textBottom{ 1 };
+	float textTop{ 0 };
+
+	// Tell opengl which texture we will use
+	glBindTexture(GL_TEXTURE_2D, glId);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+	// Draw
+	glEnable(GL_TEXTURE_2D);
+	{
+		glBegin(GL_QUADS);
+		{
+			glTexCoord2f(textLeft, textBottom);
+			glVertex2f(vertices[0].x, vertices[0].y);
+
+			glTexCoord2f(textLeft, textTop);
+			glVertex2f(vertices[1].x, vertices[1].y);
+
+			glTexCoord2f(textRight, textTop);
+			glVertex2f(vertices[2].x, vertices[2].y);
+
+			glTexCoord2f(textRight, textBottom);
+			glVertex2f(vertices[3].x, vertices[3].y);
+		}
+		glEnd();
+	}
+	glDisable(GL_TEXTURE_2D);
 }

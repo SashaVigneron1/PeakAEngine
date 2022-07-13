@@ -1,26 +1,18 @@
-[Wed Jul 13 19:05:27 2022] [INFO] [Engine] Loading Engine Settings...
-[Wed Jul 13 19:05:27 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Wed Jul 13 19:05:28 2022] [INFO] [SoundSystem] Loading Clip...
-[Wed Jul 13 19:05:28 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
-[Wed Jul 13 19:05:28 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Wed Jul 13 19:05:28 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Wed Jul 13 19:05:28 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Wed Jul 13 19:05:28 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Wed Jul 13 19:05:28 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Wed Jul 13 19:05:28 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Wed Jul 13 19:05:29 2022] [INFO] Beginning To Hover
-[Wed Jul 13 19:05:30 2022] [INFO] Ending To Hover
-[Wed Jul 13 19:05:31 2022] [INFO] Beginning To Hover
-[Wed Jul 13 19:05:31 2022] [INFO] Ending To Hover
-[Wed Jul 13 19:05:32 2022] [INFO] Beginning To Hover
-[Wed Jul 13 19:05:33 2022] [INFO] Ending To Hover
-[Wed Jul 13 19:05:33 2022] [INFO] Beginning To Hover
-[Wed Jul 13 19:05:33 2022] [INFO] Ending To Hover
-[Wed Jul 13 19:05:33 2022] [INFO] Beginning To Hover
-[Wed Jul 13 19:05:33 2022] [INFO] Ending To Hover
-[Wed Jul 13 19:05:35 2022] [INFO] Beginning To Hover
-[Wed Jul 13 19:05:35 2022] [INFO] Ending To Hover
-[Wed Jul 13 19:05:37 2022] [INFO] Beginning To Hover
-[Wed Jul 13 19:05:37 2022] [INFO] Ending To Hover
-[Wed Jul 13 19:05:37 2022] [INFO] Beginning To Hover
-[Wed Jul 13 19:05:37 2022] [INFO] Ending To Hover
+[Wed Jul 13 19:27:29 2022] [INFO] [Engine] Loading Engine Settings...
+[Wed Jul 13 19:27:29 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Wed Jul 13 19:27:29 2022] [INFO] [SoundSystem] Loading Clip...
+[Wed Jul 13 19:27:29 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
+[Wed Jul 13 19:27:29 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Wed Jul 13 19:27:29 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Wed Jul 13 19:27:29 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Wed Jul 13 19:27:29 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Wed Jul 13 19:27:29 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Wed Jul 13 19:27:29 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 13 19:27:30 2022] [INFO] Beginning To Hover
+[Wed Jul 13 19:27:30 2022] [INFO] Beginning To CLICK
+[Wed Jul 13 19:27:30 2022] [INFO] Ending To Hover
+[Wed Jul 13 19:27:31 2022] [INFO] Beginning To Hover
+[Wed Jul 13 19:27:31 2022] [INFO] Beginning To CLICK
+[Wed Jul 13 19:27:31 2022] [INFO] Ending To Hover
+[Wed Jul 13 19:27:31 2022] [INFO] Beginning To Hover
+[Wed Jul 13 19:27:32 2022] [INFO] Ending To Hover

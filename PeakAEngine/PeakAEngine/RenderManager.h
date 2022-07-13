@@ -11,6 +11,8 @@
 class Texture2D;
 class CameraComponent;
 
+//ToDoo: Rename Functions
+
 class RenderManager final : public Singleton<RenderManager>
 {
 	friend class Singleton<RenderManager>;
@@ -25,6 +27,8 @@ public:
 	void RenderTexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation,
 		const glm::vec2& pivot, const SDL_FRect& srcRect, int renderTarget);
 
+	void RenderUITexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation);
+
 	// DebugRendering
 	void RenderDebugRect(const SDL_FRect& rect, bool filled, const SDL_Color& pColor, float rotation = 0);
 	void RenderDebugPolygon(const glm::vec2* points, size_t size, bool filled, const SDL_Color& color);
@@ -37,6 +41,8 @@ private:
 		const glm::vec2& pivot, int pixelsPerUnit, const SDL_FRect& srcRect = {-1,-1,-1,-1}) const;
 	void ActuallyRenderDebugRect(const SDL_FRect& rect, bool filled, const SDL_Color& pColor, float rotation) const;
 	void ActuallyRenderDebugPolygon(const glm::vec2* points, size_t size, bool filled, const SDL_Color& color) const;
+
+	void ActuallyRenderUITexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation) const;
 
 	void SetColor(const SDL_Color& color) const;
 
@@ -51,6 +57,7 @@ private:
 
 	std::vector<RenderCommand> m_RenderCommands;
 	std::vector<RenderCommand> m_DebugRenderCommands;
+	std::vector<RenderCommand> m_UIRenderCommands;
 
 	std::mutex m_OpenGlLock;
 	int m_WindowResWidth{};

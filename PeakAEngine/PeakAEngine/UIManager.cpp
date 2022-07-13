@@ -1,6 +1,7 @@
 #include "PeakAEnginePCH.h"
 #include "UIManager.h"
 
+#include "InputManager.h"
 #include "UI_Image.h"
 
 void UIManager::Destroy()
@@ -39,6 +40,9 @@ void UIManager::Update()
 				uiElement->OnEndHover();
 				uiElement->SetHovered(false);
 			}
+
+			if (uiElement->IsHovered() && INPUTMANAGER.GetMouseButtonPressed(MouseButton::LMB))
+				uiElement->OnClick();
 		}
 	}
 }

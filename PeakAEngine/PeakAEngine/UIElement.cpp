@@ -25,7 +25,6 @@ bool UIElement::IsMouseOverlapping() const
 	const auto& mousePos = INPUTMANAGER.GetMouseState().position;
 
 	glm::vec2 actualPosition = m_Position;
-	glm::vec2 actualSize = m_Size;
 
 
 	switch (m_Anchor)
@@ -97,8 +96,8 @@ bool UIElement::IsMouseOverlapping() const
 
 	// Check if mouse is inside
 	return (mousePos.x > actualPosition.x
-		&& mousePos.x < actualPosition.x + actualSize.x
+		&& mousePos.x < actualPosition.x + m_Size.x
 		&& mousePos.y > actualPosition.y
-		&& mousePos.y < actualPosition.y + actualSize.y
+		&& mousePos.y < actualPosition.y + m_Size.y
 		);
 }
