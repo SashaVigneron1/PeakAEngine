@@ -7,7 +7,6 @@
 #include <SDL.h>
 
 #include "RenderManager.h"
-#include "SceneManager.h"
 #include "GUIManager.h"
 
 #include "Command.h"
@@ -242,9 +241,6 @@ bool InputManager::ProcessInput()
 		else if (e.type == SDL_MOUSEMOTION)
 		{
 			m_MouseState.position = { e.motion.x, RENDERER.GetWindowSize().y - e.motion.y };
-
-			// Check OnHover Events
-			SCENEMANAGER.OnHover(m_MouseState.position);
 		}
 		else if (e.type == SDL_MOUSEBUTTONDOWN) 
 		{
@@ -254,9 +250,6 @@ bool InputManager::ProcessInput()
 			if (e.button.button == SDL_BUTTON_LEFT)
 			{
 				m_MouseState.button = MouseButton::LMB;
-
-				// Check OnClick Events
-				SCENEMANAGER.OnClick();
 			}
 			else if (e.button.button == SDL_BUTTON_RIGHT)
 				m_MouseState.button = MouseButton::RMB;

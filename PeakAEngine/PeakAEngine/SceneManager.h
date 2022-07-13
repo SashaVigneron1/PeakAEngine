@@ -28,9 +28,6 @@ public:
 	void RenderGizmos() const;
 	void ChangeSceneGraph();
 
-	void OnHover(const glm::vec2& mousePos);
-	void OnClick();
-
 private:
 	friend class Singleton<SceneManager>;
 	SceneManager() = default;

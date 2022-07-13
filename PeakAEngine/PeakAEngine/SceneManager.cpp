@@ -3,6 +3,8 @@
 
 #include "Scene.h"
 
+#include "InputManager.h"
+
 void SceneManager::DrawImGui() const
 {
 	if (m_ActiveScene) m_ActiveScene->DrawImGui();
@@ -10,7 +12,14 @@ void SceneManager::DrawImGui() const
 
 void SceneManager::Update() const
 {
-	if (m_ActiveScene) m_ActiveScene->Update();
+	if (m_ActiveScene)
+	{
+		m_ActiveScene->Update();
+		m_ActiveScene->OnHover(INPUTMANAGER.GetMouseState().position);
+
+		if (INPUTMANAGER.GetMouseButtonPressed(MouseButton::LMB))
+			m_ActiveScene->OnClick();
+	}
 }
 
 void SceneManager::FixedUpdate() const
@@ -43,16 +52,6 @@ void SceneManager::ChangeSceneGraph()
 	//}
 
 	if (m_ActiveScene) m_ActiveScene->ChangeSceneGraph();
-}
-
-void SceneManager::OnHover(const glm::vec2& mousePos)
-{
-	if (m_ActiveScene) m_ActiveScene->OnHover(mousePos);
-}
-
-void SceneManager::OnClick()
-{
-	if (m_ActiveScene) m_ActiveScene->OnClick();
 }
 
 SceneManager::~SceneManager()
