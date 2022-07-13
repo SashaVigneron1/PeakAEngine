@@ -38,6 +38,9 @@
     <Filter Include="ImGui\backends">
       <UniqueIdentifier>{722d7989-74fb-4a2a-9194-755acb276330}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ToSort\UI">
+      <UniqueIdentifier>{a196ffc1-e967-4c80-b2dd-e4ec80bd7609}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PeakAEnginePCH.h" />
@@ -168,6 +171,15 @@
     <ClInclude Include="Command.h">
       <Filter>ToSort</Filter>
     </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElement.h">
+      <Filter>ToSort\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Image.h">
+      <Filter>ToSort\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
@@ -273,6 +285,15 @@
     </ClCompile>
     <ClCompile Include="AudioClip.cpp">
       <Filter>ToSort</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElement.cpp">
+      <Filter>ToSort\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Image.cpp">
+      <Filter>ToSort\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

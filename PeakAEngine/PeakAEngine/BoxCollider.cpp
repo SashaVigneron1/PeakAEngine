@@ -132,6 +132,8 @@ void BoxCollider::SetTrigger(bool isTrigger)
 
 bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
 {
+	//ToDoo: Not Taking Into Account CameraPos (Move this to camera obj?)
+
 	// Put Mouse Relative To Center Of Screen
 	auto position = pos;
 	position -= RENDERER.GetWindowSize() / 2.f;

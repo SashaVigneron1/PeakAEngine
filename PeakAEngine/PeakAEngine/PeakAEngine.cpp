@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 
+#include "UIManager.h"
 #include "RenderManager.h"
 #include "Time.h"
 #include "InputManager.h"
@@ -83,6 +84,7 @@ void Engine::Run()
 	auto& timer = TIME;
 	auto& input = INPUTMANAGER;
 	auto& sceneManager = SCENEMANAGER;
+	auto& ui = UI;
 	
 	// Initialize Timer
 	timer.SetFixedTime(m_FixedUpdateInterval);
@@ -102,6 +104,7 @@ void Engine::Run()
 		// Update
 		isRunning = input.ProcessInput();
 		input.HandleInput();
+		ui.Update();
 		sceneManager.Update();
 
 		// Fixed Update
@@ -114,6 +117,7 @@ void Engine::Run()
 		}
 
 		// Render
+		ui.Render();
 		renderer.Render();
 
 		// Wait for next frame

@@ -14,6 +14,7 @@
 #include "PeakAEngine/CameraComponent.h"
 #include <PeakAEngine/SpriteRenderer.h>
 
+#include "PeakAEngine/UIManager.h"
 #include "PeakAEngine/ServiceLocator.h"
 
 TestScene::TestScene()
@@ -102,5 +103,9 @@ void TestScene::Initialize()
 	collider->EnableDebugDrawing(true);
 
 
+	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0.f,0.f }, AnchorPosition::LeftBottom);
+	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,0 }, AnchorPosition::RightBottom);
+	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0,1 }, AnchorPosition::LeftTop);
+	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,1 }, AnchorPosition::RightTop);
 
 }
