@@ -16,6 +16,7 @@
 
 #include "PeakAEngine/UIManager.h"
 #include "PeakAEngine/UI_Button.h"
+#include "PeakAEngine/UI_Text.h"
 #include "PeakAEngine/ServiceLocator.h"
 
 TestScene::TestScene()
@@ -104,11 +105,18 @@ void TestScene::Initialize()
 	collider->EnableDebugDrawing(true);
 
 
-	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0.f,0.f }, AnchorPosition::LeftBottom);
+	//UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0.f,0.f }, AnchorPosition::LeftBottom);
 	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,0 }, AnchorPosition::RightBottom);
 	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0,1 }, AnchorPosition::LeftTop);
 	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,1 }, AnchorPosition::RightTop);
 
 	UI.AddButton(new UI_Button("Character/PeterPepper_Idle.png", "Character/PeterPepper_Walking.png", "Character/PeterPepper_Death.png"
 		, { 100,100 }, { 100,100 }, { 0.5f, 0.5f }, AnchorPosition::MiddleCenter));
+
+	int textId = UI.AddText("This Is Text.", "UI/Cyber11.ttf", 0, TextAlignment::Center
+		, { 0,0 }, { 300,100 }, { 0.f, 0.f }, AnchorPosition::LeftBottom);
+	
+	auto element = UI.GetUIElement(textId);
+	auto text = static_cast<UI_Text*>(element);
+	text->ChangeText("This Is Also \nText.");
 }

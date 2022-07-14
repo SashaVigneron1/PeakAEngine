@@ -12,17 +12,14 @@ UI_Image::UI_Image(const std::string& imagePath, const glm::vec2& pos, const glm
 
 void UI_Image::OnBeginHover()
 {
-	Logger::LogInfo("Beginning To Hover");
 }
 
 void UI_Image::OnEndHover()
 {
-	Logger::LogInfo("Ending To Hover");
 }
 
 void UI_Image::OnClick()
 {
-	Logger::LogInfo("Beginning To CLICK");
 }
 
 void UI_Image::Render()

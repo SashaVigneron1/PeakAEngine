@@ -245,6 +245,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="FileIO.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GUIManager.h" />
     <ClInclude Include="InputManager.h" />
@@ -274,6 +275,7 @@
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="UI_Image.h" />
+    <ClInclude Include="UI_Text.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
@@ -325,6 +327,7 @@
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="InputManager.cpp">
@@ -360,6 +363,7 @@
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="UI_Image.cpp" />
+    <ClCompile Include="UI_Text.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

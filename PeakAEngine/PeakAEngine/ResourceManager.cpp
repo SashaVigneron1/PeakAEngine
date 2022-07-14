@@ -9,9 +9,18 @@
 #include "RenderTarget.h"
 #include "Texture2D.h"
 
+#include "Font.h"
+#include <SDL_ttf.h>
+
 void ResourceManager::Init(const std::string& dataFilePath)
 {
 	m_DataPath = dataFilePath;
+
+	if (TTF_Init() != 0)
+	{
+		Logger::LogError("[ResourceManager] Failed to load support for fonts: " + std::string{ SDL_GetError() });
+		throw std::runtime_error(std::string("Failed to load support for fonts: ") + SDL_GetError());
+	}
 }
 
 std::shared_ptr<RenderTarget> ResourceManager::CreateRenderTexture(int width, int height)
@@ -157,4 +166,17 @@ std::shared_ptr<Texture2D> ResourceManager::LoadTexture(SDL_Surface* pSurface)
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	return std::make_shared<Texture2D>(id, width, height);
+}
+
+std::shared_ptr<Font> ResourceManager::LoadFont(const std::string& fontPath, unsigned int size)
+{
+	if (!m_Fonts.contains(fontPath))
+	{
+		Logger::LogInfo("[ResourceManager] Loading Font: " + fontPath);
+
+		m_Fonts[fontPath] = std::make_shared<Font>(m_DataPath + fontPath, size);
+	}
+
+	std::shared_ptr<Font> font = m_Fonts[fontPath];
+	return font;
 }

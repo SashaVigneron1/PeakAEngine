@@ -183,6 +183,12 @@
     <ClInclude Include="UI_Button.h">
       <Filter>ToSort\UI</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Text.h">
+      <Filter>ToSort\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>ToSort</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
@@ -300,6 +306,12 @@
     </ClCompile>
     <ClCompile Include="UI_Button.cpp">
       <Filter>ToSort\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Text.cpp">
+      <Filter>ToSort\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>ToSort</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

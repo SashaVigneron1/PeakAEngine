@@ -1,51 +1,38 @@
 #include "PeakAEnginePCH.h"
-#include "UI_Button.h"
+#include "UI_Text.h"
 
+#include <SDL_ttf.h>
+#include "Font.h"
 #include "RenderManager.h"
 #include "ResourceManager.h"
 
+#include "Texture2D.h"
 
-UI_Button::UI_Button(const std::string& imageDefaultPath, const std::string& imageOnHoverPath, const std::string& imageOnClickPath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
+UI_Text::UI_Text(const std::string& text, const std::string& fontPath, int lineSpacing, TextAlignment alignment
+	, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
 	: UIElement{ pos, size, pivot, anchor }
-	, m_IsPressed{ false }
-	, m_pTextureDefault{ ResourceManager::GetInstance().LoadTexture(imageDefaultPath) }
-	, m_pTextureOnHover{ ResourceManager::GetInstance().LoadTexture(imageOnHoverPath) }
-	, m_pTextureOnClick{ ResourceManager::GetInstance().LoadTexture(imageOnClickPath) }
+	, m_pFont{ RESOURCEMANAGER.LoadFont(fontPath, unsigned int(100))}
+	, m_pTexture{ nullptr }
+	, m_Color{ 255,255,255,255 }
+	, m_LineSpacing{ lineSpacing }
+	, m_Alignment{ alignment }
 {
-	m_pActiveTexture = m_pTextureDefault;
+	ChangeText(text);
 }
 
-void UI_Button::OnBeginHover()
+void UI_Text::OnBeginHover()
 {
-	if (!m_IsPressed) m_pActiveTexture = m_pTextureOnHover;
 }
 
-void UI_Button::OnEndHover()
+void UI_Text::OnEndHover()
 {
-	if (!m_IsPressed) m_pActiveTexture = m_pTextureDefault;
 }
 
-void UI_Button::OnClick()
+void UI_Text::OnClick()
 {
-	m_pActiveTexture = m_pTextureOnClick;
-
-	m_IsPressed = true;
-
-	//ToDoo: Execute function I want To Perform
-
-	// Start Timer For Texture
-	TIME.AddTimer(std::make_shared<Timer>(1.0f, [=] 
-		{
-			m_IsPressed = false;
-
-			if (m_IsHovered)
-				m_pActiveTexture = m_pTextureOnHover;
-			else
-				m_pActiveTexture = m_pTextureDefault;
-		}));
 }
 
-void UI_Button::Render()
+void UI_Text::Render()
 {
 	const auto& windowSize = RENDERER.GetWindowSize();
 
@@ -119,5 +106,76 @@ void UI_Button::Render()
 	}
 
 
-	RENDERER.RenderUITexture(m_pActiveTexture, actualPosition, m_Size, 0);
+	RENDERER.RenderUITexture(m_pTexture, actualPosition, m_Size, 0);
+}
+
+void UI_Text::ChangeText(const std::string& text)
+{
+	// Split text in lines
+	std::vector<std::string> lines;
+
+	size_t last = 0;
+	size_t next;
+	while ((next = text.find('\n', last)) != std::string::npos)
+	{
+		lines.push_back(text.substr(last, next - last));
+		last = next + 1;
+	}
+	lines.push_back(text.substr(last));
+
+	// Get final surface dimensions
+	int width = 0;
+	int height = 0;
+
+	for (auto& string : lines)
+	{
+		int linew, lineh;
+		TTF_SizeText(m_pFont->GetFont(), string.c_str(), &linew, &lineh);
+
+		width = std::max(width, linew);
+		height += lineh;
+	}
+
+	height += (static_cast<int>(lines.size()) - 1) * m_LineSpacing;
+
+	// Create final surface
+	SDL_Surface* finalSurf = SDL_CreateRGBSurface(0, width, height, 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+
+	// Render lines
+	for (int i = 0; i < (int)lines.size(); i++)
+	{
+		SDL_Surface* lineSurf = TTF_RenderText_Blended(m_pFont->GetFont(), lines[i].c_str(), m_Color);
+
+		if (lineSurf != nullptr)
+		{
+			SDL_Rect dstRect{};
+			dstRect.y = i * (lineSurf->h + m_LineSpacing);
+			dstRect.w = lineSurf->w;
+			dstRect.h = lineSurf->h;
+
+			switch (m_Alignment)
+			{
+			case TextAlignment::Left:
+				dstRect.x = 0;
+				break;
+			case TextAlignment::Center:
+				dstRect.x = (width - lineSurf->w) / 2;
+				break;
+			case TextAlignment::Right:
+				dstRect.x = width - lineSurf->w;
+				break;
+			}
+
+			SDL_BlitSurface(lineSurf, nullptr, finalSurf, &dstRect);
+
+			// Free Surface
+			SDL_FreeSurface(lineSurf);
+		}
+	}
+
+	// Send to texture
+	m_pTexture = std::make_unique<Texture2D>(finalSurf, width, height);
+
+	// Free surface
+	SDL_FreeSurface(finalSurf);
 }
