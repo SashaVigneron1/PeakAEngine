@@ -7,6 +7,8 @@
 
 #include "RenderManager.h"
 
+#include "CameraComponent.h"
+
 #include "SpriteRenderer.h"
 
 #pragma warning(push, 0)
@@ -132,7 +134,7 @@ void BoxCollider::SetTrigger(bool isTrigger)
 
 bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
 {
-	//ToDoo: Not Taking Into Account CameraPos (Move this to camera obj?)
+	//ToDoo: Rename (this is specifically made for mouse cursor)
 
 	// Put Mouse Relative To Center Of Screen
 	auto position = pos;
@@ -144,9 +146,8 @@ bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
 	glm::vec2 size{ m_pGameObject->GetTransform()->GetWorldScale().x * m_Size.x, 
 		m_pGameObject->GetTransform()->GetWorldScale().y * m_Size.y };
 
-	//thisPos.x -= size.x / 2;
-	//thisPos.y -= size.y / 2;
-
+	// Take Camera Pos Into Account
+	thisPos -= RENDERER.GetCamera()->GetGameObject()->GetTransform()->GetWorldPosition();
 
 	// Create Vertices
 	float vertexLeft{ -size.x/2 };

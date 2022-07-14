@@ -23,6 +23,7 @@ public:
 	void Destroy();
 
 	void SetCamera(CameraComponent* pCamera) { m_pCamera = pCamera; }
+	CameraComponent* GetCamera() const { return m_pCamera; }
 
 	void RenderTexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation,
 		const glm::vec2& pivot, const SDL_FRect& srcRect, int renderTarget);
