@@ -1,5 +1,6 @@
 #include "PeakAEnginePCH.h"
 #include "UI_Button.h"
+#include "UI_Text.h"
 
 #include "RenderManager.h"
 #include "ResourceManager.h"
@@ -11,8 +12,15 @@ UI_Button::UI_Button(const std::string& imageDefaultPath, const std::string& ima
 	, m_pTextureDefault{ ResourceManager::GetInstance().LoadTexture(imageDefaultPath) }
 	, m_pTextureOnHover{ ResourceManager::GetInstance().LoadTexture(imageOnHoverPath) }
 	, m_pTextureOnClick{ ResourceManager::GetInstance().LoadTexture(imageOnClickPath) }
+	, m_FunctionToExecute{ nullptr }
+	, m_pText{ nullptr }
 {
 	m_pActiveTexture = m_pTextureDefault;
+}
+
+UI_Button::~UI_Button()
+{
+	if (m_pText) delete m_pText;
 }
 
 void UI_Button::OnBeginHover()
@@ -31,10 +39,10 @@ void UI_Button::OnClick()
 
 	m_IsPressed = true;
 
-	//ToDoo: Execute function I want To Perform
+	if (m_FunctionToExecute) m_FunctionToExecute();
 
 	// Start Timer For Texture
-	TIME.AddTimer(std::make_shared<Timer>(1.0f, [=] 
+	TIME.AddTimer(std::make_shared<Timer>(0.1f, [=] 
 		{
 			m_IsPressed = false;
 
@@ -120,4 +128,30 @@ void UI_Button::Render()
 
 
 	RENDERER.RenderUITexture(m_pActiveTexture, actualPosition, m_Size, 0);
+
+	if (m_pText)
+		m_pText->Render();
+}
+
+void UI_Button::AddText(const std::string& text, const std::string& fontPath, int lineSpacing, TextAlignment alignment, float sizeOffset)
+{
+	if (m_pText)
+		return;
+
+	m_pText = new UI_Text(text, fontPath, lineSpacing, alignment,
+		{ m_Position.x + sizeOffset, m_Position.y }, 
+		{ m_Size.x - sizeOffset, m_Size.y }, 
+		m_Pivot, m_Anchor);
+}
+
+void UI_Button::ChangeText(const std::string& text)
+{
+	if (m_pText)
+		m_pText->ChangeText(text);
+}
+
+void UI_Button::SetTextColor(const SDL_Color& color)
+{
+	if (m_pText)
+		m_pText->SetColor(color);
 }

@@ -110,8 +110,15 @@ void TestScene::Initialize()
 	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0,1 }, AnchorPosition::LeftTop);
 	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,1 }, AnchorPosition::RightTop);
 
-	UI.AddButton(new UI_Button("Character/PeterPepper_Idle.png", "Character/PeterPepper_Walking.png", "Character/PeterPepper_Death.png"
-		, { 100,100 }, { 100,100 }, { 0.5f, 0.5f }, AnchorPosition::MiddleCenter));
+	int button = UI.AddButton(new UI_Button("Character/PeterPepper_Idle.png", "Character/PeterPepper_Walking.png", "Character/PeterPepper_Death.png"
+		, { 100,100 }, { 200,100 }, { 0.5f, 0.5f }, AnchorPosition::MiddleCenter));
+	auto buttonElement = UI.GetUIElement(button);
+	auto buttonB = static_cast<UI_Button*>(buttonElement);
+	buttonB->SetFunctionToExecute([=]{
+		Logger::LogInfo("This button was pressed!");
+		});
+	buttonB->AddText("Click Me", "UI/Cyber11.ttf", 0, TextAlignment::Center, 50);
+	buttonB->SetTextColor({ 255,0,0,255 });
 
 	int textId = UI.AddText("This Is Text.", "UI/Cyber11.ttf", 0, TextAlignment::Center
 		, { 0,0 }, { 300,100 }, { 0.f, 0.f }, AnchorPosition::LeftBottom);

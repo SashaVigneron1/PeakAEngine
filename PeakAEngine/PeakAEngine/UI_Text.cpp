@@ -111,17 +111,29 @@ void UI_Text::Render()
 
 void UI_Text::ChangeText(const std::string& text)
 {
+	m_Text = text;
+	UpdateTexture();
+}
+
+void UI_Text::SetColor(const SDL_Color& color)
+{
+	m_Color = color;
+	UpdateTexture();
+}
+
+void UI_Text::UpdateTexture()
+{
 	// Split text in lines
 	std::vector<std::string> lines;
 
 	size_t last = 0;
 	size_t next;
-	while ((next = text.find('\n', last)) != std::string::npos)
+	while ((next = m_Text.find('\n', last)) != std::string::npos)
 	{
-		lines.push_back(text.substr(last, next - last));
+		lines.push_back(m_Text.substr(last, next - last));
 		last = next + 1;
 	}
-	lines.push_back(text.substr(last));
+	lines.push_back(m_Text.substr(last));
 
 	// Get final surface dimensions
 	int width = 0;

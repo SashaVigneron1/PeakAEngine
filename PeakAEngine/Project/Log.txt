@@ -1,15 +1,14 @@
-[Thu Jul 14 16:01:14 2022] [INFO] [Engine] Loading Engine Settings...
-[Thu Jul 14 16:01:14 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Thu Jul 14 16:01:15 2022] [INFO] [SoundSystem] Loading Clip...
-[Thu Jul 14 16:01:15 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
-[Thu Jul 14 16:01:15 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Thu Jul 14 16:01:15 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Thu Jul 14 16:01:15 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Thu Jul 14 16:01:15 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Thu Jul 14 16:01:15 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
-[Thu Jul 14 16:01:15 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
-[Thu Jul 14 16:01:15 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
-[Thu Jul 14 16:01:15 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Thu Jul 14 16:01:15 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Thu Jul 14 16:01:17 2022] [INFO] Begin Hover
-[Thu Jul 14 16:01:17 2022] [INFO] End Hover
+[Thu Jul 14 17:21:39 2022] [INFO] [Engine] Loading Engine Settings...
+[Thu Jul 14 17:21:39 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Thu Jul 14 17:21:39 2022] [INFO] [SoundSystem] Loading Clip...
+[Thu Jul 14 17:21:39 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
+[Thu Jul 14 17:21:39 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Thu Jul 14 17:21:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Thu Jul 14 17:21:39 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Thu Jul 14 17:21:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Thu Jul 14 17:21:39 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
+[Thu Jul 14 17:21:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
+[Thu Jul 14 17:21:39 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
+[Thu Jul 14 17:21:39 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Thu Jul 14 17:21:39 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Thu Jul 14 17:21:41 2022] [INFO] This button was pressed!
