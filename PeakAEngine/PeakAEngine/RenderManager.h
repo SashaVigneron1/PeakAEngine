@@ -11,7 +11,7 @@
 class Texture2D;
 class CameraComponent;
 
-//ToDoo: Rename Functions
+//ToDoo: Refactor Functions
 
 class RenderManager final : public Singleton<RenderManager>
 {

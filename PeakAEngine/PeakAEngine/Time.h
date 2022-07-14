@@ -1,9 +1,23 @@
 #pragma once
 #include <chrono>
 
+#include <functional>
 #include "Singleton.h"
 
 #define TIME Time::GetInstance()
+
+struct Timer 
+{
+	Timer(float totalTime, std::function<void()> functionToExecute)
+		: totalTime{ totalTime }
+		, timeLeft{ totalTime }
+		, executeFunction{ functionToExecute }
+	{}
+
+	float totalTime;
+	float timeLeft;
+	std::function<void()> executeFunction;
+};
 
 class Time final : public Singleton<Time>
 {
@@ -19,6 +33,9 @@ public:
 	static float DeltaTime() { return deltaTime; }
 
 	static std::string GetCurrentTimeAsString();
+
+	void AddTimer(std::shared_ptr<Timer> timer) { m_Timers.push_back(timer); }
+	void UpdateTimers();
 private:
 	bool hasStarted = false;
 	static float elapsedTime;
@@ -26,4 +43,8 @@ private:
 	static float fixedTime;
 
 	std::chrono::steady_clock::time_point lastTime;
+
+	std::vector<std::shared_ptr<Timer>> m_Timers;
 };
+
+//physics->OnTriggerExit = std::bind(&PeterPepper::OnTriggerExit, pPeterPepper, std::placeholders::_1);

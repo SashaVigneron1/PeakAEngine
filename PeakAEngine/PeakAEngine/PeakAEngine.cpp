@@ -71,6 +71,7 @@ void Engine::Initialize()
 
 void Engine::Cleanup()
 {
+	UI.Destroy();
 	RENDERER.Destroy();
 
 	SDL_DestroyWindow(m_Window);
@@ -99,6 +100,7 @@ void Engine::Run()
 		// Time Calculations
 		const auto startTime = std::chrono::high_resolution_clock::now();
 		timer.CalculateTime();
+		timer.UpdateTimers();
 		fixedUpdateTimer += Time::DeltaTime();
 
 		// Update

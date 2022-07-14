@@ -3,6 +3,7 @@
 
 #include "InputManager.h"
 #include "UI_Image.h"
+#include "UI_Button.h"
 
 void UIManager::Destroy()
 {
@@ -14,7 +15,19 @@ void UIManager::Destroy()
 
 void UIManager::AddImage(const std::string& imagePath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
 {
-	m_pUIElements.push_back(new UI_Image(imagePath, pos, size, pivot, anchor));
+	m_pUIElements.push_back(new UI_Image(imagePath, 
+		pos, size, pivot, anchor));
+}
+
+//void UIManager::AddButton(const std::string& imageDefaultPath, const std::string& imageOnHoverPath, const std::string& imageOnClickPath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
+//{
+//	m_pUIElements.push_back(new UI_Button(imageDefaultPath, imageOnHoverPath, imageOnClickPath, 
+//		pos, size, pivot, anchor));
+//}
+
+void UIManager::AddButton(UI_Button* pButton)
+{
+	m_pUIElements.push_back(pButton);
 }
 
 void UIManager::Update()

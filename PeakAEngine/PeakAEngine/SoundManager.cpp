@@ -63,7 +63,6 @@ SoundManager::SoundSystemImpl::SoundSystemImpl()
 		return;
 	}
 
-	// Credits to Senne De Vocht (2GD06) for helping me with this part.
 	m_Thread = std::thread(&SoundSystemImpl::RunEventQueue, this);
 }
 

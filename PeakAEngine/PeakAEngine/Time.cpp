@@ -27,3 +27,20 @@ std::string Time::GetCurrentTimeAsString()
 	result.erase(std::remove(result.begin(), result.end(), '\n'), result.end());
 	return result;
 }
+
+void Time::UpdateTimers()
+{
+	// Update Timers
+	for (int i{}; i < m_Timers.size(); ++i)
+	{
+		m_Timers[i]->timeLeft -= deltaTime;
+		if (m_Timers[i]->timeLeft <= 0)
+		{
+			m_Timers[i]->executeFunction();
+
+			// Delete This Timer
+			m_Timers[i] = m_Timers.back();
+			m_Timers.pop_back();
+		}
+	}
+}

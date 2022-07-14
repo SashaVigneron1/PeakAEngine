@@ -15,6 +15,7 @@
 #include <PeakAEngine/SpriteRenderer.h>
 
 #include "PeakAEngine/UIManager.h"
+#include "PeakAEngine/UI_Button.h"
 #include "PeakAEngine/ServiceLocator.h"
 
 TestScene::TestScene()
@@ -52,7 +53,7 @@ void TestScene::Initialize()
 	spriteRenderer->SetPixelsPerUnit(16);
 
 	go->CreateComponent<RigidBody>(RigidBody::BodyType::Dynamic, RigidBody::PhysicsMaterial{ 1.f,0.f,0.f,1.f }, true, 10.f);
-	auto collider = go->CreateComponent<BoxCollider>(glm::vec2{0,0}, 0.f, false);
+	auto collider = go->CreateComponent<BoxCollider>(glm::vec2{ 0,0 }, 0.f, false);
 	collider->SetEnabled(true);
 	collider->SetDebugColor({ 0,0,255,100 });
 	collider->EnableDebugDrawing(true);
@@ -72,7 +73,7 @@ void TestScene::Initialize()
 	// CAMERA
 	auto cameraObj = go->CreateChildObject("Camera");
 	cameraObj->CreateComponent<CameraComponent>();
-	cameraObj->GetTransform()->Scale({1, 1});
+	cameraObj->GetTransform()->Scale({ 1, 1 });
 
 
 	// GROUND OBJECT
@@ -97,7 +98,7 @@ void TestScene::Initialize()
 	go->GetTransform()->SetWorldScale({ 30, 1 });
 
 	go->CreateComponent<RigidBody>(RigidBody::BodyType::Static, RigidBody::PhysicsMaterial{ 1.f,0.f,0.f,1.f });
-	collider = go->CreateComponent<BoxCollider>(glm::vec2{0,0}, 0.f, false);
+	collider = go->CreateComponent<BoxCollider>(glm::vec2{ 0,0 }, 0.f, false);
 	collider->SetEnabled(true);
 	collider->SetDebugColor({ 0,255,0,100 });
 	collider->EnableDebugDrawing(true);
@@ -108,4 +109,6 @@ void TestScene::Initialize()
 	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0,1 }, AnchorPosition::LeftTop);
 	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,1 }, AnchorPosition::RightTop);
 
+	UI.AddButton(new UI_Button("Character/PeterPepper_Idle.png", "Character/PeterPepper_Walking.png", "Character/PeterPepper_Death.png"
+		, { 100,100 }, { 100,100 }, { 0.5f, 0.5f }, AnchorPosition::MiddleCenter));
 }

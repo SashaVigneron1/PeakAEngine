@@ -180,6 +180,9 @@
     <ClInclude Include="UI_Image.h">
       <Filter>ToSort\UI</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Button.h">
+      <Filter>ToSort\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
@@ -293,6 +296,9 @@
       <Filter>ToSort\UI</Filter>
     </ClCompile>
     <ClCompile Include="UI_Image.cpp">
+      <Filter>ToSort\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Button.cpp">
       <Filter>ToSort\UI</Filter>
     </ClCompile>
   </ItemGroup>
