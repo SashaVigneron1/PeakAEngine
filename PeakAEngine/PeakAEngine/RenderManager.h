@@ -37,6 +37,8 @@ public:
 	glm::vec2 GetWindowSize() const { return {m_GameResWidth, m_GameResHeight}; }
 
 	int GetPixelsPerUnit() const { return m_PixelsPerUnit; }
+
+	void RenderDebugGrid() const;
 private:
 	void ActuallyRenderTexture(GLuint glId, int w, int h, const glm::vec2& pos, const glm::vec2& scale, float rotation,
 		const glm::vec2& pivot, int pixelsPerUnit, const SDL_FRect& srcRect = {-1,-1,-1,-1}) const;
@@ -44,6 +46,7 @@ private:
 	void ActuallyRenderDebugPolygon(const glm::vec2* points, size_t size, bool filled, const SDL_Color& color) const;
 
 	void ActuallyRenderUITexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation) const;
+	void ActuallyRenderLine(const glm::vec2& begin, const glm::vec2& end, float thickness, const SDL_Color& color) const;
 
 	void SetColor(const SDL_Color& color) const;
 
@@ -69,5 +72,9 @@ private:
 	CameraComponent* m_pCamera{ nullptr };
 
 	int m_PixelsPerUnit{ 10 };
+
+	bool m_ShouldRenderDebugGrid{ true };
+	float m_GridLineThickness{ 2.f };
+	SDL_Color m_GridColor{ 255,255,255,100 };
 };
 

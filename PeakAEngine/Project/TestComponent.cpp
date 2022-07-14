@@ -42,6 +42,30 @@ void TestComponent::Update()
 
 		m_IsMoving = true;
 	}
+	if (INPUTMANAGER.IsDown('q'))
+	{
+		m_pGameObject->GetTransform()->Translate({ -10 * Time::DeltaTime(),0 });
+
+		//m_pGameObject->GetComponent<RigidBody>()->ApplyImpulse({ 100,0 }, true);
+
+		m_IsMoving = true;
+	}
+	if (INPUTMANAGER.IsDown('z'))
+	{
+		m_pGameObject->GetTransform()->Translate({ 0,10 * Time::DeltaTime() });
+
+		//m_pGameObject->GetComponent<RigidBody>()->ApplyImpulse({ 100,0 }, true);
+
+		m_IsMoving = true;
+	}
+	if (INPUTMANAGER.IsDown('s'))
+	{
+		m_pGameObject->GetTransform()->Translate({ 0,-10 * Time::DeltaTime() });
+
+		//m_pGameObject->GetComponent<RigidBody>()->ApplyImpulse({ 100,0 }, true);
+
+		m_IsMoving = true;
+	}
 	else {
 		m_IsMoving = false;
 	}

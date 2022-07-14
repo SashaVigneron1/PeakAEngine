@@ -134,9 +134,12 @@ void RenderManager::Render()
 			renderCommand.Command();
 		m_DebugRenderCommands.clear();
 
-		
+		// Render Debug Grid
+		RenderDebugGrid();
 	}
 	glPopMatrix();
+
+	
 
 	// Execute UI Render Commands
 	for (auto& renderCommand : m_UIRenderCommands)
@@ -182,6 +185,42 @@ void RenderManager::RenderUITexture(const std::shared_ptr<Texture2D>& texture, c
 			1
 		}
 	);
+}
+
+void RenderManager::RenderDebugGrid() const
+{
+	if (!m_ShouldRenderDebugGrid)
+		return;
+
+	// We are at camera pos
+	auto cameraPos = m_pCamera->GetGameObject()->GetTransform()->GetWorldPosition();
+	cameraPos *= m_PixelsPerUnit;
+
+	// Calculate How Many Rows & Columns Need to be visible
+	// + 2 to make sure we're always drawing the entire screen
+	int rows = m_GameResHeight / m_PixelsPerUnit + 2;
+	int cols = m_GameResWidth / m_PixelsPerUnit + 2;
+
+	int m_StartCol = int(cameraPos.x / m_PixelsPerUnit) - cols / 2;
+	int m_StartRow = int(cameraPos.y / m_PixelsPerUnit) - rows / 2;
+
+	// Draw Lines
+	for (int row{ m_StartRow }; row < m_StartRow + rows; ++row)
+	{
+		glm::vec2 beginPos{ cameraPos.x - m_GameResWidth/2, row * m_PixelsPerUnit };
+		glm::vec2 endPos{ cameraPos.x + m_GameResWidth/2, row * m_PixelsPerUnit };
+		
+		// Draw row
+		ActuallyRenderLine(beginPos, endPos, m_GridLineThickness, m_GridColor);
+	}
+	for (int col{ m_StartCol }; col < m_StartCol + cols; ++col)
+	{
+		glm::vec2 beginPos{ col * m_PixelsPerUnit, cameraPos.y - m_GameResHeight / 2 };
+		glm::vec2 endPos{ col * m_PixelsPerUnit, cameraPos.y + m_GameResHeight / 2 };
+
+		// Draw col
+		ActuallyRenderLine(beginPos, endPos, m_GridLineThickness, m_GridColor);
+	}
 }
 
 void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::vec2& pos, const glm::vec2& scale, float rotation,
@@ -427,4 +466,15 @@ void RenderManager::ActuallyRenderUITexture(const std::shared_ptr<Texture2D>& te
 		glEnd();
 	}
 	glDisable(GL_TEXTURE_2D);
+}
+
+void RenderManager::ActuallyRenderLine(const glm::vec2& begin, const glm::vec2& end, float thickness, const SDL_Color& color) const
+{
+	SetColor(color);
+
+	glLineWidth(thickness);
+	glBegin(GL_LINES);
+	glVertex2f(begin.x, begin.y);
+	glVertex2f(end.x, end.y);
+	glEnd();
 }
