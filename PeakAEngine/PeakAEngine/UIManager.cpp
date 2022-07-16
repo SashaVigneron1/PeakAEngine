@@ -52,7 +52,7 @@ int UIManager::AddText(const std::string& text, const std::string& fontPath, int
 
 UIElement* UIManager::GetUIElement(int id) const
 {
-	if (id >= m_pUIElements.size() || id < 0)
+	if (id >= (int)m_pUIElements.size() || id < 0)
 		return nullptr;
 
 	return m_pUIElements[id].pUIElement;

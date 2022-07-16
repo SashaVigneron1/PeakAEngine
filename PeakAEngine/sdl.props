@@ -37,6 +37,7 @@
 		  $(SolutionDir)3rdParty\GLEW\include;
 		  
 		  $(SolutionDir)3rdParty\DearImGui;
+		  $(SolutionDir)3rdParty\PlayFab;
 
 		  %(AdditionalIncludeDirectories)
 	  </AdditionalIncludeDirectories>

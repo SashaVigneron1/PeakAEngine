@@ -31,7 +31,7 @@ std::string Time::GetCurrentTimeAsString()
 void Time::UpdateTimers()
 {
 	// Update Timers
-	for (int i{}; i < m_Timers.size(); ++i)
+	for (int i{}; i < (int)m_Timers.size(); ++i)
 	{
 		m_Timers[i]->timeLeft -= deltaTime;
 		if (m_Timers[i]->timeLeft <= 0)

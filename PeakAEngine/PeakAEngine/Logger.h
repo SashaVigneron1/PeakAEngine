@@ -92,10 +92,25 @@ public:
 	{
 		SetConsoleColor(defaultColor);
 		std::cout << name << ": " << x << ", " << y << ", " << z << ")" << std::endl;
-		SetConsoleColor(defaultColor);
 
 		// Write To File
 		m_FileIO.WriteLine("[" + Time::GetCurrentTimeAsString() + "] [Vector] " + name + ": " + std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z));
+	}
+	static void LogMap(const std::string& message, const std::map<std::string, std::string>& map)
+	{
+		SetConsoleColor(defaultColor);
+
+		// Write message
+		std::cout << message << std::endl;
+		m_FileIO.WriteLine(message);
+
+		for (const auto& [key, value] : map)
+		{
+			// Write To Console
+			std::cout << "\t" << key << " : \t" << value << std::endl;
+			// Write To File
+			m_FileIO.WriteLine("[" + Time::GetCurrentTimeAsString() + "] [MAP] " + ": " + "\t" + key + " : \t" + value);
+		}
 	}
 
 	static void EmptyLine()

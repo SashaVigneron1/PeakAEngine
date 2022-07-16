@@ -13,6 +13,7 @@
 #include "Time.h"
 #include "InputManager.h"
 #include "ResourceManager.h"
+#include "NetworkManager.h"
 #include "SceneManager.h"
 
 void Engine::Initialize()
@@ -85,6 +86,7 @@ void Engine::Run()
 	auto& timer = TIME;
 	auto& input = INPUTMANAGER;
 	auto& sceneManager = SCENEMANAGER;
+	auto& networkManager = NETWORKMANAGER;
 	auto& ui = UI;
 	
 	// Initialize Timer
@@ -113,6 +115,7 @@ void Engine::Run()
 		int currFrame = 0;
 		while (fixedUpdateTimer >= m_FixedUpdateInterval && currFrame <= m_MaxFixedUpdatesPerFrame)
 		{
+			networkManager.Update();
 			sceneManager.FixedUpdate();
 			fixedUpdateTimer -= m_FixedUpdateInterval;
 			currFrame++;
