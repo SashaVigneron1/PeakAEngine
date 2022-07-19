@@ -38,9 +38,11 @@ void UI_InputField::OnBeginHover()
 void UI_InputField::OnEndHover()
 {
 	m_IsSelected = false;
-	m_pText->SetColor(m_ColorInactive);
 	if (m_pText->GetText().empty())
+	{
 		m_pText->ChangeText(m_DefaultText);
+		m_pText->SetColor(m_ColorInactive);
+	}
 }
 
 void UI_InputField::OnClick()
@@ -82,6 +84,9 @@ void UI_InputField::Update()
 				{
 					char charToAdd = character;
 
+					if (charToAdd == '2' || charToAdd == 'é' && INPUTMANAGER.IsATSymbolDown())
+						charToAdd = '@';
+
 					if (INPUTMANAGER.IsUpperCase())
 						charToAdd -= 32;
 
@@ -90,6 +95,8 @@ void UI_InputField::Update()
 				else
 					m_Text = m_Text.substr(0, m_Text.size() - 1);
 			}
+
+			
 
 			if (m_ShouldHide) 
 			{
@@ -104,6 +111,8 @@ void UI_InputField::Update()
 			{
 				m_pText->ChangeText(m_Text);
 			}
+
+			Logger::LogInfo(m_Text);
 		}
 	}
 	

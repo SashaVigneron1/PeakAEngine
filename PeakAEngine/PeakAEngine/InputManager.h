@@ -71,6 +71,7 @@ public:
 	bool IsUp(char sdlKey);
 
 	bool IsUpperCase();
+	bool IsATSymbolDown();
 
 	bool GetMouseButton(MouseButton index);
 	bool GetMouseButtonPressed(MouseButton index);

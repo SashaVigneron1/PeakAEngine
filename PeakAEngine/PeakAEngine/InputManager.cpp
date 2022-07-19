@@ -100,6 +100,9 @@ InputManager::InputManager()
 {
 	m_KeysToIgnore.push_back(SDLK_LSHIFT);
 	m_KeysToIgnore.push_back(SDLK_CAPSLOCK);
+	m_KeysToIgnore.push_back(SDLK_LCTRL);
+	m_KeysToIgnore.push_back(SDLK_RALT);
+	m_KeysToIgnore.push_back(SDLK_ALTERASE);
 }
 
 InputManager::~InputManager()
@@ -318,6 +321,15 @@ bool InputManager::IsUpperCase()
 
 	return keystate[SDL_SCANCODE_LSHIFT] || KMOD_CAPS & caps;
 }
+
+bool InputManager::IsATSymbolDown()
+{
+	//ToDoo: switch to qwerty
+	auto keystate = SDL_GetKeyboardState(NULL);
+
+	return keystate[SDL_SCANCODE_RALT] && IsDown('2');
+}
+
 
 bool InputManager::GetMouseButton(MouseButton index)
 {
