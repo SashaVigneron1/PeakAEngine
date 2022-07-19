@@ -34,6 +34,9 @@ void UI_Text::OnClick()
 
 void UI_Text::Render()
 {
+	if (m_Text.empty())
+		return;
+
 	const auto& windowSize = RENDERER.GetWindowSize();
 
 	glm::vec2 actualPosition = m_Position;

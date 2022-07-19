@@ -17,6 +17,7 @@
 #include "PeakAEngine/UIManager.h"
 #include "PeakAEngine/UI_Button.h"
 #include "PeakAEngine/UI_Text.h"
+#include "PeakAEngine/UI_InputField.h"
 #include "PeakAEngine/ServiceLocator.h"
 
 #include "PeakAEngine/NetworkManager.h"
@@ -108,7 +109,7 @@ void TestScene::Initialize()
 
 
 	//UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0.f,0.f }, AnchorPosition::LeftBottom);
-	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,0 }, AnchorPosition::RightBottom);
+	/*UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,0 }, AnchorPosition::RightBottom);
 	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0,1 }, AnchorPosition::LeftTop);
 	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,1 }, AnchorPosition::RightTop);
 
@@ -127,35 +128,37 @@ void TestScene::Initialize()
 	
 	auto element = UI.GetUIElement(textId);
 	auto text = static_cast<UI_Text*>(element);
-	text->ChangeText("This Is Also \nText.");
+	text->ChangeText("This Is Also \nText.");*/
+
+	
 
 	// NETWORKING
-	NETWORKMANAGER.Init("68BA8");
+	//NETWORKMANAGER.Init("68BA8");
 
-	//NETWORKMANAGER.RegisterUser("PeakAlive", "PeakAlive", "sasha.vigneron@outlook.com");
-	NETWORKMANAGER.LoginUser("PeakAlive", "PeakAlive");
-	NETWORKMANAGER.ForceUpdate();
+	////NETWORKMANAGER.RegisterUser("PeakAlive", "PeakAlive", "sasha.vigneron@outlook.com");
+	//NETWORKMANAGER.LoginUser("PeakAlive", "PeakAlive");
+	//NETWORKMANAGER.ForceUpdate();
 
-	// Load Data
-	NETWORKMANAGER.LoadUserData();
-	NETWORKMANAGER.ForceUpdate();
+	//// Load Data
+	//NETWORKMANAGER.LoadUserData();
+	//NETWORKMANAGER.ForceUpdate();
 
-	std::map<std::string, std::string> userData;
-	userData = NETWORKMANAGER.GetDataMap();
-	Logger::LogMap("User Data: ", userData);
+	//std::map<std::string, std::string> userData;
+	//userData = NETWORKMANAGER.GetDataMap();
+	//Logger::LogMap("User Data: ", userData);
 
-	// Save Data
-	std::map<std::string, std::string> userDataToSave;
-	userDataToSave["Test"] = "1000";
-	userDataToSave["Test2"] = "10000";
-	userDataToSave["Test3"] = "100";
-	NETWORKMANAGER.SaveUserData(userDataToSave);
-	NETWORKMANAGER.ForceUpdate();
+	//// Save Data
+	//std::map<std::string, std::string> userDataToSave;
+	//userDataToSave["Test"] = "1000";
+	//userDataToSave["Test2"] = "10000";
+	//userDataToSave["Test3"] = "100";
+	//NETWORKMANAGER.SaveUserData(userDataToSave);
+	//NETWORKMANAGER.ForceUpdate();
 
-	// Load New Data
-	NETWORKMANAGER.LoadUserData();
-	NETWORKMANAGER.ForceUpdate();
-	userData = NETWORKMANAGER.GetDataMap();
-	Logger::LogMap("User Data: ", userData);
+	//// Load New Data
+	//NETWORKMANAGER.LoadUserData();
+	//NETWORKMANAGER.ForceUpdate();
+	//userData = NETWORKMANAGER.GetDataMap();
+	//Logger::LogMap("User Data: ", userData);
 
 }

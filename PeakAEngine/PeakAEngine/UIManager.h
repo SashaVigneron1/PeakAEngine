@@ -30,6 +30,14 @@ public:
 	int AddText(const std::string& text, const std::string& fontPath, int lineSpacing, TextAlignment alignment,
 		const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor);
 
+	int AddInputField(const std::string& defaultText, const std::string& fontPath, int charSize, int lineSpacing, TextAlignment alignment, float sizeOffset,
+		const std::string& bgImagePath, const SDL_Color& colorActive, const SDL_Color& colorInactive, const SDL_Color& colorDefault,
+		const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor);
+	int AddInputField(const std::string& defaultText, const std::string& fontPath, int charSize, int lineSpacing, TextAlignment alignment, float sizeOffset,
+		const std::string& bgImagePath,
+		const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor);
+
+
 	//void AddText(text, const std::string& fontPath, const glm::vec2& pos, const glm::vec2& size, AnchorPosition anchor);
 	//void AddSlider(...);
 

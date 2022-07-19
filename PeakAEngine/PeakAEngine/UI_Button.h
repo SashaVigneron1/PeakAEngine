@@ -24,6 +24,7 @@ public:
 	virtual void OnClick();
 
 	virtual void Render();
+	virtual void Update() {}
 
 	void SetFunctionToExecute(std::function<void()> function) { m_FunctionToExecute = function; }
 	void AddText(const std::string& text, const std::string& fontPath, int lineSpacing, TextAlignment alignment, float sizeOffset);

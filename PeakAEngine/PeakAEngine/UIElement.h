@@ -28,6 +28,7 @@ public:
 	virtual void OnClick() = 0;
 
 	virtual void Render() = 0;
+	virtual void Update() = 0;
 
 	void SetActive(bool value) { m_IsActive = value; }
 	bool IsActive() const { return m_IsActive; }

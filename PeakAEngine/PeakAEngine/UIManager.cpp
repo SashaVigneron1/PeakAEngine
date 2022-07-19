@@ -5,6 +5,7 @@
 #include "UI_Image.h"
 #include "UI_Button.h"
 #include "UI_Text.h"
+#include "UI_InputField.h"
 
 void UIManager::Destroy()
 {
@@ -50,6 +51,27 @@ int UIManager::AddText(const std::string& text, const std::string& fontPath, int
 	return pair.id;
 }
 
+int UIManager::AddInputField(const std::string& defaultText, const std::string& fontPath, int charSize, int lineSpacing, TextAlignment alignment, float sizeOffset, const std::string& bgImagePath, const SDL_Color& colorActive, const SDL_Color& colorInactive, const SDL_Color& colorDefault, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
+{
+	UIElementPair pair{ new UI_InputField(defaultText, fontPath, charSize, lineSpacing, alignment, sizeOffset, bgImagePath,
+		colorActive, colorInactive, colorDefault,
+		pos, size, pivot, anchor), int(m_pUIElements.size()) };
+
+	m_pUIElements.push_back(pair);
+
+	return pair.id;
+}
+
+int UIManager::AddInputField(const std::string& defaultText, const std::string& fontPath, int charSize, int lineSpacing, TextAlignment alignment, float sizeOffset, const std::string& bgImagePath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
+{
+	UIElementPair pair{ new UI_InputField(defaultText, fontPath, charSize, lineSpacing, alignment, sizeOffset, bgImagePath,
+		pos, size, pivot, anchor), int(m_pUIElements.size()) };
+
+	m_pUIElements.push_back(pair);
+
+	return pair.id;
+}
+
 UIElement* UIManager::GetUIElement(int id) const
 {
 	if (id >= (int)m_pUIElements.size() || id < 0)
@@ -67,6 +89,7 @@ void UIManager::Update()
 
 		if (uiElement->IsActive())
 		{
+			// HOVERING EVENTS
 			// Check if hovering
 			bool wasHovering = uiElement->IsHovered();
 			bool isHovering = uiElement->IsMouseOverlapping();
@@ -86,6 +109,9 @@ void UIManager::Update()
 
 			if (uiElement->IsHovered() && INPUTMANAGER.GetMouseButtonPressed(MouseButton::LMB))
 				uiElement->OnClick();
+
+			// UPDATE
+			uiElement->Update();
 		}
 	}
 }

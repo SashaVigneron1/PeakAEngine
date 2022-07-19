@@ -308,4 +308,16 @@ bool InputManager::GetMouseButtonUp(MouseButton index)
 {
 	return m_MouseState.button == index && m_MouseState.isReleased;
 }
+std::vector<char> InputManager::GetKeysPressedThisFrame() const
+{
+	std::vector<char> charsDown;
+
+	for (auto& [key, keyInput] : m_Keys)
+	{
+		if (keyInput.isPressed)
+			charsDown.push_back(key);
+	}
+
+	return charsDown;
+}
 #pragma endregion

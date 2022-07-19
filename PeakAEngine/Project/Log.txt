@@ -1,27 +1,21 @@
-[Sat Jul 16 15:18:20 2022] [INFO] [Engine] Loading Engine Settings...
-[Sat Jul 16 15:18:20 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Sat Jul 16 15:18:20 2022] [INFO] [SoundSystem] Loading Clip...
-[Sat Jul 16 15:18:20 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
-[Sat Jul 16 15:18:20 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Sat Jul 16 15:18:20 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Sat Jul 16 15:18:20 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Sat Jul 16 15:18:20 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Sat Jul 16 15:18:20 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
-[Sat Jul 16 15:18:20 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
-[Sat Jul 16 15:18:20 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
-[Sat Jul 16 15:18:21 2022] [ERROR] [NETWORKMANAGER] Error creating user: The display name entered is not available. 
- RequestId: 1-62d2ba9d-0519f0cd3ec8bbfd490a9c81
-
-[Sat Jul 16 15:18:21 2022] [SUCCESS] [NETWORKMANAGER] Succesfully logged in.
-[Sat Jul 16 15:18:22 2022] [SUCCESS] [NETWORKMANAGER] Successfully loaded user data!
-User Data: 
-[Sat Jul 16 15:18:22 2022] [MAP] : 	Test : 	100
-[Sat Jul 16 15:18:22 2022] [MAP] : 	Test2 : 	1000
-[Sat Jul 16 15:18:22 2022] [SUCCESS] [NETWORKMANAGER] Successfully saved user data! Current Data Version: 4
-[Sat Jul 16 15:18:22 2022] [SUCCESS] [NETWORKMANAGER] Successfully loaded user data!
-User Data: 
-[Sat Jul 16 15:18:22 2022] [MAP] : 	Test : 	1000
-[Sat Jul 16 15:18:22 2022] [MAP] : 	Test2 : 	10000
-[Sat Jul 16 15:18:22 2022] [MAP] : 	Test3 : 	100
-[Sat Jul 16 15:18:22 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Sat Jul 16 15:18:22 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Tue Jul 19 17:46:57 2022] [INFO] [Engine] Loading Engine Settings...
+[Tue Jul 19 17:46:57 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Tue Jul 19 17:46:57 2022] [INFO] [SoundSystem] Loading Clip...
+[Tue Jul 19 17:46:57 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
+[Tue Jul 19 17:46:57 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Tue Jul 19 17:46:57 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Tue Jul 19 17:46:57 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Tue Jul 19 17:46:57 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Tue Jul 19 17:46:57 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Tue Jul 19 17:46:57 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Tue Jul 19 17:46:57 2022] [INFO] [ResourceManager] Loading Texture: UI/White.jpg
+[Tue Jul 19 17:46:57 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: UI/White.jpg
+[Tue Jul 19 17:46:57 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
+[Tue Jul 19 17:46:57 2022] [INFO] [SceneManager] Added Scene: LoginScene
+[Tue Jul 19 17:46:57 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Tue Jul 19 17:46:57 2022] [INFO] [SceneManager] Switching Scene...
+[Tue Jul 19 17:46:57 2022] [INFO] [SceneManager] Currently Active Scene: LoginScene
+[Tue Jul 19 17:47:02 2022] [INFO] Username: test
+[Tue Jul 19 17:47:02 2022] [INFO] Password: test
+[Tue Jul 19 17:47:02 2022] [INFO] Username: test
+[Tue Jul 19 17:47:02 2022] [INFO] Password: test

@@ -316,6 +316,7 @@ EXIT /B 0</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LoginScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -327,6 +328,7 @@ EXIT /B 0</Command>
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LoginScene.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="TestComponent.h" />
     <ClInclude Include="TestScene.h" />

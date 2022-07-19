@@ -2,6 +2,7 @@
 #include "PeakAEngine/PeakAEngine.h"
 #include "PeakAEngine/Scene.h"
 #include "PeakAEngine/SceneManager.h"
+#include "LoginScene.h"
 #include "TestScene.h"
 
 int main()
@@ -19,12 +20,11 @@ int main()
 
     // Add Scenes
     Scene* pScene = new TestScene();
-    //Scene* pScene2 = new TestScene();
-
     SCENEMANAGER.AddScene("TestScene", pScene);
-    //SCENEMANAGER.AddScene("TestScene2", pScene2);
+    pScene = new LoginScene();
+    SCENEMANAGER.AddScene("LoginScene", pScene);
 
-    //SCENEMANAGER.LoadScene("TestScene2");
+    SCENEMANAGER.LoadScene("LoginScene");
 
     ENGINE.Run();
 

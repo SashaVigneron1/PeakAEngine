@@ -74,6 +74,8 @@ public:
 	bool GetMouseButtonUp(MouseButton index);
 
 	MouseState GetMouseState() const { return m_MouseState; }
+
+	std::vector<char> GetKeysPressedThisFrame() const;
 private:
 	class InputManagerImpl;
 	InputManagerImpl* m_pInputManager;

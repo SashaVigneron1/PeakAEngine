@@ -19,6 +19,7 @@ public:
 	virtual void OnClick();
 
 	virtual void Render();
+	virtual void Update() {}
 
 private:
 	std::shared_ptr<Texture2D> m_pTexture;

@@ -23,9 +23,12 @@ public:
 	virtual void OnClick();
 
 	virtual void Render();
+	virtual void Update() {}
 
 	void ChangeText(const std::string& text);
 	void SetColor(const SDL_Color& color);
+
+	std::string GetText() const { return m_Text; }
 
 private:
 	void UpdateTexture();

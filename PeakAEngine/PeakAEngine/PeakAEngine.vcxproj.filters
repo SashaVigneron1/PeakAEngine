@@ -192,6 +192,9 @@
     <ClInclude Include="NetworkManager.h">
       <Filter>Singletons</Filter>
     </ClInclude>
+    <ClInclude Include="UI_InputField.h">
+      <Filter>ToSort\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
@@ -318,6 +321,9 @@
     </ClCompile>
     <ClCompile Include="NetworkManager.cpp">
       <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_InputField.cpp">
+      <Filter>ToSort\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

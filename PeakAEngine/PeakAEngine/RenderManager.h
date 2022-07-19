@@ -73,7 +73,7 @@ private:
 
 	int m_PixelsPerUnit{ 10 };
 
-	bool m_ShouldRenderDebugGrid{ true };
+	bool m_ShouldRenderDebugGrid{ false };
 	float m_GridLineThickness{ 2.f };
 	SDL_Color m_GridColor{ 255,255,255,100 };
 };
