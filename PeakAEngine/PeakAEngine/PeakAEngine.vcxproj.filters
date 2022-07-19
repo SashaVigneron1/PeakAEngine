@@ -189,7 +189,7 @@
     <ClInclude Include="Font.h">
       <Filter>ToSort</Filter>
     </ClInclude>
-    <ClInclude Include="NetworkManager.h">
+    <ClInclude Include="PlayfabManager.h">
       <Filter>Singletons</Filter>
     </ClInclude>
     <ClInclude Include="UI_InputField.h">
@@ -319,7 +319,7 @@
     <ClCompile Include="Font.cpp">
       <Filter>ToSort</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkManager.cpp">
+    <ClCompile Include="PlayfabManager.cpp">
       <Filter>Singletons</Filter>
     </ClCompile>
     <ClCompile Include="UI_InputField.cpp">

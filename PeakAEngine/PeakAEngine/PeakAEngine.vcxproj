@@ -251,7 +251,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="JsonParser.h" />
     <ClInclude Include="Logger.h" />
-    <ClInclude Include="NetworkManager.h" />
+    <ClInclude Include="PlayfabManager.h" />
     <ClInclude Include="PeakAEngine.h" />
     <ClInclude Include="PeakAEnginePCH.h" />
     <ClInclude Include="PhysicsHandler.h" />
@@ -340,7 +340,7 @@
     </ClCompile>
     <ClCompile Include="JsonParser.cpp" />
     <ClCompile Include="Logger.cpp" />
-    <ClCompile Include="NetworkManager.cpp" />
+    <ClCompile Include="PlayfabManager.cpp" />
     <ClCompile Include="PeakAEngine.cpp" />
     <ClCompile Include="PeakAEnginePCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

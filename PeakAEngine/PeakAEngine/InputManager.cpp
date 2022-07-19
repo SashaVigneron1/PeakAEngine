@@ -4,7 +4,6 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <Xinput.h>
-#include <SDL.h>
 
 #include "RenderManager.h"
 #include "GUIManager.h"
@@ -99,6 +98,8 @@ void InputManager::InputManagerImpl::ProcessInput()
 InputManager::InputManager()
 	: m_pInputManager{ new InputManagerImpl{} }
 {
+	m_KeysToIgnore.push_back(SDLK_LSHIFT);
+	m_KeysToIgnore.push_back(SDLK_CAPSLOCK);
 }
 
 InputManager::~InputManager()
@@ -232,10 +233,20 @@ bool InputManager::ProcessInput()
 		}
 		else if (e.type == SDL_KEYDOWN)
 		{
+			// Keys to ignore
+			auto it = std::find(m_KeysToIgnore.begin(), m_KeysToIgnore.end(), e.key.keysym.sym);
+			if (it != m_KeysToIgnore.end())
+				continue;
+
 			m_Keys[(char)e.key.keysym.sym] = KeyInput{ true, true, false };
 		}
 		else if (e.type == SDL_KEYUP)
 		{
+			// Keys to ignore
+			auto it = std::find(m_KeysToIgnore.begin(), m_KeysToIgnore.end(), e.key.keysym.sym);
+			if (it != m_KeysToIgnore.end())
+				continue;
+
 			m_Keys[(char)e.key.keysym.sym] = KeyInput{ false, false, true };
 		}
 		else if (e.type == SDL_MOUSEMOTION)
@@ -294,6 +305,18 @@ bool InputManager::IsDown(char sdlKey)
 bool InputManager::IsUp(char sdlKey)
 {
 	return m_Keys[(char)sdlKey].isReleased;
+}
+
+bool InputManager::IsUpperCase()
+{
+	// Returns true if caps lock is on or if shift is held
+
+	// SDLK_LSHIFT = SDL_SCANCODE_TO_KEYCODE(SDL_SCANCODE_LSHIFT),
+	// SDLK_LSHIFT = 1073742049
+	auto keystate = SDL_GetKeyboardState(NULL);
+	auto caps = SDL_GetModState();
+
+	return keystate[SDL_SCANCODE_LSHIFT] || KMOD_CAPS & caps;
 }
 
 bool InputManager::GetMouseButton(MouseButton index)

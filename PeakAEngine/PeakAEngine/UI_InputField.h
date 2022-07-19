@@ -30,12 +30,14 @@ public:
 	virtual void Update();
 
 	std::string GetText() const { return m_Text; }
+	void SetHideState(bool value) { m_ShouldHide = value; }
 
 private:
 	std::shared_ptr<UI_Image> m_pBackgroundImage;
 	std::shared_ptr<UI_Text> m_pText;
 	std::string m_DefaultText;
 	std::string m_Text;
+	bool m_ShouldHide;
 	bool m_IsSelected;
 
 	SDL_Color m_ColorActive;

@@ -20,7 +20,7 @@
 #include "PeakAEngine/UI_Text.h"
 #include "PeakAEngine/UI_InputField.h"
 
-#include "PeakAEngine/NetworkManager.h"
+#include "PeakAEngine/PlayfabManager.h"
 
 
 LoginScene::LoginScene()
@@ -47,6 +47,7 @@ void LoginScene::Initialize()
 	);
 	auto passwordInputElement = UI.GetUIElement(passwordInputId);
 	auto passwordInputField = static_cast<UI_InputField*>(passwordInputElement);
+	passwordInputField->SetHideState(true);
 
 	
 	// LOGIN
@@ -61,8 +62,7 @@ void LoginScene::Initialize()
 			std::string username = usernameInputField->GetText();
 			std::string password = passwordInputField->GetText();
 
-			Logger::LogInfo("Username: " + username);
-			Logger::LogInfo("Password: " + password);
+			PLAYFABMANAGER.LoginUser(username, password);
 		});
 
 	// REGISTER
@@ -77,8 +77,7 @@ void LoginScene::Initialize()
 			std::string username = usernameInputField->GetText();
 			std::string password = passwordInputField->GetText();
 
-			Logger::LogInfo("Username: " + username);
-			Logger::LogInfo("Password: " + password);
+			PLAYFABMANAGER.RegisterUser(username, password);
 		});
 
 	

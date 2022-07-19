@@ -13,7 +13,7 @@
 #include "Time.h"
 #include "InputManager.h"
 #include "ResourceManager.h"
-#include "NetworkManager.h"
+#include "PlayfabManager.h"
 #include "SceneManager.h"
 
 void Engine::Initialize()
@@ -86,7 +86,7 @@ void Engine::Run()
 	auto& timer = TIME;
 	auto& input = INPUTMANAGER;
 	auto& sceneManager = SCENEMANAGER;
-	auto& networkManager = NETWORKMANAGER;
+	auto& networkManager = PLAYFABMANAGER;
 	auto& ui = UI;
 	
 	// Initialize Timer

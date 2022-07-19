@@ -1,7 +1,7 @@
 #pragma once
 #include "Singleton.h"
 
-#define NETWORKMANAGER NetworkManager::GetInstance()
+#define PLAYFABMANAGER PlayfabManager::GetInstance()
 
 //ToDo: Swith to forward declarations
 //ToDo: Find a way to multithreaded polling for response
@@ -19,7 +19,7 @@ using namespace ClientModels;
 
 
 // Forward Declarations
-class NetworkManager final : public Singleton<NetworkManager>
+class PlayfabManager final : public Singleton<PlayfabManager>
 {
 public:
 	// PUBLIC FUNCTIONS

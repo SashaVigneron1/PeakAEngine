@@ -5,6 +5,8 @@
 #include "LoginScene.h"
 #include "TestScene.h"
 
+#include "PeakAEngine/PlayfabManager.h"
+
 int main()
 {
 #ifndef _DEBUG
@@ -17,6 +19,8 @@ int main()
 
 
     ENGINE.Initialize();
+
+    PLAYFABMANAGER.Init("68BA8");
 
     // Add Scenes
     Scene* pScene = new TestScene();

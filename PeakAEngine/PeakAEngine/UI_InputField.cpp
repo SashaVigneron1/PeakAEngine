@@ -10,7 +10,7 @@ UI_InputField::UI_InputField(const std::string& defaultText, const std::string& 
 	: UI_InputField(
 		defaultText, fontPath, charSize, lineSpacing, alignment, sizeOffset,
 		bgImagePath, 
-		SDL_Color{255,255,255,255}, SDL_Color{200,200,200,255}, SDL_Color{150,150,150,255}, 
+		SDL_Color{0,0,0,255}, SDL_Color{150,150,150,255}, SDL_Color{200,200,200,255}, 
 		pos, size, pivot, anchor)
 {
 }
@@ -26,6 +26,7 @@ UI_InputField::UI_InputField(const std::string& defaultText, const std::string& 
 	, m_ColorInactive{ colorInactive }
 	, m_ColorDefault{ colorDefault }
 	, m_CharSize{ charSize }
+	, m_ShouldHide{ false }
 {
 	m_pText->SetColor(m_ColorDefault);
 }
@@ -77,19 +78,32 @@ void UI_InputField::Update()
 		{
 			for (auto character : charsToAdd)
 			{
-				// Keys To Ignore
-				// ToDoo: Fix: this is not optimal + seems to be giving weird results on certain keys
-				if (character == SDL_SCANCODE_CAPSLOCK || character == SDL_SCANCODE_LSHIFT)
-					continue;
-
-
 				if (character != SDLK_BACKSPACE)
-					m_Text += character;
+				{
+					char charToAdd = character;
+
+					if (INPUTMANAGER.IsUpperCase())
+						charToAdd -= 32;
+
+					m_Text += charToAdd;
+				}
 				else
 					m_Text = m_Text.substr(0, m_Text.size() - 1);
 			}
 
-			m_pText->ChangeText(m_Text);
+			if (m_ShouldHide) 
+			{
+				std::string hiddenText = "";
+
+				for (int i{}; i < m_Text.length(); ++i)
+					hiddenText += "*";
+
+				m_pText->ChangeText(hiddenText);
+			}
+			else 
+			{
+				m_pText->ChangeText(m_Text);
+			}
 		}
 	}
 	

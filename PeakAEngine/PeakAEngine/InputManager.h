@@ -2,6 +2,7 @@
 #include "Singleton.h"
 
 #include <unordered_map>
+#include <SDL.h>
 
 #define INPUTMANAGER InputManager::GetInstance()
 
@@ -69,6 +70,8 @@ public:
 	bool IsUp(ControllerButton button, int controllerIndex = 0) const;
 	bool IsUp(char sdlKey);
 
+	bool IsUpperCase();
+
 	bool GetMouseButton(MouseButton index);
 	bool GetMouseButtonPressed(MouseButton index);
 	bool GetMouseButtonUp(MouseButton index);
@@ -83,6 +86,8 @@ private:
 	std::unordered_map<ControllerButton, std::vector<Command*>> m_ControllerCommands;
 	std::unordered_map<char, std::vector<Command*>> m_KeyCommands;
 	std::unordered_map<char, KeyInput> m_Keys;
+
+	std::list<SDL_KeyCode> m_KeysToIgnore;
 
 	MouseState m_MouseState;
 };

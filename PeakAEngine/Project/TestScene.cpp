@@ -20,7 +20,7 @@
 #include "PeakAEngine/UI_InputField.h"
 #include "PeakAEngine/ServiceLocator.h"
 
-#include "PeakAEngine/NetworkManager.h"
+#include "PeakAEngine/PlayfabManager.h"
 
 TestScene::TestScene()
 	: Scene{ }
