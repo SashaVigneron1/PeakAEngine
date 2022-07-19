@@ -109,11 +109,11 @@ void TestScene::Initialize()
 
 
 	//UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0.f,0.f }, AnchorPosition::LeftBottom);
-	/*UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,0 }, AnchorPosition::RightBottom);
-	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0,1 }, AnchorPosition::LeftTop);
-	UI.AddImage("Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,1 }, AnchorPosition::RightTop);
+	UI.AddImage("TestScene", "Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,0 }, AnchorPosition::RightBottom);
+	UI.AddImage("TestScene", "Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 0,1 }, AnchorPosition::LeftTop);
+	UI.AddImage("TestScene", "Character/PeterPepper_Idle.png", { 10,10 }, { 100,100 }, { 1,1 }, AnchorPosition::RightTop);
 
-	int button = UI.AddButton(new UI_Button("Character/PeterPepper_Idle.png", "Character/PeterPepper_Walking.png", "Character/PeterPepper_Death.png"
+	int button = UI.AddButton("TestScene", new UI_Button("Character/PeterPepper_Idle.png", "Character/PeterPepper_Walking.png", "Character/PeterPepper_Death.png"
 		, { 100,100 }, { 200,100 }, { 0.5f, 0.5f }, AnchorPosition::MiddleCenter));
 	auto buttonElement = UI.GetUIElement(button);
 	auto buttonB = static_cast<UI_Button*>(buttonElement);
@@ -123,12 +123,12 @@ void TestScene::Initialize()
 	buttonB->AddText("Click Me", "UI/Cyber11.ttf", 0, TextAlignment::Center, 50);
 	buttonB->SetTextColor({ 255,0,0,255 });
 
-	int textId = UI.AddText("This Is Text.", "UI/Cyber11.ttf", 0, TextAlignment::Center
+	int textId = UI.AddText("TestScene", "This Is Text.", "UI/Cyber11.ttf", 0, TextAlignment::Center
 		, { 0,0 }, { 300,100 }, { 0.f, 0.f }, AnchorPosition::LeftBottom);
 	
 	auto element = UI.GetUIElement(textId);
 	auto text = static_cast<UI_Text*>(element);
-	text->ChangeText("This Is Also \nText.");*/
+	text->ChangeText("This Is Also \nText.");
 
 	
 

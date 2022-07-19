@@ -111,8 +111,6 @@ void UI_InputField::Update()
 			{
 				m_pText->ChangeText(m_Text);
 			}
-
-			Logger::LogInfo(m_Text);
 		}
 	}
 	

@@ -15,9 +15,10 @@ void UIManager::Destroy()
 	}
 }
 
-int UIManager::AddImage(const std::string& imagePath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
+int UIManager::AddImage(const std::string& sceneName,
+	const std::string& imagePath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
 {
-	UIElementPair pair{ new UI_Image(imagePath,
+	UIElementPair pair{ sceneName, new UI_Image(imagePath,
 		pos, size, pivot, anchor), int(m_pUIElements.size()) };
 
 	m_pUIElements.push_back(pair);
@@ -31,19 +32,21 @@ int UIManager::AddImage(const std::string& imagePath, const glm::vec2& pos, cons
 //		pos, size, pivot, anchor));
 //}
 
-int UIManager::AddButton(UI_Button* pButton)
+int UIManager::AddButton(const std::string& sceneName,
+	UI_Button* pButton)
 {
-	UIElementPair pair{ pButton, int(m_pUIElements.size()) };
+	UIElementPair pair{ sceneName, pButton, int(m_pUIElements.size()) };
 
 	m_pUIElements.push_back(pair);
 
 	return pair.id;
 }
 
-int UIManager::AddText(const std::string& text, const std::string& fontPath, int lineSpacing, TextAlignment alignment
+int UIManager::AddText(const std::string& sceneName,
+	const std::string& text, const std::string& fontPath, int lineSpacing, TextAlignment alignment
 	, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
 {
-	UIElementPair pair{ new UI_Text(text, fontPath, lineSpacing, alignment,
+	UIElementPair pair{ sceneName, new UI_Text(text, fontPath, lineSpacing, alignment,
 		pos, size, pivot, anchor), int(m_pUIElements.size())};
 
 	m_pUIElements.push_back(pair);
@@ -51,9 +54,10 @@ int UIManager::AddText(const std::string& text, const std::string& fontPath, int
 	return pair.id;
 }
 
-int UIManager::AddInputField(const std::string& defaultText, const std::string& fontPath, int charSize, int lineSpacing, TextAlignment alignment, float sizeOffset, const std::string& bgImagePath, const SDL_Color& colorActive, const SDL_Color& colorInactive, const SDL_Color& colorDefault, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
+int UIManager::AddInputField(const std::string& sceneName,
+	const std::string& defaultText, const std::string& fontPath, int charSize, int lineSpacing, TextAlignment alignment, float sizeOffset, const std::string& bgImagePath, const SDL_Color& colorActive, const SDL_Color& colorInactive, const SDL_Color& colorDefault, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
 {
-	UIElementPair pair{ new UI_InputField(defaultText, fontPath, charSize, lineSpacing, alignment, sizeOffset, bgImagePath,
+	UIElementPair pair{ sceneName, new UI_InputField(defaultText, fontPath, charSize, lineSpacing, alignment, sizeOffset, bgImagePath,
 		colorActive, colorInactive, colorDefault,
 		pos, size, pivot, anchor), int(m_pUIElements.size()) };
 
@@ -62,9 +66,10 @@ int UIManager::AddInputField(const std::string& defaultText, const std::string& 
 	return pair.id;
 }
 
-int UIManager::AddInputField(const std::string& defaultText, const std::string& fontPath, int charSize, int lineSpacing, TextAlignment alignment, float sizeOffset, const std::string& bgImagePath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
+int UIManager::AddInputField(const std::string& sceneName,
+	const std::string& defaultText, const std::string& fontPath, int charSize, int lineSpacing, TextAlignment alignment, float sizeOffset, const std::string& bgImagePath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
 {
-	UIElementPair pair{ new UI_InputField(defaultText, fontPath, charSize, lineSpacing, alignment, sizeOffset, bgImagePath,
+	UIElementPair pair{ sceneName, new UI_InputField(defaultText, fontPath, charSize, lineSpacing, alignment, sizeOffset, bgImagePath,
 		pos, size, pivot, anchor), int(m_pUIElements.size()) };
 
 	m_pUIElements.push_back(pair);
@@ -85,6 +90,9 @@ void UIManager::Update()
 	// For All (active) Components
 	for (const auto& uiElementPair : m_pUIElements)
 	{
+		if (uiElementPair.sceneName != m_ActiveScene)
+			continue;
+
 		const auto& uiElement = uiElementPair.pUIElement;
 
 		if (uiElement->IsActive())
@@ -120,6 +128,9 @@ void UIManager::Render()
 {
 	for (auto uiElementPair : m_pUIElements)
 	{
+		if (uiElementPair.sceneName != m_ActiveScene)
+			continue;
+
 		const auto& uiElement = uiElementPair.pUIElement;
 
 		if (uiElement->IsActive())

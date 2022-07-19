@@ -1,114 +1,19 @@
-[Tue Jul 19 19:32:09 2022] [INFO] [Engine] Loading Engine Settings...
-[Tue Jul 19 19:32:09 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Tue Jul 19 19:32:09 2022] [INFO] [SoundSystem] Loading Clip...
-[Tue Jul 19 19:32:09 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
-[Tue Jul 19 19:32:09 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Tue Jul 19 19:32:09 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Tue Jul 19 19:32:09 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Tue Jul 19 19:32:09 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Tue Jul 19 19:32:09 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Tue Jul 19 19:32:09 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Tue Jul 19 19:32:09 2022] [INFO] [ResourceManager] Loading Texture: UI/White.jpg
-[Tue Jul 19 19:32:09 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: UI/White.jpg
-[Tue Jul 19 19:32:09 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
-[Tue Jul 19 19:32:09 2022] [INFO] [SceneManager] Added Scene: LoginScene
-[Tue Jul 19 19:32:09 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Tue Jul 19 19:32:09 2022] [INFO] [SceneManager] Switching Scene...
-[Tue Jul 19 19:32:09 2022] [INFO] [SceneManager] Currently Active Scene: LoginScene
-[Tue Jul 19 19:32:10 2022] [INFO] @
-[Tue Jul 19 19:32:11 2022] [INFO] 
-[Tue Jul 19 19:32:12 2022] [INFO] 
-[Tue Jul 19 19:32:12 2022] [INFO] 
-[Tue Jul 19 19:32:13 2022] [INFO] :
-[Tue Jul 19 19:32:13 2022] [INFO] 
-[Tue Jul 19 19:32:13 2022] [INFO] =
-[Tue Jul 19 19:32:14 2022] [INFO] 
-[Tue Jul 19 19:32:14 2022] [INFO] c
-[Tue Jul 19 19:32:16 2022] [INFO] 
-[Tue Jul 19 19:32:17 2022] [INFO] ã
-[Tue Jul 19 19:32:18 2022] [INFO] 
-[Tue Jul 19 19:32:18 2022] [INFO] 
-[Tue Jul 19 19:32:18 2022] [INFO] 
-[Tue Jul 19 19:32:19 2022] [INFO] .
-[Tue Jul 19 19:32:19 2022] [INFO] 
-[Tue Jul 19 19:32:19 2022] [INFO] -
-[Tue Jul 19 19:32:20 2022] [INFO] 
-[Tue Jul 19 19:32:20 2022] [INFO] .
-[Tue Jul 19 19:32:22 2022] [INFO] 
-[Tue Jul 19 19:32:29 2022] [INFO] P
-[Tue Jul 19 19:32:29 2022] [INFO] Pe
-[Tue Jul 19 19:32:30 2022] [INFO] Pea
-[Tue Jul 19 19:32:30 2022] [INFO] Peak
-[Tue Jul 19 19:32:30 2022] [INFO] PeakA
-[Tue Jul 19 19:32:30 2022] [INFO] PeakAl
-[Tue Jul 19 19:32:30 2022] [INFO] PeakAli
-[Tue Jul 19 19:32:30 2022] [INFO] PeakAliv
-[Tue Jul 19 19:32:31 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:33 2022] [INFO] P
-[Tue Jul 19 19:32:33 2022] [INFO] Pe
-[Tue Jul 19 19:32:33 2022] [INFO] Pea
-[Tue Jul 19 19:32:33 2022] [INFO] Peak
-[Tue Jul 19 19:32:34 2022] [INFO] PeakA
-[Tue Jul 19 19:32:34 2022] [INFO] PeakAl
-[Tue Jul 19 19:32:34 2022] [INFO] PeakAli
-[Tue Jul 19 19:32:34 2022] [INFO] PeakAliv
-[Tue Jul 19 19:32:34 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:35 2022] [INFO] PeakAlive@
-[Tue Jul 19 19:32:36 2022] [INFO] PeakAlive@o
-[Tue Jul 19 19:32:36 2022] [INFO] PeakAlive@ou
-[Tue Jul 19 19:32:36 2022] [INFO] PeakAlive@o
-[Tue Jul 19 19:32:37 2022] [INFO] PeakAlive@ou
-[Tue Jul 19 19:32:37 2022] [INFO] PeakAlive@out
-[Tue Jul 19 19:32:37 2022] [INFO] PeakAlive@outl
-[Tue Jul 19 19:32:37 2022] [INFO] PeakAlive@outlo
-[Tue Jul 19 19:32:37 2022] [INFO] PeakAlive@outloo
-[Tue Jul 19 19:32:37 2022] [INFO] PeakAlive@outlook
-[Tue Jul 19 19:32:38 2022] [INFO] PeakAlive@outlook.
-[Tue Jul 19 19:32:38 2022] [INFO] PeakAlive@outlook.c
-[Tue Jul 19 19:32:38 2022] [INFO] PeakAlive@outlook.co
-[Tue Jul 19 19:32:38 2022] [INFO] PeakAlive@outlook.com
-[Tue Jul 19 19:32:43 2022] [INFO] PeakAlive 
-[Tue Jul 19 19:32:48 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:49 2022] [INFO] PeakAlive@
-[Tue Jul 19 19:32:50 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:51 2022] [INFO] PeakAlive1
-[Tue Jul 19 19:32:52 2022] [INFO] PeakAlive1 
-[Tue Jul 19 19:32:53 2022] [INFO] PeakAlive1
-[Tue Jul 19 19:32:53 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:54 2022] [INFO] PeakAlive 
-[Tue Jul 19 19:32:54 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:55 2022] [INFO] PeakAlive@
-[Tue Jul 19 19:32:56 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:57 2022] [INFO] PeakAlive@
-[Tue Jul 19 19:32:57 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:57 2022] [INFO] PeakAlive@
-[Tue Jul 19 19:32:58 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:58 2022] [INFO] PeakAlive@
-[Tue Jul 19 19:32:58 2022] [INFO] PeakAlive
-[Tue Jul 19 19:32:59 2022] [INFO] PeakAlive3
-[Tue Jul 19 19:32:59 2022] [INFO] PeakAlive
-[Tue Jul 19 19:33:00 2022] [INFO] PeakAliveZ
-[Tue Jul 19 19:33:02 2022] [INFO] PeakAliveZZ
-[Tue Jul 19 19:33:03 2022] [INFO] PeakAliveZ
-[Tue Jul 19 19:33:03 2022] [INFO] PeakAlive
-[Tue Jul 19 19:33:04 2022] [INFO] PeakAlive
-[Tue Jul 19 19:33:04 2022] [INFO] PeakAlive
-[Tue Jul 19 19:33:04 2022] [INFO] PeakAlive3
-[Tue Jul 19 19:33:08 2022] [INFO] P
-[Tue Jul 19 19:33:08 2022] [INFO] 
-[Tue Jul 19 19:33:09 2022] [INFO] P
-[Tue Jul 19 19:33:10 2022] [INFO] Pe
-[Tue Jul 19 19:33:10 2022] [INFO] Pea
-[Tue Jul 19 19:33:10 2022] [INFO] Peak
-[Tue Jul 19 19:33:10 2022] [INFO] Peaka
-[Tue Jul 19 19:33:10 2022] [INFO] Peak
-[Tue Jul 19 19:33:11 2022] [INFO] PeakA
-[Tue Jul 19 19:33:11 2022] [INFO] PeakAl
-[Tue Jul 19 19:33:11 2022] [INFO] PeakAli
-[Tue Jul 19 19:33:11 2022] [INFO] PeakAliv
-[Tue Jul 19 19:33:11 2022] [INFO] PeakAlive
-[Tue Jul 19 19:33:12 2022] [INFO] PeakAlive
-[Tue Jul 19 19:33:12 2022] [INFO] PeakAlive
-[Tue Jul 19 19:33:12 2022] [INFO] PeakAlive3
-[Tue Jul 19 19:33:16 2022] [SUCCESS] [NETWORKMANAGER] Successfully created user: peakalive3
-[Tue Jul 19 19:33:19 2022] [SUCCESS] [NETWORKMANAGER] Succesfully logged in.
+[Tue Jul 19 19:39:32 2022] [INFO] [Engine] Loading Engine Settings...
+[Tue Jul 19 19:39:32 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Tue Jul 19 19:39:32 2022] [INFO] [SoundSystem] Loading Clip...
+[Tue Jul 19 19:39:32 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
+[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Tue Jul 19 19:39:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Tue Jul 19 19:39:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
+[Tue Jul 19 19:39:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
+[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
+[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Texture: UI/White.jpg
+[Tue Jul 19 19:39:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: UI/White.jpg
+[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Added Scene: LoginScene
+[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Switching Scene...
+[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Currently Active Scene: LoginScene
