@@ -1,19 +1,23 @@
-[Tue Jul 19 19:39:32 2022] [INFO] [Engine] Loading Engine Settings...
-[Tue Jul 19 19:39:32 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Tue Jul 19 19:39:32 2022] [INFO] [SoundSystem] Loading Clip...
-[Tue Jul 19 19:39:32 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
-[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Tue Jul 19 19:39:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Tue Jul 19 19:39:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
-[Tue Jul 19 19:39:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
-[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
-[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Tue Jul 19 19:39:32 2022] [INFO] [ResourceManager] Loading Texture: UI/White.jpg
-[Tue Jul 19 19:39:32 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: UI/White.jpg
-[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Added Scene: LoginScene
-[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Switching Scene...
-[Tue Jul 19 19:39:32 2022] [INFO] [SceneManager] Currently Active Scene: LoginScene
+[Wed Jul 20 17:19:39 2022] [INFO] [Engine] Loading Engine Settings...
+[Wed Jul 20 17:19:39 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Wed Jul 20 17:19:39 2022] [INFO] [SoundSystem] Loading Clip...
+[Wed Jul 20 17:19:39 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
+[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Wed Jul 20 17:19:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Wed Jul 20 17:19:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
+[Wed Jul 20 17:19:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
+[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
+[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Texture: UI/White.jpg
+[Wed Jul 20 17:19:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: UI/White.jpg
+[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Added Scene: LoginScene
+[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Added Scene: RoomSelectorScene
+[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Switching Scene...
+[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Currently Active Scene: LoginScene
+[Wed Jul 20 17:19:40 2022] [INFO] [NetworkManager] Shutting down...
+[Wed Jul 20 17:19:41 2022] [ERROR] [CLOUDSCRIPT] Couldn't destroy shared group: Not Authenticated

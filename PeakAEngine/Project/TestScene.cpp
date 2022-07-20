@@ -37,6 +37,7 @@ void TestScene::Initialize()
 	GetSettings().enableGUI = true;
 
 	// SOUND TEST
+	//ToDoo: Limit Sound To Scenes?
 	SERVICELOCATOR.RegisterSoundSystem(new Logged_SoundSystem());
 	int id = SERVICELOCATOR.GetSoundSystem()->AddClip("Resources/Sounds/BackgroundMusic.wav", -1);
 	SERVICELOCATOR.GetSoundSystem()->Play(id);

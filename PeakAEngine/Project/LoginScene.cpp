@@ -20,7 +20,10 @@
 #include "PeakAEngine/UI_Text.h"
 #include "PeakAEngine/UI_InputField.h"
 
+#include "PeakAEngine/SceneManager.h"
 #include "PeakAEngine/PlayfabManager.h"
+#include "PeakAEngine/NetworkManager.h"
+
 
 
 LoginScene::LoginScene()
@@ -67,27 +70,31 @@ void LoginScene::Initialize()
 	
 	// LOGIN
 	pos.y -= yOffsetPerElement;
-	int loginButtonId = UI.AddButton("LoginScene", new UI_Button{ "Character/PeterPepper_Idle.png", "Character/PeterPepper_Idle.png", "Character/PeterPepper_Idle.png",
+	int loginButtonId = UI.AddButton("LoginScene", new UI_Button{ "UI/White.jpg", "UI/White.jpg", "UI/White.jpg",
 		pos, size, { 0.f,0.f }, AnchorPosition::MiddleCenter });
 	auto loginButtonElement = UI.GetUIElement(loginButtonId);
 	auto loginButton = static_cast<UI_Button*>(loginButtonElement);
 	loginButton->AddText("Login", "UI/Cyber11.ttf", 0, TextAlignment::Center, 50);
+	loginButton->SetTextColor({ 0,0,0,255 });
 
 	loginButton->SetFunctionToExecute([=]
 		{
 			std::string username = usernameInputField->GetText();
 			std::string password = passwordInputField->GetText();
 
-			PLAYFABMANAGER.LoginUser(username, password);
+			PLAYFABMANAGER.LoginUser(username, password, [] {
+				SCENEMANAGER.LoadScene("RoomSelectorScene");
+				});
 		});
 
 	// REGISTER
 	pos.y -= yOffsetPerElement;
-	int registerButtonId = UI.AddButton("LoginScene", new UI_Button{ "Character/PeterPepper_Idle.png", "Character/PeterPepper_Idle.png", "Character/PeterPepper_Idle.png",
+	int registerButtonId = UI.AddButton("LoginScene", new UI_Button{ "UI/White.jpg", "UI/White.jpg", "UI/White.jpg",
 		pos, size, { 0.f,0.f }, AnchorPosition::MiddleCenter });
 	auto registerButtonElement = UI.GetUIElement(registerButtonId);
 	auto registerButton = static_cast<UI_Button*>(registerButtonElement);
 	registerButton->AddText("Register", "UI/Cyber11.ttf", 0, TextAlignment::Center, 50);
+	registerButton->SetTextColor({ 0,0,0,255 });
 
 	registerButton->SetFunctionToExecute([=]
 		{
@@ -97,6 +104,8 @@ void LoginScene::Initialize()
 
 			PLAYFABMANAGER.RegisterUser(username, password, email);
 		});
+
+	
 
 	
 }

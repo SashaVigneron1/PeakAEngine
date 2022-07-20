@@ -13,6 +13,7 @@
 #include "Time.h"
 #include "InputManager.h"
 #include "ResourceManager.h"
+#include "NetworkManager.h"
 #include "PlayfabManager.h"
 #include "SceneManager.h"
 
@@ -74,6 +75,7 @@ void Engine::Cleanup()
 {
 	UI.Destroy();
 	RENDERER.Destroy();
+	NETWORKMANAGER.Destroy();
 
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
@@ -86,7 +88,8 @@ void Engine::Run()
 	auto& timer = TIME;
 	auto& input = INPUTMANAGER;
 	auto& sceneManager = SCENEMANAGER;
-	auto& networkManager = PLAYFABMANAGER;
+	auto& networkManager = NETWORKMANAGER;
+	auto& playfabManager = PLAYFABMANAGER;
 	auto& ui = UI;
 	
 	// Initialize Timer
@@ -115,6 +118,7 @@ void Engine::Run()
 		int currFrame = 0;
 		while (fixedUpdateTimer >= m_FixedUpdateInterval && currFrame <= m_MaxFixedUpdatesPerFrame)
 		{
+			playfabManager.Update();
 			networkManager.Update();
 			sceneManager.FixedUpdate();
 			fixedUpdateTimer -= m_FixedUpdateInterval;

@@ -30,20 +30,30 @@ public:
 	//void SetTitleId(const std::string& id);
 
 	void RegisterUser(const std::string& username, const std::string& password, const std::string& email = "");
-	void LoginUser(const std::string& username, const std::string& password);
+	void LoginUser(const std::string& username, const std::string& password, std::function<void()> functionOnSucces = nullptr);
 
 	void SaveUserData(std::map<std::string, std::string>& dataMap);
 	void LoadUserData();
+
+	void ExecuteCloudScript(const std::string& functionName, const Json::Value& functionParameters, std::function<void(ExecuteCloudScriptResult result, void* customData)> functionOnSucces
+		, std::function<void(PlayFabError error, void* customData)> functionOnFail);
 
 	const std::map<std::string, std::string>& GetDataMap() const;
 
 	std::shared_ptr<PlayFabAuthenticationContext> GetAuthenticationContext() const { return m_AuthenticationContext; }
 
+	std::string GetTitleId() const;
+
+	// Mutators
+	void SetEntityKey(EntityKey key) { m_Entity = key; }
+	EntityKey GetEntityKey() const { return m_Entity; }
+	void SetEntityToken(const std::string& token) { m_EntityToken = token; }
+	std::string GetEntityToken() const { return m_EntityToken; }
 private:
 	// VARIABLES
 	std::shared_ptr<PlayFabAuthenticationContext> m_AuthenticationContext;
-
-
+	EntityKey m_Entity;
+	std::string m_EntityToken;
 };
 
 

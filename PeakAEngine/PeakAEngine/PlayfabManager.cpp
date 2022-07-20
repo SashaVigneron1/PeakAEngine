@@ -1,5 +1,6 @@
 #include "PeakAEnginePCH.h"
 #include "PlayfabManager.h"
+#include "NetworkManager.h"
 
 // Global Variable
 std::map<std::string, std::string> g_TempDataMap;
@@ -9,7 +10,6 @@ void OnSaveUserData(const UpdateUserDataResult& result, void* customData);
 void OnSaveUserDataFail(const PlayFabError& error, void* customData);
 void OnLoadUserData(const GetUserDataResult& result, void* customData);
 void OnLoadUserDataFail(const PlayFabError& error, void* customData);
-
 
 //********************************
 // PUBLIC FUNCTIONS 
@@ -48,7 +48,7 @@ void PlayfabManager::RegisterUser(const std::string& username, const std::string
         });
 }
 
-void PlayfabManager::LoginUser(const std::string& username, const std::string& password)
+void PlayfabManager::LoginUser(const std::string& username, const std::string& password, std::function<void()> functionOnSucces)
 {
     // Login User
     LoginWithPlayFabRequest request;
@@ -56,7 +56,7 @@ void PlayfabManager::LoginUser(const std::string& username, const std::string& p
     request.Password = password;
     request.TitleId = PlayFabSettings::staticSettings->titleId;
     PlayFabClientAPI::LoginWithPlayFab(request,
-        [](const LoginResult& result, void* /*customData*/)
+        [functionOnSucces](const LoginResult& result, void* /*customData*/)
         {
             auto authenticationContext = PLAYFABMANAGER.GetAuthenticationContext();
 
@@ -66,7 +66,14 @@ void PlayfabManager::LoginUser(const std::string& username, const std::string& p
             authenticationContext->entityId = result.EntityToken->Entity->Id;
             authenticationContext->clientSessionTicket = result.SessionTicket;
 
+            PLAYFABMANAGER.SetEntityKey(result.EntityToken->Entity);
+            PLAYFABMANAGER.SetEntityToken(result.EntityToken->EntityToken);
+
             Logger::LogSuccess("[NETWORKMANAGER] Succesfully logged in.");
+
+            NETWORKMANAGER.Initialize();
+
+            if (functionOnSucces) functionOnSucces();
         },
         [](const PlayFabError& error, void* /*customData*/)
         {
@@ -90,9 +97,23 @@ void PlayfabManager::LoadUserData()
     PlayFabClientAPI::GetUserData(request, OnLoadUserData, OnLoadUserDataFail);
 }
 
+void PlayfabManager::ExecuteCloudScript(const std::string& functionName, const Json::Value& functionParameters, std::function<void(ExecuteCloudScriptResult result, void* customData)> functionOnSucces, std::function<void(PlayFabError error, void* customData)> functionOnFail)
+{
+    ExecuteCloudScriptRequest cloudScriptRequest;
+    cloudScriptRequest.authenticationContext = m_AuthenticationContext;
+    cloudScriptRequest.FunctionName = functionName;
+    cloudScriptRequest.FunctionParameter = functionParameters;
+    PlayFabClientAPI::ExecuteCloudScript(cloudScriptRequest, functionOnSucces, functionOnFail);
+}
+
 const std::map<std::string, std::string>& PlayfabManager::GetDataMap() const
 {
     return g_TempDataMap;
+}
+
+std::string PlayfabManager::GetTitleId() const
+{
+    return PlayFabSettings::staticSettings->titleId;
 }
 
 

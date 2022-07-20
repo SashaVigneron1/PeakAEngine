@@ -103,7 +103,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)packages\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.1.7.11\build\native\include\;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -158,7 +158,7 @@ EXIT /B 0</Command>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)packages\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.1.7.11\build\native\include\;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -213,7 +213,7 @@ EXIT /B 0</Command>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include\;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)packages\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.1.7.11\build\native\include\;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include\;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -268,7 +268,7 @@ EXIT /B 0</Command>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\3rdParty\glew-2.1.0\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)packages\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.1.7.11\build\native\include\;$(SolutionDir)3rdParty\Box2D\Include;$(SolutionDir)3rdParty\SDL2_mixer\include;%(AdditionalIncludeDirectories);$(SolutionDir)3rdParty\rapidjson</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -316,6 +316,7 @@ EXIT /B 0</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ChatBoxComponent.cpp" />
     <ClCompile Include="LoginScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
@@ -324,12 +325,15 @@ EXIT /B 0</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="RoomSelectorScene.cpp" />
     <ClCompile Include="TestComponent.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChatBoxComponent.h" />
     <ClInclude Include="LoginScene.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RoomSelectorScene.h" />
     <ClInclude Include="TestComponent.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
