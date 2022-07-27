@@ -229,6 +229,15 @@ void NetworkManager::LeaveNetwork(std::function<void(void)> onNetworkDestroyed)
     }
 }
 
+void NetworkManager::ToggleVoiceChat(bool value)
+{
+    if (m_localChatControl)
+    {
+        m_localChatControl->SetAudioInputMuted(value);
+        m_localChatControl->SetIncomingAudioMuted(m_localChatControl, value);
+    }
+}
+
 bool NetworkManager::InternalConnectToNetwork(const char* inviteId, Party::PartyNetworkDescriptor& descriptor)
 {
     // This portion of connecting to the network is the same for

@@ -7,7 +7,6 @@
 class AudioClip final
 {
 public:
-	//ToDoo: Move this to resourcemanager
 	AudioClip(const std::string& filepath, bool dontDestroyOnLoad = false, int loops = 0)
 		: m_FilePath{ filepath }
 		, m_Loops{ loops }

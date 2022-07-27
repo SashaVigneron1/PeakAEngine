@@ -1,8 +1,6 @@
 #pragma once
 #include "Manager.h"
 
-//ToDoo: Find a way to multithreaded polling for response
-
 #include "playfab/PlayFabAuthenticationApi.h"
 #include "playfab/PlayFabAuthenticationContext.h"
 #include "playfab/PlayFabError.h"

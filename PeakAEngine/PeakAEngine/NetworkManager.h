@@ -31,6 +31,9 @@ public:
     const char* GetLanguageCode() { return m_languageCode.c_str(); }
     const char* GetLanguageName() { return m_languageName.c_str(); }
 
+    // Audio
+    void ToggleVoiceChat(bool value);
+
 private:
     //// Functions
     bool InternalConnectToNetwork(const char* networkId, Party::PartyNetworkDescriptor& descriptor);

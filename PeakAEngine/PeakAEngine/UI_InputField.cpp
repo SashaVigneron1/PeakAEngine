@@ -95,8 +95,6 @@ void UI_InputField::Update()
 					m_Text = m_Text.substr(0, m_Text.size() - 1);
 			}
 
-			
-
 			if (m_ShouldHide) 
 			{
 				std::string hiddenText = "";

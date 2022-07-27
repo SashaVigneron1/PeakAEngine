@@ -99,6 +99,8 @@ void RoomSelectorScene::Initialize()
 					SCENEMANAGER->LoadScene("GameScene");
 
 					GAMESTATE->CreateLocalPlayer();
+
+					NETWORKMANAGER->ToggleVoiceChat(true);
 				});
 		});
 
