@@ -26,17 +26,18 @@ public:
 		m_SoundsToPlay.push(m_pClips[clipId]);
 		m_CV.notify_all();
 	}
-	int AddClip(const std::string& clipFilePath, int loops = 0)
+	int AddClip(const std::string& clipFilePath, bool dontDestroyOnLoad, int loops = 0)
 	{
-		m_pClips.push_back(new AudioClip{ clipFilePath, loops });
+		m_pClips.push_back(std::make_shared<AudioClip>( clipFilePath, dontDestroyOnLoad, loops ));
 		return (int)m_pClips.size() - 1;
 	}
+	void ChangeScene();
 
 	void RunEventQueue();
 
 private:
-	std::vector<AudioClip*> m_pClips;
-	std::queue<AudioClip*> m_SoundsToPlay;
+	std::vector<std::shared_ptr<AudioClip>> m_pClips;
+	std::queue<std::shared_ptr<AudioClip>> m_SoundsToPlay;
 
 	std::thread m_Thread;
 	std::mutex m_Mutex;
@@ -68,10 +69,30 @@ SoundSystem::SoundSystemImpl::SoundSystemImpl()
 
 SoundSystem::SoundSystemImpl::~SoundSystemImpl()
 {
+	// Clear Current Queue & Delete AudioClips
+	while (!m_SoundsToPlay.empty()) m_SoundsToPlay.pop();
+	m_pClips.clear();
+
 	Mix_CloseAudio();
 	m_StopThread.store(true);
 	m_CV.notify_all();
 	m_Thread.join();
+}
+
+void SoundSystem::SoundSystemImpl::ChangeScene()
+{
+	// Stop Playing Clips
+	for (auto clip : m_pClips)
+	{
+		if (!clip->IsDontDestroyOnLoad())
+		{
+			// Stop Clip
+			clip->Stop();
+		}
+	}
+
+	// Clear Current Queue
+	while (!m_SoundsToPlay.empty()) m_SoundsToPlay.pop();
 }
 
 void SoundSystem::SoundSystemImpl::RunEventQueue()
@@ -97,7 +118,6 @@ void SoundSystem::SoundSystemImpl::RunEventQueue()
 
 		// Play the sound
 		clip->Play();
-
 	}
 }
 
@@ -112,7 +132,13 @@ void SoundSystem::Play(int clipId)
 	m_pSoundSystem->Play(clipId);
 }
 
-int SoundSystem::AddClip(const std::string& clipFilePath, int loops)
+int SoundSystem::AddClip(const std::string& clipFilePath, bool dontDestroyOnLoad, int loops)
 {
-	return m_pSoundSystem->AddClip(clipFilePath, loops);
+	return m_pSoundSystem->AddClip(clipFilePath, dontDestroyOnLoad, loops);
 }
+
+void SoundSystem::ChangeScene()
+{
+	m_pSoundSystem->ChangeScene();
+}
+

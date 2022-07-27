@@ -27,7 +27,7 @@ public:
     void Update();
 
     // Language
-    void SetLanguageCode(const char* lang, const char* name);
+    //void SetLanguageCode(const char* lang, const char* name);
     const char* GetLanguageCode() { return m_languageCode.c_str(); }
     const char* GetLanguageName() { return m_languageName.c_str(); }
 
@@ -42,27 +42,27 @@ private:
 
     //// Variables
     // Function Pointers
-    std::function<void(std::string)> m_onNetworkCreated;
-    std::function<void(void)> m_onNetworkConnected;
-    std::function<void(void)> m_onNetworkDestroyed;
+    std::function<void(std::string)> m_onNetworkCreated{nullptr};
+    std::function<void(void)> m_onNetworkConnected{ nullptr };
+    std::function<void(void)> m_onNetworkDestroyed{ nullptr };
 
     // Party Variables
     std::map<std::string, Party::PartyChatControl*> m_chatControls;
-    Party::PartyLocalEndpoint* m_localEndpoint;
-    Party::PartyNetwork* m_network;
-    Party::PartyLocalUser* m_localUser;
-    Party::PartyLocalChatControl* m_localChatControl;
+    Party::PartyLocalEndpoint* m_localEndpoint{ nullptr };
+    Party::PartyNetwork* m_network{ nullptr };
+    Party::PartyLocalUser* m_localUser{ nullptr };
+    Party::PartyLocalChatControl* m_localChatControl{ nullptr };
 
     // Language Code
     std::string m_languageCode = "en-US";
     std::string m_languageName = "english";
 
     // Authenticated User
-    std::string m_localEntityId;
-    std::string m_localEntityToken;
+    std::string m_localEntityId{};
+    std::string m_localEntityToken{};
 
     // Other
-    NetworkManagerState m_state;
-    bool m_partyInitialized;
-    bool m_enableCognitiveServices;
+    NetworkManagerState m_state{};
+    bool m_partyInitialized{};
+    bool m_enableCognitiveServices{};
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-//ToDOO: Remove this
+//ToDoo: Remove this
 //ToDoo: Find a way to include this in playerstate (dynamic playerstate)
 
 #include "Component.h"

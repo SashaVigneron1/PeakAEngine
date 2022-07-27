@@ -1,9 +1,7 @@
 #pragma once
 #include "Manager.h"
 
-
-//ToDo: Swith to forward declarations
-//ToDo: Find a way to multithreaded polling for response
+//ToDoo: Find a way to multithreaded polling for response
 
 #include "playfab/PlayFabAuthenticationApi.h"
 #include "playfab/PlayFabAuthenticationContext.h"

@@ -31,7 +31,7 @@ public:
 	glm::vec2 GetSpriteDimensions() const;
 
 private:
-	Sprite* m_pActiveSprite;
+	Sprite* m_pActiveSprite{nullptr};
 	std::unordered_map<std::string, std::shared_ptr<Sprite>> m_Sprites;
 };
 

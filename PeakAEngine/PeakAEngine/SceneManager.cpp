@@ -88,6 +88,7 @@ void SceneManager::LoadScene(const std::string& sceneName)
 	// Set active
 	m_ActiveScene = m_Scenes[sceneName];
 	UI->ChangeScene(sceneName);
+	SOUNDMANAGER->ChangeScene();
 
 	Logger::LogInfo("[SceneManager] Switching Scene...");
 	Logger::LogInfo("[SceneManager] Currently Active Scene: " + m_ActiveScene->GetName());

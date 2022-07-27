@@ -1,23 +1,25 @@
-[Wed Jul 27 18:24:33 2022] [INFO] [Engine] Loading Engine Settings...
-[Wed Jul 27 18:24:33 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Wed Jul 27 18:24:34 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Wed Jul 27 18:24:34 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Wed Jul 27 18:24:34 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Wed Jul 27 18:24:34 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Wed Jul 27 18:24:34 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
-[Wed Jul 27 18:24:34 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
-[Wed Jul 27 18:24:34 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
-[Wed Jul 27 18:24:34 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Wed Jul 27 18:24:34 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Wed Jul 27 18:24:34 2022] [INFO] [ResourceManager] Loading Texture: UI/White.jpg
-[Wed Jul 27 18:24:35 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: UI/White.jpg
-[Wed Jul 27 18:24:35 2022] [INFO] [SceneManager] Added Scene: LoginScene
-[Wed Jul 27 18:24:35 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Wed Jul 27 18:24:35 2022] [INFO] [SceneManager] Added Scene: RoomSelectorScene
-[Wed Jul 27 18:24:35 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Wed Jul 27 18:24:35 2022] [INFO] [SceneManager] Added Scene: GameScene
-[Wed Jul 27 18:24:35 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Wed Jul 27 18:24:35 2022] [INFO] [SceneManager] Switching Scene...
-[Wed Jul 27 18:24:35 2022] [INFO] [SceneManager] Currently Active Scene: LoginScene
-[Wed Jul 27 18:24:36 2022] [INFO] [NetworkManager] Shutting down...
-[Wed Jul 27 18:24:38 2022] [ERROR] [CLOUDSCRIPT] Couldn't destroy shared group: Not Authenticated
+[Wed Jul 27 19:58:55 2022] [INFO] [Engine] Loading Engine Settings...
+[Wed Jul 27 19:58:55 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Wed Jul 27 19:58:58 2022] [INFO] [SoundSystem] Loading Clip...
+[Wed Jul 27 19:58:58 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
+[Wed Jul 27 19:58:58 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Wed Jul 27 19:58:58 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Wed Jul 27 19:58:58 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Wed Jul 27 19:58:58 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Wed Jul 27 19:58:58 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
+[Wed Jul 27 19:58:58 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
+[Wed Jul 27 19:58:58 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 27 19:58:58 2022] [INFO] [ResourceManager] Loading Texture: UI/White.jpg
+[Wed Jul 27 19:58:58 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: UI/White.jpg
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Added Scene: LoginScene
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Added Scene: RoomSelectorScene
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Added Scene: GameScene
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Switching Scene...
+[Wed Jul 27 19:58:58 2022] [INFO] [SceneManager] Currently Active Scene: LoginScene
+[Wed Jul 27 19:58:59 2022] [INFO] [NetworkManager] Shutting down...
+[Wed Jul 27 19:59:00 2022] [ERROR] [CLOUDSCRIPT] Couldn't destroy shared group: Not Authenticated

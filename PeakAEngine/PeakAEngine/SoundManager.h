@@ -16,7 +16,8 @@ public:
 	SoundSystem& operator=(SoundSystem&& other) noexcept = delete;
 
 	virtual void Play(int clipId);
-	virtual int AddClip(const std::string& clipFilePath, int loops = 0);
+	virtual int AddClip(const std::string& clipFilePath, bool dontDestroyOnLoad = false, int loops = 0);
+	virtual void ChangeScene();
 
 protected:
 
@@ -41,10 +42,14 @@ public:
 		Logger::LogInfo("[SoundSystem] Playing Sound: \tId:" + std::to_string(clipId));
 		m_pSoundSystem->Play(clipId);
 	}
-	int AddClip(const std::string& clipFilePath, int loops = 1) 
+	int AddClip(const std::string& clipFilePath, bool dontDestroyOnLoad = false, int loops = 1) 
 	{
 		Logger::LogInfo("[SoundSystem] Loading Clip...");
-		return m_pSoundSystem->AddClip(clipFilePath, loops);
+		return m_pSoundSystem->AddClip(clipFilePath, dontDestroyOnLoad, loops);
+	}
+	void ChangeScene()
+	{
+		m_pSoundSystem->ChangeScene();
 	}
 
 private:

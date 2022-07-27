@@ -34,8 +34,8 @@ void TestScene::Initialize()
 	GetSettings().enableGUI = true;
 
 	// SOUND TEST
-	/*int id = SOUNDMANAGER->AddClip("Resources/Sounds/BackgroundMusic.wav", -1);
-	SOUNDMANAGER->Play(id);*/
+	int id = SOUNDMANAGER->AddClip("Resources/Sounds/BackgroundMusic.wav", true, -1);
+	SOUNDMANAGER->Play(id);
 
 	// PLAYER OBJ
 	auto go = AddChild("PlayerObj");

@@ -144,9 +144,6 @@
     <ClInclude Include="Sprite.h">
       <Filter>ToSort</Filter>
     </ClInclude>
-    <ClInclude Include="AudioClip.h">
-      <Filter>ToSort</Filter>
-    </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>ToSort</Filter>
     </ClInclude>
@@ -218,6 +215,9 @@
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioClip.h">
+      <Filter>ResourceWrappers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -293,9 +293,6 @@
       <Filter>UtilityFiles</Filter>
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
-      <Filter>ToSort</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioClip.cpp">
       <Filter>ToSort</Filter>
     </ClCompile>
     <ClCompile Include="UIElement.cpp">
