@@ -37,7 +37,7 @@ int main()
     pScene = new GameScene();
     SCENEMANAGER->AddScene("GameScene", pScene);
 
-    SCENEMANAGER->LoadScene("LoginScene");
+    SCENEMANAGER->LoadScene("LoginScene", true);
 
     ENGINE.Run();
 

@@ -59,7 +59,10 @@ void GameScene::Initialize()
 	collider->SetDebugColor({ 0,255,0,100 });
 	collider->EnableDebugDrawing(true);
 
-
-
-
+	//FindObjectOfTypeTest
+	/*TIME->AddTimer(std::make_shared<Timer>(10.0f, [=]
+		{
+			auto testObj = FindObjectsOfType<TestComponent>();
+			for (auto test : testObj) test->Destroy();
+		}));*/
 }

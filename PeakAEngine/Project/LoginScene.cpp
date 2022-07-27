@@ -99,8 +99,11 @@ void LoginScene::Initialize()
 
 			PLAYFABMANAGER->RegisterUser(username, password, email);
 		});
+}
 
-	
-
-	
+void LoginScene::Reload()
+{
+	// SOUND TEST
+	/*int id = SOUNDMANAGER->AddClip("Resources/Sounds/BackgroundMusic.wav", false, -1);
+	SOUNDMANAGER->Play(id);*/
 }

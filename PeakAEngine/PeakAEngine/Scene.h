@@ -1,7 +1,7 @@
 #pragma once
 
+#include "GameObject.h"
 class PhysicsHandler;
-class GameObject;
 
 struct SceneSettings 
 {
@@ -23,7 +23,8 @@ public:
 	PhysicsHandler* GetPhysicsHandler() const { return m_pPhysicsHandler.get(); }
 
 	virtual void Initialize() {}
-	
+	virtual void Reload() {}
+
 	void RootInitialize();
 	void DrawImGui();
 	void Update() const;
@@ -34,6 +35,31 @@ public:
 
 	void OnHover(const glm::vec2& mousePos);
 	void OnClick();
+
+	template<typename T>
+	inline T* FindObjectOfType() const
+	{
+		for (auto& obj : m_Objects)
+		{
+			T* objOfType = obj->GetComponent<T>();
+			if (objOfType)
+				return objOfType;
+		}
+		return nullptr;
+	}
+	template<typename T>
+	inline std::vector<T*> FindObjectsOfType() const
+	{
+		std::vector<T*> objects;
+
+		for (auto obj : m_Objects)
+		{
+			T* objOfType = obj->GetComponent<T>();
+			if (objOfType)
+				objects.push_back(objOfType);
+		}
+		return objects;
+	}
 
 	SceneSettings& GetSettings() { return m_Settings; }
 private: 

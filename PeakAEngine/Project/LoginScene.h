@@ -14,7 +14,7 @@ public:
 	LoginScene& operator=(LoginScene&& other) noexcept = delete;
 
 	virtual void Initialize() override;
-
+	virtual void Reload() override;
 protected:
 
 

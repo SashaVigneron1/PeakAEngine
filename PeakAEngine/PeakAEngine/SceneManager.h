@@ -18,7 +18,7 @@ public:
 	SceneManager& operator=(SceneManager&& other) noexcept = delete;
 
 	void AddScene(const std::string& name, Scene* scene);
-	void LoadScene(const std::string& sceneName);
+	void LoadScene(const std::string& sceneName, bool reloadScene = false);
 
 	void DrawImGui() const;
 	void Update() const;

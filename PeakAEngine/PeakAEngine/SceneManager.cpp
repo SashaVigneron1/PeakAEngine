@@ -80,7 +80,7 @@ void SceneManager::AddScene(const std::string& name, Scene* scene)
 	Logger::LogInfo("[SceneManager] Currently Active Scene: " + m_ActiveScene->GetName());
 }
 
-void SceneManager::LoadScene(const std::string& sceneName)
+void SceneManager::LoadScene(const std::string& sceneName, bool reloadScene)
 {
 	// Make sure scene exists
 	assert(m_Scenes.find(sceneName) != m_Scenes.end());
@@ -89,6 +89,9 @@ void SceneManager::LoadScene(const std::string& sceneName)
 	m_ActiveScene = m_Scenes[sceneName];
 	UI->ChangeScene(sceneName);
 	SOUNDMANAGER->ChangeScene();
+
+	// Reload if necessary
+	if (reloadScene) m_ActiveScene->Reload();
 
 	Logger::LogInfo("[SceneManager] Switching Scene...");
 	Logger::LogInfo("[SceneManager] Currently Active Scene: " + m_ActiveScene->GetName());
