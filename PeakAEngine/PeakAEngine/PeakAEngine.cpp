@@ -46,7 +46,7 @@ void Engine::Initialize()
 		SDL_WINDOWPOS_CENTERED,
 		w,
 		h,
-		SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
+		SDL_WINDOW_OPENGL /*| SDL_WINDOW_RESIZABLE*/
 	);
 
 	// Maximize window if it the setting is on

@@ -205,7 +205,7 @@ bool GameObject::IsHovering(const glm::vec2& mousePos) const
 	if (!m_BoxCollider)
 		return false;
 
-	return m_BoxCollider->IsOverlapping(mousePos, true);
+	return m_BoxCollider->IsMouseOverlapping(mousePos, true);
 }
 
 void GameObject::OnBeginHover()

@@ -132,10 +132,8 @@ void BoxCollider::SetTrigger(bool isTrigger)
 	m_IsTrigger = isTrigger;
 }
 
-bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
+bool BoxCollider::IsMouseOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
 {
-	//ToDoo: Rename (this is specifically made for mouse cursor)
-
 	// Put Mouse Relative To Center Of Screen
 	auto position = pos;
 	position -= RENDERER->GetWindowSize() / 2.f;
@@ -206,7 +204,6 @@ bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
 		);
 
 	//Todoo: Fix: If the collider is rotated; The corners of the rotated rectangle also count
-	// NOTE: HASNT BEEN TESTED IN WORLD SPACE YET
 }
 
 void BoxCollider::RigidBodyChanged()

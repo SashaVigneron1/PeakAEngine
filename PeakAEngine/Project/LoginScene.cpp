@@ -1,10 +1,9 @@
 #include "pch.h"
 #include "LoginScene.h"
 
-//ToDoo: fix linker error
-#include "PeakAEngine/GameObject.h"
-
 #include "PeakAEngine/Managers.h"
+
+#include "PeakAEngine/GameObject.h"
 
 #include "PeakAEngine/TestComponent.h"
 #include "PeakAEngine/RenderComponent.h"

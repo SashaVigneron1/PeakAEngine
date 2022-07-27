@@ -11,7 +11,7 @@ void RenderComponent::Render() const
 	auto transform = GetGameObject()->GetTransform();
 	if (m_Texture && transform)
 	{
-		RENDERER->RenderTexture(m_Texture, transform->GetWorldPosition(), transform->GetWorldScale(), transform->GetWorldRotation(),
+		RENDERER->RenderTexture_Units(m_Texture, transform->GetWorldPosition(), transform->GetWorldScale(), transform->GetWorldRotation(),
 			m_Pivot, m_SourceRect, m_RenderLayer);
 	}
 }

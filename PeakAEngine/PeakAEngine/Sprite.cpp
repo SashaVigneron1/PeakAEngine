@@ -79,7 +79,7 @@ void Sprite::Render() const
 		glm::vec2 scale{ m_pGameObject->GetTransform()->GetWorldScale().x * m_Scale.x, m_pGameObject->GetTransform()->GetWorldScale().y * m_Scale.y };
 		float rotation{ m_pGameObject->GetTransform()->GetWorldRotation() };
 
-		RENDERER->RenderTexture(m_pTexture, pos, scale, rotation, m_Pivot, srcRect, m_LayerId);
+		RENDERER->RenderTexture_Units(m_pTexture, pos, scale, rotation, m_Pivot, srcRect, m_LayerId);
 	}
 }
 

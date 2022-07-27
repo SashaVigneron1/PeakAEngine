@@ -8,6 +8,10 @@
 
 #include "PeakAEngine/Managers.h"
 
+#ifdef _DEBUG
+    #include "vld.h"
+#endif
+
 int main()
 {
     // Hide/Enable Console

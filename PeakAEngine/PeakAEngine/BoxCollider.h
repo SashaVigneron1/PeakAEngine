@@ -33,7 +33,7 @@ public:
 	void EnableDebugDrawing(bool value) { m_DrawDebugRect = value; }
 	void SetDebugColor(const SDL_Color& color) { m_DebugColor = color; }
 
-	bool IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace = false);
+	bool IsMouseOverlapping(const glm::vec2& pos, bool convertToScreenSpace = false);
 private:
 	friend class PhysicsHandler;
 	friend class RigidBody;

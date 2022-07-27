@@ -186,7 +186,6 @@ void NetworkManager::SendTextMessage(const std::string& text)
         }
 
         // Toast the text on the screen
-        //ToDoo: Chatbox?
         Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(m_localChatControl) + ": " + text);
     }
 }
@@ -887,7 +886,6 @@ void NetworkManager::Update()
             }
 
             // Toast the text on the screen
-                 //ToDoo: Chatbox?
             Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(result->senderChatControl) + ": " + message);
             Logger::LogInfo("NetworkManager: Chat Text: " + std::string{ result->chatText });
 
@@ -935,7 +933,6 @@ void NetworkManager::Update()
                 }
 
                 // Toast the text on the screen
-                //ToDoo: Chatbox?
                 Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(result->senderChatControl) + ": " + message);
 
                 Logger::LogInfo("[NetworkManager] Chat Transcription: " + std::string{ result->transcription });

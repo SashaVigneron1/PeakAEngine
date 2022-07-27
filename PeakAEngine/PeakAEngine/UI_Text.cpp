@@ -108,7 +108,7 @@ void UI_Text::Render()
 	}
 
 
-	RENDERER->RenderUITexture(m_pTexture, actualPosition, m_Size, 0);
+	RENDERER->RenderTexture_Pixels(m_pTexture, actualPosition, m_Size, 0);
 }
 
 void UI_Text::ChangeText(const std::string& text)

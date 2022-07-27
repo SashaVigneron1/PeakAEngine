@@ -1,11 +1,10 @@
 #include "pch.h"
 #include "GameScene.h"
 
-//ToDoo: fix linker error
+#include "PeakAEngine/Managers.h"
+
 #include "PeakAEngine/GameObject.h"
 
-#include "PeakAEngine/InputManager.h"
-#include "PeakAEngine/ResourceManager.h"
 #include "PeakAEngine/TestComponent.h"
 #include "PeakAEngine/RenderComponent.h"
 #include "PeakAEngine/RigidBody.h"
@@ -20,10 +19,6 @@
 #include "PeakAEngine/UI_Text.h"
 #include "PeakAEngine/UI_InputField.h"
 
-#include "PeakAEngine/SceneManager.h"
-#include "PeakAEngine/PlayfabManager.h"
-#include "PeakAEngine/NetworkManager.h"
-
 
 
 GameScene::GameScene()
@@ -37,20 +32,17 @@ GameScene::~GameScene()
 
 void GameScene::Initialize()
 {
-
-
-
 	// GROUND OBJECT
 	auto go = AddChild("GroundObj");
 	auto spriteRenderer = go->CreateComponent<SpriteRenderer>();
-	spriteRenderer->AddSprite("Walking", new  Sprite("Character/PeterPepper_Idle.png",
-		{
-				SpriteRow{Direction::FacingCamera, 0},
-				SpriteRow{Direction::FacingLeft, 1},
-				SpriteRow{Direction::FacingRight, 1, true},
-				SpriteRow{Direction::FacingAwayFromCamera, 2},
-		},
-		3, 1, { 1,1 }, 0));
+	spriteRenderer->AddSprite("Walking", std::make_shared<Sprite>("Character/PeterPepper_Idle.png",
+		std::vector<SpriteRow>{
+		SpriteRow{ Direction::FacingCamera, 0 },
+			SpriteRow{ Direction::FacingLeft, 1 },
+			SpriteRow{ Direction::FacingRight, 1, true },
+			SpriteRow{ Direction::FacingAwayFromCamera, 2 },
+	},
+		3, float(1), glm::vec2{ 1,1 }, 0));
 	spriteRenderer->SetActiveSprite("Walking");
 	spriteRenderer->SetEnabled(true);
 	spriteRenderer->SetPixelsPerUnit(16);

@@ -102,10 +102,10 @@ void RoomSelectorScene::Initialize()
 				});
 		});
 
-	//ToDoo: remove
-	auto go = AddChild("ChatObj");
+	// CHAT TEST
+	/*auto go = AddChild("ChatObj");
 	auto chat = go->CreateComponent<ChatBoxComponent>();
-	chat->SetEnabled(true);
+	chat->SetEnabled(true);*/
 
 
 

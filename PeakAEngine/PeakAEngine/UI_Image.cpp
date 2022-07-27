@@ -95,5 +95,5 @@ void UI_Image::Render()
 	}
 
 
-	RENDERER->RenderUITexture(m_pTexture, actualPosition, m_Size, 0);
+	RENDERER->RenderTexture_Pixels(m_pTexture, actualPosition, m_Size, 0);
 }

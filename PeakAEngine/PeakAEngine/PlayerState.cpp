@@ -20,14 +20,14 @@ PlayerState::PlayerState(const char* displayName, bool controlInput)
     auto scene = SCENEMANAGER->GetActiveScene();
     auto go = scene->AddChild(displayName);
     SpriteRenderer* spriteRenderer = go->CreateComponent<SpriteRenderer>();
-    spriteRenderer->AddSprite("Walking", new  Sprite("Character/PeterPepper_Walking.png",
-        {
-                SpriteRow{Direction::FacingCamera, 0},
-                SpriteRow{Direction::FacingLeft, 1},
-                SpriteRow{Direction::FacingRight, 1, true},
-                SpriteRow{Direction::FacingAwayFromCamera, 2},
-        },
-        3, 1 / 6.0f, { 1,1 }, 0));
+    spriteRenderer->AddSprite("Walking", std::make_shared<Sprite>("Character/PeterPepper_Walking.png",
+        std::vector<SpriteRow>{
+        SpriteRow{ Direction::FacingCamera, 0 },
+            SpriteRow{ Direction::FacingLeft, 1 },
+            SpriteRow{ Direction::FacingRight, 1, true },
+            SpriteRow{ Direction::FacingAwayFromCamera, 2 },
+    },
+        3, 1 / 6.f, glm::vec2{ 1,1 }, 0));
     spriteRenderer->SetActiveSprite("Walking");
     spriteRenderer->SetEnabled(true);
     spriteRenderer->SetPixelsPerUnit(16);

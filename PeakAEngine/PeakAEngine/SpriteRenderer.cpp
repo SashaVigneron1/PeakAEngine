@@ -1,10 +1,11 @@
 #include "PeakAEnginePCH.h"
 #include "SpriteRenderer.h"
 
-void SpriteRenderer::AddSprite(const std::string& name, Sprite* pSprite)
+void SpriteRenderer::AddSprite(const std::string& name, std::shared_ptr<Sprite> pSprite)
 {
 	pSprite->SetGameObject(m_pGameObject);
-	m_Sprites[name] = pSprite; SetActiveSprite(name);
+	m_Sprites[name] = pSprite; 
+	SetActiveSprite(name);
 }
 
 glm::vec2 SpriteRenderer::GetSpriteDimensions() const

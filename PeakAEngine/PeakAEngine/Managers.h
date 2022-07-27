@@ -21,7 +21,7 @@
 #define RENDERER Managers::Get<RenderManager>()
 #define RESOURCEMANAGER Managers::Get<ResourceManager>()
 #define SCENEMANAGER Managers::Get<SceneManager>()
-#define SOUNDMANAGER Managers::Get<SoundManager>() //ToDoo: Change
+#define SOUNDMANAGER Managers::Get<SoundManager>()
 #define TIME Managers::Get<Time>()
 #define UI Managers::Get<UIManager>()
 

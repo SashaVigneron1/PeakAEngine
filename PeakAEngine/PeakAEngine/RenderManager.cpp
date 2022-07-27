@@ -160,7 +160,7 @@ void RenderManager::Destroy()
 	GUI->Destroy();
 }
 
-void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation, const glm::vec2& pivot, const SDL_FRect& srcRect, int renderTarget)
+void RenderManager::RenderTexture_Units(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation, const glm::vec2& pivot, const SDL_FRect& srcRect, int renderTarget)
 {
 	m_RenderCommands.push_back(
 		{
@@ -173,7 +173,7 @@ void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, con
 	);
 }
 
-void RenderManager::RenderUITexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation)
+void RenderManager::RenderTexture_Pixels(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation)
 {
 	m_UIRenderCommands.push_back(
 		{
@@ -210,7 +210,7 @@ void RenderManager::RenderDebugGrid() const
 		glm::vec2 endPos{ cameraPos.x + m_GameResWidth/2, row * m_PixelsPerUnit };
 		
 		// Draw row
-		ActuallyRenderLine(beginPos, endPos, m_GridLineThickness, m_GridColor);
+		ActuallyRenderDebugLine(beginPos, endPos, m_GridLineThickness, m_GridColor);
 	}
 	for (int col{ m_StartCol }; col < m_StartCol + cols; ++col)
 	{
@@ -218,7 +218,7 @@ void RenderManager::RenderDebugGrid() const
 		glm::vec2 endPos{ col * m_PixelsPerUnit, cameraPos.y + m_GameResHeight / 2 };
 
 		// Draw col
-		ActuallyRenderLine(beginPos, endPos, m_GridLineThickness, m_GridColor);
+		ActuallyRenderDebugLine(beginPos, endPos, m_GridLineThickness, m_GridColor);
 	}
 }
 
@@ -467,7 +467,7 @@ void RenderManager::ActuallyRenderUITexture(const std::shared_ptr<Texture2D>& te
 	glDisable(GL_TEXTURE_2D);
 }
 
-void RenderManager::ActuallyRenderLine(const glm::vec2& begin, const glm::vec2& end, float thickness, const SDL_Color& color) const
+void RenderManager::ActuallyRenderDebugLine(const glm::vec2& begin, const glm::vec2& end, float thickness, const SDL_Color& color) const
 {
 	SetColor(color);
 

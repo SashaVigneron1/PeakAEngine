@@ -126,7 +126,7 @@ void UI_Button::Render()
 	}
 
 
-	RENDERER->RenderUITexture(m_pActiveTexture, actualPosition, m_Size, 0);
+	RENDERER->RenderTexture_Pixels(m_pActiveTexture, actualPosition, m_Size, 0);
 
 	if (m_pText)
 		m_pText->Render();

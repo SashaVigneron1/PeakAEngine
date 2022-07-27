@@ -34,25 +34,20 @@ void TestScene::Initialize()
 	GetSettings().enableGUI = true;
 
 	// SOUND TEST
-	//ToDoo: Limit Sound To Scenes?
-	/*SERVICELOCATOR.RegisterSoundSystem(new Logged_SoundSystem());
-	int id = SERVICELOCATOR.GetSoundSystem()->AddClip("Resources/Sounds/BackgroundMusic.wav", -1);
-	SERVICELOCATOR.GetSoundSystem()->Play(id);*/
-
 	/*int id = SOUNDMANAGER->AddClip("Resources/Sounds/BackgroundMusic.wav", -1);
 	SOUNDMANAGER->Play(id);*/
 
 	// PLAYER OBJ
 	auto go = AddChild("PlayerObj");
 	SpriteRenderer* spriteRenderer = go->CreateComponent<SpriteRenderer>();
-	spriteRenderer->AddSprite("Walking", new  Sprite("Character/PeterPepper_Walking.png",
-		{
+	spriteRenderer->AddSprite("Walking", std::make_shared<Sprite>("Character/PeterPepper_Walking.png",
+		std::vector<SpriteRow>{
 				SpriteRow{Direction::FacingCamera, 0},
 				SpriteRow{Direction::FacingLeft, 1},
 				SpriteRow{Direction::FacingRight, 1, true},
 				SpriteRow{Direction::FacingAwayFromCamera, 2},
 		},
-		3, 1 / 6.0f, { 1,1 }, 0));
+		3, 1 / 6.0f, glm::vec2{ 1,1 }, 0));
 	spriteRenderer->SetActiveSprite("Walking");
 	spriteRenderer->SetEnabled(true);
 	spriteRenderer->SetPixelsPerUnit(16);
@@ -84,14 +79,14 @@ void TestScene::Initialize()
 	// GROUND OBJECT
 	go = AddChild("GroundObj");
 	spriteRenderer = go->CreateComponent<SpriteRenderer>();
-	spriteRenderer->AddSprite("Walking", new  Sprite("Character/PeterPepper_Idle.png",
-		{
+	spriteRenderer->AddSprite("Walking", std::make_shared<Sprite>("Character/PeterPepper_Idle.png",
+		std::vector<SpriteRow>{
 				SpriteRow{Direction::FacingCamera, 0},
 				SpriteRow{Direction::FacingLeft, 1},
 				SpriteRow{Direction::FacingRight, 1, true},
 				SpriteRow{Direction::FacingAwayFromCamera, 2},
 		},
-		3, 1, { 1,1 }, 0));
+		3, float(1), glm::vec2{ 1,1 }, 0));
 	spriteRenderer->SetActiveSprite("Walking");
 	spriteRenderer->SetEnabled(true);
 	spriteRenderer->SetPixelsPerUnit(16);

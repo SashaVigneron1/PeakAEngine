@@ -22,14 +22,14 @@ protected:
 
 private:
 	class SoundSystemImpl;
-	SoundSystemImpl* m_pSoundSystem;
+	std::unique_ptr<SoundSystemImpl> m_pSoundSystem;
 };
 
 class SoundManager final : public Manager
 {
 public:
 	SoundManager() : m_pSoundSystem{ new SoundSystem() } {}
-	virtual ~SoundManager() override { delete m_pSoundSystem; }
+	virtual ~SoundManager() = default;
 
 	SoundManager(const SoundManager& other) = delete;
 	SoundManager(SoundManager&& other) noexcept = delete;
@@ -48,5 +48,5 @@ public:
 	}
 
 private:
-	SoundSystem* m_pSoundSystem{};
+	std::unique_ptr<SoundSystem> m_pSoundSystem;
 };
