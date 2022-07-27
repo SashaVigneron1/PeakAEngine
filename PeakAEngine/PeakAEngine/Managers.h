@@ -9,7 +9,7 @@
 #include "RenderManager.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
-//#include "SoundManager.h"
+#include "SoundManager.h"
 #include "Time.h"
 #include "UIManager.h"
 
@@ -21,7 +21,7 @@
 #define RENDERER Managers::Get<RenderManager>()
 #define RESOURCEMANAGER Managers::Get<ResourceManager>()
 #define SCENEMANAGER Managers::Get<SceneManager>()
-//#define SOUNDMANAGER Managers::Get<SoundManager>() //ToDoo: Change
+#define SOUNDMANAGER Managers::Get<SoundManager>() //ToDoo: Change
 #define TIME Managers::Get<Time>()
 #define UI Managers::Get<UIManager>()
 
@@ -44,7 +44,7 @@ public:
         m_managersByType[typeid(RenderManager).name()] = CreateManager<RenderManager>();
         m_managersByType[typeid(ResourceManager).name()] = CreateManager<ResourceManager>();
         m_managersByType[typeid(SceneManager).name()] = CreateManager<SceneManager>();
-        //m_managersByType[typeid(SoundManager).name()] = CreateManager<SoundManager>();
+        m_managersByType[typeid(SoundManager).name()] = CreateManager<SoundManager>();
         m_managersByType[typeid(Time).name()] = CreateManager<Time>();
         m_managersByType[typeid(UIManager).name()] = CreateManager<UIManager>();
     }

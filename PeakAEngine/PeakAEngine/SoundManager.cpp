@@ -9,7 +9,7 @@
 #include "SDL.h"
 #include "SDL_mixer.h"
 
-class SoundManager::SoundSystemImpl
+class SoundSystem::SoundSystemImpl
 {
 public:
 	SoundSystemImpl();
@@ -44,7 +44,7 @@ private:
 	std::atomic<bool> m_StopThread;
 };
 
-SoundManager::SoundSystemImpl::SoundSystemImpl()
+SoundSystem::SoundSystemImpl::SoundSystemImpl()
 {
 	//Mix_Chunk* _sample[2];
 	//memset(_sample, 0, sizeof(Mix_Chunk*) * 2);
@@ -66,7 +66,7 @@ SoundManager::SoundSystemImpl::SoundSystemImpl()
 	m_Thread = std::thread(&SoundSystemImpl::RunEventQueue, this);
 }
 
-SoundManager::SoundSystemImpl::~SoundSystemImpl()
+SoundSystem::SoundSystemImpl::~SoundSystemImpl()
 {
 	Mix_CloseAudio();
 	m_StopThread.store(true);
@@ -74,7 +74,7 @@ SoundManager::SoundSystemImpl::~SoundSystemImpl()
 	m_Thread.join();
 }
 
-void SoundManager::SoundSystemImpl::RunEventQueue()
+void SoundSystem::SoundSystemImpl::RunEventQueue()
 {
 	while (true)
 	{
@@ -102,17 +102,17 @@ void SoundManager::SoundSystemImpl::RunEventQueue()
 }
 
 
-SoundManager::SoundManager()
+SoundSystem::SoundSystem()
 	: m_pSoundSystem{ new SoundSystemImpl() }
 {
 }
 
-void SoundManager::Play(int clipId)
+void SoundSystem::Play(int clipId)
 {
 	m_pSoundSystem->Play(clipId);
 }
 
-int SoundManager::AddClip(const std::string& clipFilePath, int loops)
+int SoundSystem::AddClip(const std::string& clipFilePath, int loops)
 {
 	return m_pSoundSystem->AddClip(clipFilePath, loops);
 }

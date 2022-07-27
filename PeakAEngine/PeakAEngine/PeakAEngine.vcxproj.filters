@@ -5,9 +5,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Singletons">
-      <UniqueIdentifier>{aebd687d-0041-4a26-9c58-57fdec4d36e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ResourceWrappers">
       <UniqueIdentifier>{b0e71017-6206-42ba-890e-5b180fb60dba}</UniqueIdentifier>
     </Filter>
@@ -144,12 +141,6 @@
     <ClInclude Include="Utils.h">
       <Filter>UtilityFiles</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
-    <ClInclude Include="ServiceLocator.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>ToSort</Filter>
     </ClInclude>
@@ -225,6 +216,9 @@
     <ClInclude Include="UIManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
@@ -298,12 +292,6 @@
     <ClCompile Include="Utils.cpp">
       <Filter>UtilityFiles</Filter>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Singletons</Filter>
-    </ClCompile>
-    <ClCompile Include="ServiceLocator.cpp">
-      <Filter>Singletons</Filter>
-    </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>ToSort</Filter>
     </ClCompile>
@@ -371,6 +359,9 @@
       <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>

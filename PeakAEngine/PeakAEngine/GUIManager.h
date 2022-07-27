@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Manager.h"
-#include <SDL.h>
-
 
 class GUIManager final : public Manager
 {

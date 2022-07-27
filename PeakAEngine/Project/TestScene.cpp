@@ -16,7 +16,6 @@
 #include "PeakAEngine/UI_Button.h"
 #include "PeakAEngine/UI_Text.h"
 #include "PeakAEngine/UI_InputField.h"
-#include "PeakAEngine/ServiceLocator.h"
 
 #include "PeakAEngine/TestComponent.h"
 
@@ -39,6 +38,9 @@ void TestScene::Initialize()
 	/*SERVICELOCATOR.RegisterSoundSystem(new Logged_SoundSystem());
 	int id = SERVICELOCATOR.GetSoundSystem()->AddClip("Resources/Sounds/BackgroundMusic.wav", -1);
 	SERVICELOCATOR.GetSoundSystem()->Play(id);*/
+
+	/*int id = SOUNDMANAGER->AddClip("Resources/Sounds/BackgroundMusic.wav", -1);
+	SOUNDMANAGER->Play(id);*/
 
 	// PLAYER OBJ
 	auto go = AddChild("PlayerObj");
