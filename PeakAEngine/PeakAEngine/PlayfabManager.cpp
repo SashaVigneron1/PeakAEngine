@@ -57,7 +57,7 @@ void PlayfabManager::LoginUser(const std::string& username, const std::string& p
     request.Password = password;
     request.TitleId = PlayFabSettings::staticSettings->titleId;
     PlayFabClientAPI::LoginWithPlayFab(request,
-        [username, functionOnSucces](const LoginResult& result, void* /*customData*/)
+        [=](const LoginResult& result, void* /*customData*/)
         {
             auto authenticationContext = PLAYFABMANAGER->GetAuthenticationContext();
 
@@ -67,9 +67,9 @@ void PlayfabManager::LoginUser(const std::string& username, const std::string& p
             authenticationContext->entityId = result.EntityToken->Entity->Id;
             authenticationContext->clientSessionTicket = result.SessionTicket;
 
-            PLAYFABMANAGER->SetEntityKey(result.EntityToken->Entity);
-            PLAYFABMANAGER->SetEntityToken(result.EntityToken->EntityToken);
-            PLAYFABMANAGER->SetUsername(username);
+            SetEntityKey(result.EntityToken->Entity);
+            SetEntityToken(result.EntityToken->EntityToken);
+            SetUsername(username);
 
             Logger::LogSuccess("[NETWORKMANAGER] Succesfully logged in.");
 

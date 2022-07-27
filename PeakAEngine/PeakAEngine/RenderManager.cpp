@@ -249,6 +249,7 @@ void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::
 		vertexTop *= height * scale.y / pixelsPerUnit;
 		vertexBottom *= height * scale.y / pixelsPerUnit;
 
+		// Apply Rotation
 		constexpr float inverse180{ 1.f / 180.f * float(M_PI) };
 
 		float cosAngle = cos(rotation * inverse180);
@@ -259,6 +260,7 @@ void RenderManager::ActuallyRenderTexture(GLuint glId, int w, int h, const glm::
 		vertices[2] = { vertexRight * cosAngle - vertexTop * sinAngle, vertexTop * cosAngle + vertexRight * sinAngle };
 		vertices[3] = { vertexRight * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexRight * sinAngle };
 
+		// Apply Transformation
 		vertices[0] += invertedYPos;
 		vertices[1] += invertedYPos;
 		vertices[2] += invertedYPos;
@@ -420,6 +422,7 @@ void RenderManager::ActuallyRenderUITexture(const std::shared_ptr<Texture2D>& te
 	vertexTop *= scale.y;
 	vertexBottom *= scale.y;
 
+	// Apply Rotation
 	constexpr float inverse180{ 1.f / 180.f * float(M_PI) };
 
 	float cosAngle = cos(rotation * inverse180);
@@ -430,6 +433,7 @@ void RenderManager::ActuallyRenderUITexture(const std::shared_ptr<Texture2D>& te
 	vertices[2] = { vertexRight * cosAngle - vertexTop * sinAngle, vertexTop * cosAngle + vertexRight * sinAngle };
 	vertices[3] = { vertexRight * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexRight * sinAngle };
 
+	// Apply Transformation
 	vertices[0] += invertedYPos;
 	vertices[1] += invertedYPos;
 	vertices[2] += invertedYPos;

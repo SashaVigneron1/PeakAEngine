@@ -38,10 +38,6 @@ public:
 		const std::string& bgImagePath,
 		const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor);
 
-
-	//void AddText(text, const std::string& fontPath, const glm::vec2& pos, const glm::vec2& size, AnchorPosition anchor);
-	//void AddSlider(...);
-
 	UIElement* GetUIElement(int id) const;
 
 	void Update();

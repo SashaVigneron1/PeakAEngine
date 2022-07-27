@@ -43,6 +43,7 @@ glm::vec2* RenderComponent::GetWorldRect(glm::vec2* vertices) const
 	const auto& scale = pTransform->GetWorldScale();
 	auto rot = pTransform->GetWorldRotation();
 
+	// Vertex coordinates for centered orientation
 	float vertexLeft{ m_Pivot.x - 1.f };
 	float vertexBottom{ m_Pivot.y - 1.f };
 	float vertexRight{ m_Pivot.x };
@@ -53,6 +54,7 @@ glm::vec2* RenderComponent::GetWorldRect(glm::vec2* vertices) const
 	vertexTop *= m_SourceRect.h * scale.y;
 	vertexBottom *= m_SourceRect.h * scale.y;
 
+	// Apply Rotation
 	constexpr float inverse180{ 1.f / 180.f * float(M_PI) };
 
 	float cosAngle = cos(rot * inverse180);
@@ -63,6 +65,7 @@ glm::vec2* RenderComponent::GetWorldRect(glm::vec2* vertices) const
 	vertices[2] = { vertexRight * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexRight * sinAngle };
 	vertices[3] = { vertexLeft * cosAngle - vertexBottom * sinAngle, vertexBottom * cosAngle + vertexLeft * sinAngle };
 
+	// Apply Transformation
 	vertices[0] += pos;
 	vertices[1] += pos;
 	vertices[2] += pos;

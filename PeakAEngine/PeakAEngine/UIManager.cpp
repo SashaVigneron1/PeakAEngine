@@ -26,12 +26,6 @@ int UIManager::AddImage(const std::string& sceneName,
 	return pair.id;
 }
 
-//void UIManager::AddButton(const std::string& imageDefaultPath, const std::string& imageOnHoverPath, const std::string& imageOnClickPath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
-//{
-//	m_pUIElements.push_back(new UI_Button(imageDefaultPath, imageOnHoverPath, imageOnClickPath, 
-//		pos, size, pivot, anchor));
-//}
-
 int UIManager::AddButton(const std::string& sceneName,
 	UI_Button* pButton)
 {

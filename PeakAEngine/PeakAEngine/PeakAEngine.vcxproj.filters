@@ -11,9 +11,6 @@
     <Filter Include="UtilityFiles">
       <UniqueIdentifier>{ee763edb-5850-421b-b259-911e4e85283e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ToSort">
-      <UniqueIdentifier>{a1b121a2-9758-4b25-9a8d-807c4a8669c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="UtilityFiles\Other">
       <UniqueIdentifier>{30aa478f-923a-4adc-a513-05c492a4d6cf}</UniqueIdentifier>
     </Filter>
@@ -35,17 +32,17 @@
     <Filter Include="ImGui\backends">
       <UniqueIdentifier>{722d7989-74fb-4a2a-9194-755acb276330}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ToSort\UI">
-      <UniqueIdentifier>{a196ffc1-e967-4c80-b2dd-e4ec80bd7609}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UtilityFiles\Networking">
-      <UniqueIdentifier>{e38df485-b14a-4d60-8d52-ccf704954ed5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{30a1dc9e-eb7e-4bdb-b9c8-452f2f1eb466}</UniqueIdentifier>
     </Filter>
     <Filter Include="Managers\Core">
       <UniqueIdentifier>{0bbf2b16-109a-4b3e-9c27-9b6412979a00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Networking">
+      <UniqueIdentifier>{e38df485-b14a-4d60-8d52-ccf704954ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIElements">
+      <UniqueIdentifier>{a196ffc1-e967-4c80-b2dd-e4ec80bd7609}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,12 +50,6 @@
     <ClInclude Include="PeakAEnginePCH.h" />
     <ClInclude Include="PeakAEngine.h">
       <Filter>Engine Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Subject.h">
-      <Filter>ToSort</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseObserver.h">
-      <Filter>ToSort</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>UtilityFiles</Filter>
@@ -76,9 +67,6 @@
       <Filter>UtilityFiles\Other</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
-      <Filter>ResourceWrappers</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderTarget.h">
       <Filter>ResourceWrappers</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
@@ -141,35 +129,26 @@
     <ClInclude Include="Utils.h">
       <Filter>UtilityFiles</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>ToSort</Filter>
-    </ClInclude>
-    <ClInclude Include="Command.h">
-      <Filter>ToSort</Filter>
-    </ClInclude>
     <ClInclude Include="UIElement.h">
-      <Filter>ToSort\UI</Filter>
+      <Filter>UIElements</Filter>
     </ClInclude>
     <ClInclude Include="UI_Image.h">
-      <Filter>ToSort\UI</Filter>
+      <Filter>UIElements</Filter>
     </ClInclude>
     <ClInclude Include="UI_Button.h">
-      <Filter>ToSort\UI</Filter>
+      <Filter>UIElements</Filter>
     </ClInclude>
     <ClInclude Include="UI_Text.h">
-      <Filter>ToSort\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>ToSort</Filter>
+      <Filter>UIElements</Filter>
     </ClInclude>
     <ClInclude Include="UI_InputField.h">
-      <Filter>ToSort\UI</Filter>
+      <Filter>UIElements</Filter>
     </ClInclude>
     <ClInclude Include="GameNetworkMessage.h">
-      <Filter>UtilityFiles\Networking</Filter>
+      <Filter>Networking</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState.h">
-      <Filter>UtilityFiles\Networking</Filter>
+      <Filter>Networking</Filter>
     </ClInclude>
     <ClInclude Include="TestComponent.h">
       <Filter>Scenegraph\Components</Filter>
@@ -187,9 +166,6 @@
       <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Logger.h">
       <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="NetworkManager.h">
@@ -219,17 +195,29 @@
     <ClInclude Include="AudioClip.h">
       <Filter>ResourceWrappers</Filter>
     </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>UtilityFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObserver.h">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>ResourceWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>ResourceWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>UtilityFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
     <ClCompile Include="PeakAEngine.cpp">
       <Filter>Engine Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseObserver.cpp">
-      <Filter>ToSort</Filter>
-    </ClCompile>
-    <ClCompile Include="Subject.cpp">
-      <Filter>ToSort</Filter>
     </ClCompile>
     <ClCompile Include="PeakAEnginePCH.cpp" />
     <ClCompile Include="JsonParser.cpp">
@@ -292,32 +280,26 @@
     <ClCompile Include="Utils.cpp">
       <Filter>UtilityFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>ToSort</Filter>
-    </ClCompile>
     <ClCompile Include="UIElement.cpp">
-      <Filter>ToSort\UI</Filter>
+      <Filter>UIElements</Filter>
     </ClCompile>
     <ClCompile Include="UI_Image.cpp">
-      <Filter>ToSort\UI</Filter>
+      <Filter>UIElements</Filter>
     </ClCompile>
     <ClCompile Include="UI_Button.cpp">
-      <Filter>ToSort\UI</Filter>
+      <Filter>UIElements</Filter>
     </ClCompile>
     <ClCompile Include="UI_Text.cpp">
-      <Filter>ToSort\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>ToSort</Filter>
+      <Filter>UIElements</Filter>
     </ClCompile>
     <ClCompile Include="UI_InputField.cpp">
-      <Filter>ToSort\UI</Filter>
+      <Filter>UIElements</Filter>
     </ClCompile>
     <ClCompile Include="GameNetworkMessage.cpp">
-      <Filter>UtilityFiles\Networking</Filter>
+      <Filter>Networking</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>UtilityFiles\Networking</Filter>
+      <Filter>Networking</Filter>
     </ClCompile>
     <ClCompile Include="TestComponent.cpp">
       <Filter>Scenegraph\Components</Filter>
@@ -332,9 +314,6 @@
       <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Logger.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="NetworkManager.cpp">
@@ -360,6 +339,21 @@
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObserver.cpp">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>UtilityFiles\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>ResourceWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>ResourceWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>UtilityFiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

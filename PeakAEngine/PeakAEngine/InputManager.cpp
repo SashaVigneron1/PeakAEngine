@@ -126,7 +126,7 @@ void InputManager::AddCommand(char sdlKey, Command* pCommand)
 
 void InputManager::RemoveCommand(Command* pCommand)
 {
-
+	// Controller
 	if (m_ControllerCommands.size() > 0)
 	{
 		for (auto& [button, commands] : m_ControllerCommands)
@@ -143,6 +143,7 @@ void InputManager::RemoveCommand(Command* pCommand)
 		}
 	}
 
+	// Keyboard
 	if (m_KeyCommands.size() > 0)
 	{
 		for (auto& [button, commands] : m_KeyCommands)
@@ -323,9 +324,7 @@ bool InputManager::IsUpperCase()
 
 bool InputManager::IsATSymbolDown()
 {
-	//ToDoo: switch to qwerty
 	auto keystate = SDL_GetKeyboardState(NULL);
-
 	return keystate[SDL_SCANCODE_RALT] && IsDown('2');
 }
 

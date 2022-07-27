@@ -39,18 +39,6 @@ void SceneManager::RenderGizmos() const
 
 void SceneManager::ChangeSceneGraph()
 {
-	//if (m_NewSceneShouldLoad)
-	//{
-	//	//// make sure wanted scene exists
-	//	//assert(m_Scenes.find(m_WantedSceneName) != m_Scenes.end());
-
-
-	//	//const auto scene = std::shared_ptr<Scene>(new Scene(m_WantedSceneName));
-	//	//m_Scenes.at(m_WantedSceneName)(scene.get());
-	//	//m_ActiveScene = scene;
-	//	//m_NewSceneShouldLoad = false;
-	//}
-
 	if (m_ActiveScene) m_ActiveScene->ChangeSceneGraph();
 }
 

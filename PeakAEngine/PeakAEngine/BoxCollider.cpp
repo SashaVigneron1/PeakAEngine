@@ -280,29 +280,4 @@ void BoxCollider::RenderGizmos() const
 	RENDERER->RenderDebugRect({ pos.x, pos.y, size.x, size.y }, true, m_DebugColor, m_pGameObject->GetTransform()->GetWorldRotation());
 }
 
-//void BoxCollider::DrawProperties()
-//{
-//	ImGuiHelper::Component("Box Collider Component", this, &m_ShouldBeEnabled, [&]()
-//		{
-//			bool isTrigger = IsTrigger();
-//			ImGuiHelper::ItemLabel("Is Trigger", ImGuiHelper::ItemLabelAlignment::Left);
-//			if (ImGui::Checkbox("##IsTrigger", &isTrigger))
-//				SetTrigger(isTrigger);
-//
-//			glm::vec2 size = GetSize();
-//			ImGuiHelper::ItemLabel("Size", ImGuiHelper::ItemLabelAlignment::Left);
-//			if (ImGui::DragFloat2("##Size", &size.x, 0.1f))
-//				SetSize(size);
-//
-//			glm::vec2 offset = GetOffset();
-//			ImGuiHelper::ItemLabel("Offset", ImGuiHelper::ItemLabelAlignment::Left);
-//			if (ImGui::DragFloat2("##Offset", &offset.x, 0.1f))
-//				SetOffset(offset);
-//
-//			float rotation = GetRotation();
-//			ImGuiHelper::ItemLabel("Rotation", ImGuiHelper::ItemLabelAlignment::Left);
-//			if (ImGui::DragFloat("##Rotation", &rotation))
-//				SetRotation(rotation);
-//		});
-//}
 
