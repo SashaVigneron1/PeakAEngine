@@ -6,11 +6,11 @@
   <ItemDefinitionGroup>
     <Link>
       <AdditionalLibraryDirectories>
+		  $(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget);
 		  $(SolutionDir)3rdParty\SDL2_Mixer\lib\$(PlatformTarget);
 		  $(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget);
 		  $(SolutionDir)3rdParty\SDL2_image\lib\$(PlatformTarget);
-		  $(SolutionDir)3rdParty\SDL2\lib\$(PlatformTarget);
-		  
+
 		  $(SolutionDir)3rdParty\GLEW\lib\$(PlatformTarget);
 		  %(AdditionalLibraryDirectories)
 	  </AdditionalLibraryDirectories>

@@ -1,8 +1,7 @@
 #include "PeakAEnginePCH.h"
 #include "UIElement.h"
 
-#include "RenderManager.h"
-#include "InputManager.h"
+#include "Managers.h"
 
 #include "Utils.h"
 
@@ -21,8 +20,8 @@ UIElement::UIElement(const glm::vec2& pos, const glm::vec2& size, const glm::vec
 
 bool UIElement::IsMouseOverlapping() const
 {
-	const auto& windowSize = RENDERER.GetWindowSize();
-	const auto& mousePos = INPUTMANAGER.GetMouseState().position;
+	const auto& windowSize = RENDERER->GetWindowSize();
+	const auto& mousePos = INPUTMANAGER->GetMouseState().position;
 
 	glm::vec2 actualPosition = m_Position;
 

@@ -5,8 +5,7 @@
 #include <windows.h>
 #include <Xinput.h>
 
-#include "RenderManager.h"
-#include "GUIManager.h"
+#include "Managers.h"
 
 #include "Command.h"
 
@@ -254,7 +253,7 @@ bool InputManager::ProcessInput()
 		}
 		else if (e.type == SDL_MOUSEMOTION)
 		{
-			m_MouseState.position = { e.motion.x, RENDERER.GetWindowSize().y - e.motion.y };
+			m_MouseState.position = { e.motion.x, RENDERER->GetWindowSize().y - e.motion.y };
 		}
 		else if (e.type == SDL_MOUSEBUTTONDOWN) 
 		{
@@ -278,7 +277,7 @@ bool InputManager::ProcessInput()
 		}
 
 		// ImGui Process Events
-		GUI.HandleInput(&e);
+		GUI->HandleInput(&e);
 	}
 
 	return true;

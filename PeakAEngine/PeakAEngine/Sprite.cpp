@@ -4,8 +4,7 @@
 #include "PeakAEnginePCH.h"
 #include "Sprite.h"
 
-#include "RenderManager.h"
-#include "ResourceManager.h"
+#include "Managers.h"
 #include "GameObject.h"
 #include "Transform.h"
 
@@ -21,7 +20,7 @@ Sprite::Sprite(const std::string& fileName, const std::vector<SpriteRow>& rows, 
 {
 }
 Sprite::Sprite(const std::string& fileName, const std::vector<SpriteRow>& rows, int nrCols, float frameSec, const glm::vec2& scale, const glm::vec2& pivot, int layerId)
-	: m_pTexture{ ResourceManager::GetInstance().LoadTexture(fileName) }
+	: m_pTexture{ RESOURCEMANAGER->LoadTexture(fileName) }
 	, m_Rows{ rows }
 	, m_NrCols{ nrCols }
 	, m_FrameSec{ frameSec }
@@ -80,13 +79,13 @@ void Sprite::Render() const
 		glm::vec2 scale{ m_pGameObject->GetTransform()->GetWorldScale().x * m_Scale.x, m_pGameObject->GetTransform()->GetWorldScale().y * m_Scale.y };
 		float rotation{ m_pGameObject->GetTransform()->GetWorldRotation() };
 
-		RENDERER.RenderTexture(m_pTexture, pos, scale, rotation, m_Pivot, srcRect, m_LayerId);
+		RENDERER->RenderTexture(m_pTexture, pos, scale, rotation, m_Pivot, srcRect, m_LayerId);
 	}
 }
 
 void Sprite::SetTexture(const std::string& fileName)
 {
-	m_pTexture = ResourceManager::GetInstance().LoadTexture(fileName);
+	m_pTexture = RESOURCEMANAGER->LoadTexture(fileName);
 }
 void Sprite::SetPixelsPerUnit(int value)
 {

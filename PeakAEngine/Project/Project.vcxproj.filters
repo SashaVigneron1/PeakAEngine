@@ -9,14 +9,14 @@
     <ClCompile Include="RoomSelectorScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="TestComponent.cpp">
-      <Filter>Testing</Filter>
-    </ClCompile>
     <ClCompile Include="TestScene.cpp">
       <Filter>Testing</Filter>
     </ClCompile>
     <ClCompile Include="ChatBoxComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -27,14 +27,14 @@
     <ClInclude Include="RoomSelectorScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="TestComponent.h">
-      <Filter>Testing</Filter>
-    </ClInclude>
     <ClInclude Include="TestScene.h">
       <Filter>Testing</Filter>
     </ClInclude>
     <ClInclude Include="ChatBoxComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

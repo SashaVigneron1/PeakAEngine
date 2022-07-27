@@ -246,12 +246,17 @@
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="GameNetworkMessage.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GUIManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="JsonParser.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Manager.h" />
+    <ClInclude Include="Managers.h" />
     <ClInclude Include="NetworkManager.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayfabManager.h" />
     <ClInclude Include="PeakAEngine.h" />
     <ClInclude Include="PeakAEnginePCH.h" />
@@ -270,6 +275,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Subject.h" />
+    <ClInclude Include="TestComponent.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
@@ -331,7 +337,9 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="GameNetworkMessage.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="InputManager.cpp">
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</TreatWarningAsError>
@@ -341,7 +349,9 @@
     </ClCompile>
     <ClCompile Include="JsonParser.cpp" />
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Managers.cpp" />
     <ClCompile Include="NetworkManager.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayfabManager.cpp" />
     <ClCompile Include="PeakAEngine.cpp" />
     <ClCompile Include="PeakAEnginePCH.cpp">
@@ -362,6 +372,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Subject.cpp" />
+    <ClCompile Include="TestComponent.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="UIElement.cpp" />

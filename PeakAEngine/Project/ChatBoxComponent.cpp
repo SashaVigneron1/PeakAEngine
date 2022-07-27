@@ -1,8 +1,7 @@
 #include "pch.h"
 #include "ChatBoxComponent.h"
 
-#include "PeakAEngine/InputManager.h"
-#include "PeakAEngine/NetworkManager.h"
+#include "PeakAEngine/Managers.h"
 
 ChatBoxComponent::ChatBoxComponent()
 	: Component{}
@@ -11,8 +10,8 @@ ChatBoxComponent::ChatBoxComponent()
 
 void ChatBoxComponent::Update()
 {
-	if (INPUTMANAGER.IsPressed('z'))
-		NETWORKMANAGER.SendTextMessage("Hello there!");
+	if (INPUTMANAGER->IsPressed('z'))
+		NETWORKMANAGER->SendTextMessage("Hello there!");
 }
 
 void ChatBoxComponent::DrawImGui()

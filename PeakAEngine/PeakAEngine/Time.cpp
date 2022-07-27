@@ -43,4 +43,17 @@ void Time::UpdateTimers()
 			m_Timers.pop_back();
 		}
 	}
+
+	for (int i{}; i < (int)m_FrameCounters.size(); ++i)
+	{
+		--m_FrameCounters[i]->framesLeft;
+		if (m_FrameCounters[i]->framesLeft <= 0)
+		{
+			m_FrameCounters[i]->executeFunction();
+
+			// Delete this counter
+			m_FrameCounters[i] = m_FrameCounters.back();
+			m_FrameCounters.pop_back();
+		}
+	}
 }

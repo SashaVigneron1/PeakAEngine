@@ -1,14 +1,11 @@
 #pragma once
 
-#include "Singleton.h"
+#include "Manager.h"
+#include <SDL.h>
 
-#define GUI GUIManager::GetInstance()
 
-
-class GUIManager final : public Singleton<GUIManager>
+class GUIManager final : public Manager
 {
-	friend class Singleton<GUIManager>;
-
 public:
 
 	void Initialize(SDL_Window* pWindow);

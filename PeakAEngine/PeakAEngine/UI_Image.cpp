@@ -1,12 +1,11 @@
 #include "PeakAEnginePCH.h"
 #include "UI_Image.h"
 
-#include "ResourceManager.h"
-#include "RenderManager.h"
+#include "Managers.h"
 
 UI_Image::UI_Image(const std::string& imagePath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
 	: UIElement{pos, size, pivot, anchor}
-	, m_pTexture{ ResourceManager::GetInstance().LoadTexture(imagePath) }
+	, m_pTexture{ RESOURCEMANAGER->LoadTexture(imagePath) }
 {
 }
 
@@ -24,7 +23,7 @@ void UI_Image::OnClick()
 
 void UI_Image::Render()
 {
-	const auto& windowSize = RENDERER.GetWindowSize();
+	const auto& windowSize = RENDERER->GetWindowSize();
 
 	glm::vec2 actualPosition = m_Position;
 
@@ -96,5 +95,5 @@ void UI_Image::Render()
 	}
 
 
-	RENDERER.RenderUITexture(m_pTexture, actualPosition, m_Size, 0);
+	RENDERER->RenderUITexture(m_pTexture, actualPosition, m_Size, 0);
 }

@@ -1,8 +1,11 @@
 #include "PeakAEnginePCH.h"
 #include "NetworkManager.h"
-#include "PlayfabManager.h"
 
+#include "GameNetworkMessage.h"
+#include "PlayerState.h"
 #include "PartyImpl.h"
+
+#include "Managers.h"
 
 using namespace Party;
 
@@ -16,7 +19,7 @@ void NetworkManager::Initialize()
     if (m_partyInitialized == false)
     {
         // Initialize PlayFab Party
-        err = partyManager.Initialize(PLAYFABMANAGER.GetTitleId().c_str());
+        err = partyManager.Initialize(PLAYFABMANAGER->GetTitleId().c_str());
         if (PARTY_FAILED(err))
         {
             LogPartyError("[NetworkManager] Initialize failed: \n", err);
@@ -99,6 +102,53 @@ void NetworkManager::ConnectToNetwork(const char* inviteId, const char* descript
     {
         m_state = NetworkManagerState::WaitingForNetwork;
         m_onNetworkConnected = onNetworkConnected;
+    }
+}
+
+void NetworkManager::SendGameMessage(const GameNetworkMessage& message)
+{
+    if (m_localEndpoint && m_state == NetworkManagerState::NetworkConnected)
+    {
+        auto packet = message.Serialize();
+
+        // Form the data packet into a data buffer structure
+        PartyDataBuffer data[] = {
+            {
+                static_cast<const void*>(packet.data()),
+                static_cast<uint32_t>(packet.size())
+            },
+        };
+
+        PartySendMessageOptions deliveryOptions;
+
+        // ShipInput and ShipData messages don't need to be sent reliably
+        // or sequentially, but the rest are needed for gameplay
+        switch (message.MessageType())
+        {
+        case GameMessageType::ShipInput:
+        case GameMessageType::ShipData:
+            deliveryOptions = PartySendMessageOptions::Default;
+            break;
+        default:
+            deliveryOptions = PartySendMessageOptions::GuaranteedDelivery |
+                PartySendMessageOptions::SequentialDelivery;
+        }
+
+        // Send out the message to all other peers
+        PartyError err = m_localEndpoint->SendMessage(
+            0,                                      // endpoint count; 0 = broadcast
+            nullptr,                                // endpoint list
+            deliveryOptions,                        // send message options
+            nullptr,                                // configuration
+            1,                                      // buffer count
+            data,                                   // buffer
+            nullptr                                 // async identifier
+        );
+
+        if (PARTY_FAILED(err))
+        {
+            LogPartyError("[NetworkManager] Failed To SendMessage: ", err);
+        }
     }
 }
 
@@ -249,8 +299,8 @@ void NetworkManager::CreateLocalUser()
     {
         auto& partyManager = PartyManager::GetSingleton();
         PartyError err;
-        std::string entityId = PLAYFABMANAGER.GetEntityKey().Id;
-        std::string entityToken = PLAYFABMANAGER.GetEntityToken();
+        std::string entityId = PLAYFABMANAGER->GetEntityKey().Id;
+        std::string entityToken = PLAYFABMANAGER->GetEntityToken();
 
         // Create a local user object
         err = partyManager.CreateLocalUser(
@@ -470,25 +520,23 @@ void NetworkManager::Update()
             }
             else
             {
-                Logger::LogInfo("[NetworkManager] Established endpoint with user " + std::string{ user });
                 // Send out our info packets to any new connections so
                 // they'll know about us.
-                /*auto playerState = Managers::Get<GameStateManager>()->GetPlayerState(Managers::Get<PlayFabManager>()->EntityId());
-                auto displayName = playerState->DisplayName;*/
+                auto playerState = GAMESTATE->GetPlayerState(PLAYFABMANAGER->GetEntityKey().Id);
+                auto displayName = playerState->GetDisplayName();
 
-                /*Managers::Get<NetworkManager>()->SendGameMessage(
-                    GameNetworkMessage(
-                        GameMessageType::PlayerInfo,
-                        displayName
-                    )
-                );
+                SendGameMessage(GameNetworkMessage(GameMessageType::PlayerJoin,
+                    displayName));
 
-                Managers::Get<NetworkManager>()->SendGameMessage(
-                    GameNetworkMessage(
-                        GameMessageType::PlayerState,
-                        playerState->SerializePlayerStateData()
-                    )
-                );*/
+                TIME->AddTimer(std::make_shared<FrameCounter>(1, [=] 
+                    {
+                    SendGameMessage(GameNetworkMessage(GameMessageType::PlayerState,
+                        playerState->SerializePlayerStateData()));
+                    }));
+                
+
+                Logger::LogInfo("[NetworkManager] Established endpoint with user " + std::string{ user } + " (" + displayName + ")");
+
             }
             break;
         }
@@ -504,6 +552,12 @@ void NetworkManager::Update()
             {
                 // Our endpoint was disconnected
                 m_localEndpoint = nullptr;
+
+                auto playerState = GAMESTATE->GetPlayerState(PLAYFABMANAGER->GetEntityKey().Id);
+                auto displayName = playerState->GetDisplayName();
+
+                SendGameMessage(GameNetworkMessage(GameMessageType::PlayerLeave,
+                    displayName));
             }
             else
             {
@@ -518,7 +572,8 @@ void NetworkManager::Update()
                 }
 
                 std::string userId(user);
-                //Managers::Get<GameStateManager>()->DeactivatePlayer(userId);
+                Logger::LogInfo("[NetworkManager] Another user has disconnected: " + userId);
+                GAMESTATE->DestroyPlayerObject(userId);
             }
             break;
         }
@@ -527,29 +582,26 @@ void NetworkManager::Update()
             // This is spammy, but can be useful when debugging
             Logger::LogInfo("[NetworkManager] PartyStateChangeType::EndpointMessageReceived");
 
-            /*auto result = static_cast<const PartyEndpointMessageReceivedStateChange*>(change);
-            auto buffer = static_cast<const uint8_t*>(result->messageBuffer);*/
-            //auto packet = std::make_shared<GameNetworkMessage>(
-            //    std::vector<uint8_t>(buffer, buffer + result->messageSize)
-            //    );
+            auto result = static_cast<const PartyEndpointMessageReceivedStateChange*>(change);
+            auto buffer = static_cast<const uint8_t*>(result->messageBuffer);
+            auto packet = std::make_shared<GameNetworkMessage>(
+                std::vector<uint8_t>(buffer, buffer + result->messageSize)
+                );
 
-            //PartyString sender = nullptr;
-            //err = result->senderEndpoint->GetEntityId(&sender);
+            PartyString sender = nullptr;
+            err = result->senderEndpoint->GetEntityId(&sender);
 
-            //if (PARTY_SUCCEEDED(err))
-            //{
-            //    std::string senderId(sender);
+            if (PARTY_SUCCEEDED(err))
+            {
+                std::string senderId(sender);
 
-            //    // Give the message to the game engine
-            //    Managers::Get<GameStateManager>()->ProcessGameNetworkMessage(
-            //        senderId,
-            //        packet
-            //    );
-            //}
-            //else
-            //{
-            //    LogPartyError("[NetworkManager] GetEntityId failed: ", err);
-            //}
+                // Give the message to the game engine
+                GAMESTATE->ProcessNetworkMessage(senderId, packet);
+            }
+            else
+            {
+                LogPartyError("[NetworkManager] GetEntityId failed: ", err);
+            }
 
             break;
         }
@@ -981,18 +1033,17 @@ std::string NetworkManager::DisplayNameFromChatControl(PartyChatControl* control
     {
         std::string senderid(sender);
 
-        //ToDoo: Get User Name
         //// Get the display name of the sender
-        //auto playerInfo = Managers::Get<GameStateManager>()->GetPlayerState(senderid);
+        auto playerInfo = GAMESTATE->GetPlayerState(senderid);
 
-        //if (playerInfo != nullptr)
-        //{
-        //    sttuser = playerInfo->DisplayName;
-        //}
-        //else
-        //{
-        //    sttuser = senderid;
-        //}
+        if (playerInfo != nullptr)
+        {
+            sttuser = playerInfo->GetDisplayName();
+        }
+        else
+        {
+            sttuser = senderid;
+        }
     }
 
     return sttuser;

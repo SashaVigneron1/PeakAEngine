@@ -1,10 +1,8 @@
 #pragma once
-#include "Singleton.h"
+#include "Manager.h"
 
 #include <unordered_map>
 #include <SDL.h>
-
-#define INPUTMANAGER InputManager::GetInstance()
 
 enum class ControllerButton
 {
@@ -43,11 +41,8 @@ struct KeyInput
 	bool isPressed = false;
 	bool isReleased = false;
 };
-class InputManager final : public Singleton<InputManager>
+class InputManager final : public Manager
 {
-
-	friend class Singleton<InputManager>;
-
 public:
 	InputManager();
 	virtual ~InputManager() override;

@@ -1,10 +1,10 @@
 #include "PeakAEnginePCH.h"
 #include "CameraComponent.h"
 
-#include "RenderManager.h"
+#include "Managers.h"
 
 CameraComponent::CameraComponent()
 	: Component{}
 {
-	RENDERER.SetCamera(this);
+	RENDERER->SetCamera(this);
 }

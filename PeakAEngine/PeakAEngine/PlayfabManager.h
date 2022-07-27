@@ -1,7 +1,6 @@
 #pragma once
-#include "Singleton.h"
+#include "Manager.h"
 
-#define PLAYFABMANAGER PlayfabManager::GetInstance()
 
 //ToDo: Swith to forward declarations
 //ToDo: Find a way to multithreaded polling for response
@@ -19,7 +18,7 @@ using namespace ClientModels;
 
 
 // Forward Declarations
-class PlayfabManager final : public Singleton<PlayfabManager>
+class PlayfabManager final : public Manager
 {
 public:
 	// PUBLIC FUNCTIONS
@@ -49,11 +48,15 @@ public:
 	EntityKey GetEntityKey() const { return m_Entity; }
 	void SetEntityToken(const std::string& token) { m_EntityToken = token; }
 	std::string GetEntityToken() const { return m_EntityToken; }
+
+	std::string GetUsername() const { return m_Username; }
+	void SetUsername(const std::string& name) { m_Username = name; }
 private:
 	// VARIABLES
 	std::shared_ptr<PlayFabAuthenticationContext> m_AuthenticationContext;
 	EntityKey m_Entity;
 	std::string m_EntityToken;
+	std::string m_Username;
 };
 
 

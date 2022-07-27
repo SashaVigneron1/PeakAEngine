@@ -1,19 +1,14 @@
 #pragma once
 
-#include "Singleton.h"
+#include "Manager.h"
 #include "SDL.h"
-
-#define RESOURCEMANAGER ResourceManager::GetInstance()
 
 class RenderTarget;
 class Texture2D;
 class Font;
 
-class ResourceManager final : public Singleton<ResourceManager>
+class ResourceManager final : public Manager
 {
-
-	friend class Singleton<ResourceManager>;
-
 public:
 	void Init(const std::string& dataFilePath);
 

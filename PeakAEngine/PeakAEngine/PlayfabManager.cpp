@@ -1,6 +1,7 @@
 #include "PeakAEnginePCH.h"
 #include "PlayfabManager.h"
-#include "NetworkManager.h"
+
+#include "Managers.h"
 
 // Global Variable
 std::map<std::string, std::string> g_TempDataMap;
@@ -56,9 +57,9 @@ void PlayfabManager::LoginUser(const std::string& username, const std::string& p
     request.Password = password;
     request.TitleId = PlayFabSettings::staticSettings->titleId;
     PlayFabClientAPI::LoginWithPlayFab(request,
-        [functionOnSucces](const LoginResult& result, void* /*customData*/)
+        [username, functionOnSucces](const LoginResult& result, void* /*customData*/)
         {
-            auto authenticationContext = PLAYFABMANAGER.GetAuthenticationContext();
+            auto authenticationContext = PLAYFABMANAGER->GetAuthenticationContext();
 
             authenticationContext->playFabId = result.PlayFabId;
             authenticationContext->entityToken = result.EntityToken->EntityToken;
@@ -66,12 +67,13 @@ void PlayfabManager::LoginUser(const std::string& username, const std::string& p
             authenticationContext->entityId = result.EntityToken->Entity->Id;
             authenticationContext->clientSessionTicket = result.SessionTicket;
 
-            PLAYFABMANAGER.SetEntityKey(result.EntityToken->Entity);
-            PLAYFABMANAGER.SetEntityToken(result.EntityToken->EntityToken);
+            PLAYFABMANAGER->SetEntityKey(result.EntityToken->Entity);
+            PLAYFABMANAGER->SetEntityToken(result.EntityToken->EntityToken);
+            PLAYFABMANAGER->SetUsername(username);
 
             Logger::LogSuccess("[NETWORKMANAGER] Succesfully logged in.");
 
-            NETWORKMANAGER.Initialize();
+            NETWORKMANAGER->Initialize();
 
             if (functionOnSucces) functionOnSucces();
         },

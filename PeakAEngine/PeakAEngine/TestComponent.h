@@ -1,13 +1,16 @@
 #pragma once
-#include "PeakAEngine/Component.h"
 
-#include "PeakAEngine/Command.h"
+//ToDOO: Remove this
+//ToDoo: Find a way to include this in playerstate (dynamic playerstate)
 
+#include "Component.h"
+#include "Command.h"
 
+class PlayerState;
 
 class TestComponent : public Component
 {
-public: 
+public:
 	TestComponent();
 
 	virtual void Update() override;
@@ -18,8 +21,11 @@ public:
 	virtual void OnEndHover() override;
 	virtual void OnClick() override;
 
-private: 
+	void SetPlayerState(PlayerState* state) { m_PlayerState = state; }
+
+private:
 	bool m_IsMoving{ false };
+	PlayerState* m_PlayerState;
 };
 
 class TestCommand : public Command

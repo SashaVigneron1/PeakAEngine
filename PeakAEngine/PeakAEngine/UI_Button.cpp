@@ -2,16 +2,15 @@
 #include "UI_Button.h"
 #include "UI_Text.h"
 
-#include "RenderManager.h"
-#include "ResourceManager.h"
+#include "Managers.h"
 
 
 UI_Button::UI_Button(const std::string& imageDefaultPath, const std::string& imageOnHoverPath, const std::string& imageOnClickPath, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
 	: UIElement{ pos, size, pivot, anchor }
 	, m_IsPressed{ false }
-	, m_pTextureDefault{ ResourceManager::GetInstance().LoadTexture(imageDefaultPath) }
-	, m_pTextureOnHover{ ResourceManager::GetInstance().LoadTexture(imageOnHoverPath) }
-	, m_pTextureOnClick{ ResourceManager::GetInstance().LoadTexture(imageOnClickPath) }
+	, m_pTextureDefault{ RESOURCEMANAGER->LoadTexture(imageDefaultPath) }
+	, m_pTextureOnHover{ RESOURCEMANAGER->LoadTexture(imageOnHoverPath) }
+	, m_pTextureOnClick{ RESOURCEMANAGER->LoadTexture(imageOnClickPath) }
 	, m_FunctionToExecute{ nullptr }
 	, m_pText{ nullptr }
 {
@@ -42,7 +41,7 @@ void UI_Button::OnClick()
 	if (m_FunctionToExecute) m_FunctionToExecute();
 
 	// Start Timer For Texture
-	TIME.AddTimer(std::make_shared<Timer>(0.1f, [=] 
+	TIME->AddTimer(std::make_shared<Timer>(0.1f, [=] 
 		{
 			m_IsPressed = false;
 
@@ -55,7 +54,7 @@ void UI_Button::OnClick()
 
 void UI_Button::Render()
 {
-	const auto& windowSize = RENDERER.GetWindowSize();
+	const auto& windowSize = RENDERER->GetWindowSize();
 
 	glm::vec2 actualPosition = m_Position;
 
@@ -127,7 +126,7 @@ void UI_Button::Render()
 	}
 
 
-	RENDERER.RenderUITexture(m_pActiveTexture, actualPosition, m_Size, 0);
+	RENDERER->RenderUITexture(m_pActiveTexture, actualPosition, m_Size, 0);
 
 	if (m_pText)
 		m_pText->Render();

@@ -1,9 +1,8 @@
 #pragma once
-#include "Singleton.h"
+#include "Manager.h"
 #include "Party.h"
 
-#define NETWORKMANAGER NetworkManager::GetInstance()
-
+class GameNetworkMessage;
 
 enum class NetworkManagerState
 {
@@ -13,14 +12,14 @@ enum class NetworkManagerState
     Leaving
 };
 
-class NetworkManager final : public Singleton<NetworkManager>
+class NetworkManager final : public Manager
 {
 public:
 	// PUBLIC FUNCTIONS
     void Initialize();
     void CreateAndConnectToNetwork(const char* inviteId, std::function<void(std::string)> onNetworkCreated = nullptr);
     void ConnectToNetwork(const char* inviteId, const char* descriptor, std::function<void(void)> onNetworkConnected = nullptr);
-    //void SendGameMessage(const GameNetworkMessage& message);
+    void SendGameMessage(const GameNetworkMessage& message);
     void SendTextMessage(const std::string& text);
     void LeaveNetwork(std::function<void(void)> onNetworkDestroyed = nullptr);
     void Destroy();

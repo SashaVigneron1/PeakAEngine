@@ -41,13 +41,19 @@
     <Filter Include="ToSort\UI">
       <UniqueIdentifier>{a196ffc1-e967-4c80-b2dd-e4ec80bd7609}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UtilityFiles\Networking">
+      <UniqueIdentifier>{e38df485-b14a-4d60-8d52-ccf704954ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{30a1dc9e-eb7e-4bdb-b9c8-452f2f1eb466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers\Core">
+      <UniqueIdentifier>{0bbf2b16-109a-4b3e-9c27-9b6412979a00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PeakAEnginePCH.h" />
     <ClInclude Include="PeakAEnginePCH.h" />
-    <ClInclude Include="Logger.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
     <ClInclude Include="PeakAEngine.h">
       <Filter>Engine Files</Filter>
     </ClInclude>
@@ -71,18 +77,6 @@
     </ClInclude>
     <ClInclude Include="FileIO.h">
       <Filter>UtilityFiles\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderManager.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Singletons</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
       <Filter>ResourceWrappers</Filter>
@@ -111,17 +105,11 @@
     <ClInclude Include="RigidBody.h">
       <Filter>Scenegraph\Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
     <ClInclude Include="RenderComponent.h">
       <Filter>Scenegraph\Components</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
       <Filter>Scenegraph\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIManager.h">
-      <Filter>Singletons</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\DearImGui\imconfig.h">
       <Filter>ImGui</Filter>
@@ -171,9 +159,6 @@
     <ClInclude Include="Command.h">
       <Filter>ToSort</Filter>
     </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
     <ClInclude Include="UIElement.h">
       <Filter>ToSort\UI</Filter>
     </ClInclude>
@@ -189,21 +174,60 @@
     <ClInclude Include="Font.h">
       <Filter>ToSort</Filter>
     </ClInclude>
-    <ClInclude Include="PlayfabManager.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
     <ClInclude Include="UI_InputField.h">
       <Filter>ToSort\UI</Filter>
     </ClInclude>
+    <ClInclude Include="GameNetworkMessage.h">
+      <Filter>UtilityFiles\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>UtilityFiles\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="TestComponent.h">
+      <Filter>Scenegraph\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Managers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers.h">
+      <Filter>Managers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
     <ClInclude Include="NetworkManager.h">
-      <Filter>Singletons</Filter>
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayfabManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PeakAEnginePCH.cpp" />
-    <ClCompile Include="Logger.cpp">
-      <Filter>Singletons</Filter>
-    </ClCompile>
     <ClCompile Include="PeakAEngine.cpp">
       <Filter>Engine Files</Filter>
     </ClCompile>
@@ -219,18 +243,6 @@
     </ClCompile>
     <ClCompile Include="FileIO.cpp">
       <Filter>UtilityFiles\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Singletons</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Singletons</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderManager.cpp">
-      <Filter>Singletons</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Singletons</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Scenegraph</Filter>
@@ -253,17 +265,11 @@
     <ClCompile Include="RigidBody.cpp">
       <Filter>Scenegraph\Components\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Singletons</Filter>
-    </ClCompile>
     <ClCompile Include="RenderComponent.cpp">
       <Filter>Scenegraph\Components</Filter>
     </ClCompile>
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Scenegraph\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIManager.cpp">
-      <Filter>Singletons</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\DearImGui\imgui.cpp">
       <Filter>ImGui</Filter>
@@ -304,9 +310,6 @@
     <ClCompile Include="AudioClip.cpp">
       <Filter>ToSort</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>Singletons</Filter>
-    </ClCompile>
     <ClCompile Include="UIElement.cpp">
       <Filter>ToSort\UI</Filter>
     </ClCompile>
@@ -322,14 +325,53 @@
     <ClCompile Include="Font.cpp">
       <Filter>ToSort</Filter>
     </ClCompile>
-    <ClCompile Include="PlayfabManager.cpp">
-      <Filter>Singletons</Filter>
-    </ClCompile>
     <ClCompile Include="UI_InputField.cpp">
       <Filter>ToSort\UI</Filter>
     </ClCompile>
+    <ClCompile Include="GameNetworkMessage.cpp">
+      <Filter>UtilityFiles\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>UtilityFiles\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="TestComponent.cpp">
+      <Filter>Scenegraph\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers.cpp">
+      <Filter>Managers\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
     <ClCompile Include="NetworkManager.cpp">
-      <Filter>Singletons</Filter>
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayfabManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

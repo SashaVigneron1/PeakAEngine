@@ -8,14 +8,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "UIManager.h"
-#include "RenderManager.h"
-#include "Time.h"
-#include "InputManager.h"
-#include "ResourceManager.h"
-#include "NetworkManager.h"
-#include "PlayfabManager.h"
-#include "SceneManager.h"
+#include "Managers.h"
 
 void Engine::Initialize()
 {
@@ -67,15 +60,16 @@ void Engine::Initialize()
 		SDL_MaximizeWindow(m_Window);
 	}
 
-	RENDERER.Init(m_Window);
-	RESOURCEMANAGER.Init(m_ResourcesPath);
+	Managers::Initialize();
+	RENDERER->Init(m_Window);
+	RESOURCEMANAGER->Init(m_ResourcesPath);
 }
 
 void Engine::Cleanup()
 {
-	UI.Destroy();
-	RENDERER.Destroy();
-	NETWORKMANAGER.Destroy();
+	UI->Destroy();
+	RENDERER->Destroy();
+	NETWORKMANAGER->Destroy();
 
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
@@ -84,13 +78,13 @@ void Engine::Cleanup()
 
 void Engine::Run()
 {
-	auto& renderer = RENDERER;
-	auto& timer = TIME;
-	auto& input = INPUTMANAGER;
-	auto& sceneManager = SCENEMANAGER;
-	auto& networkManager = NETWORKMANAGER;
-	auto& playfabManager = PLAYFABMANAGER;
-	auto& ui = UI;
+	auto& renderer = *RENDERER;
+	auto& timer = *TIME;
+	auto& input = *INPUTMANAGER;
+	auto& sceneManager = *SCENEMANAGER;
+	auto& networkManager = *NETWORKMANAGER;
+	auto& playfabManager = *PLAYFABMANAGER;
+	auto& ui = *UI;
 	
 	// Initialize Timer
 	timer.SetFixedTime(m_FixedUpdateInterval);

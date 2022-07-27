@@ -1,19 +1,20 @@
-#include "pch.h"
+#include "PeakAEnginePCH.h"
 #include "TestComponent.h"
 
-#include "PeakAEngine/InputManager.h"
+#include "Managers.h"
 
-#include "PeakAEngine/GameObject.h"
-#include "PeakAEngine/Transform.h"
+#include "GameObject.h"
+#include "Transform.h"
 
 #include "imgui.h"
 
-//ToDoo: Remove Header Dependency-ish (boxcollider & rendermanager)
-#include "PeakAEngine/RigidBody.h"
-#include "PeakAEngine/RenderManager.h"
-#include "PeakAEngine/BoxCollider.h"	
+#include "RigidBody.h"
+#include "RenderManager.h"
+#include "BoxCollider.h"	
 
-TestComponent::TestComponent() 
+#include "PlayerState.h"
+
+TestComponent::TestComponent()
 	: Component()
 {
 
@@ -34,7 +35,7 @@ void TestComponent::Update()
 		Logger::LogInfo("LMB Was Released");
 	}*/
 
-	if (INPUTMANAGER.IsDown('d'))
+	if (INPUTMANAGER->IsDown('d'))
 	{
 		m_pGameObject->GetTransform()->Translate({ 10 * Time::DeltaTime(),0 });
 
@@ -42,7 +43,7 @@ void TestComponent::Update()
 
 		m_IsMoving = true;
 	}
-	if (INPUTMANAGER.IsDown('q'))
+	else if (INPUTMANAGER->IsDown('q'))
 	{
 		m_pGameObject->GetTransform()->Translate({ -10 * Time::DeltaTime(),0 });
 
@@ -50,7 +51,7 @@ void TestComponent::Update()
 
 		m_IsMoving = true;
 	}
-	if (INPUTMANAGER.IsDown('z'))
+	else if (INPUTMANAGER->IsDown('z'))
 	{
 		m_pGameObject->GetTransform()->Translate({ 0,10 * Time::DeltaTime() });
 
@@ -58,7 +59,7 @@ void TestComponent::Update()
 
 		m_IsMoving = true;
 	}
-	if (INPUTMANAGER.IsDown('s'))
+	else if (INPUTMANAGER->IsDown('s'))
 	{
 		m_pGameObject->GetTransform()->Translate({ 0,-10 * Time::DeltaTime() });
 
@@ -68,6 +69,18 @@ void TestComponent::Update()
 	}
 	else {
 		m_IsMoving = false;
+	}
+
+
+
+	if (m_IsMoving)
+	{
+		//Send Message To Server
+
+		NETWORKMANAGER->SendGameMessage(GameNetworkMessage(
+			GameMessageType::ObjectMove,
+			m_PlayerState->SerializePlayerStateData()
+		));
 	}
 }
 

@@ -1,8 +1,7 @@
 #include "PeakAEnginePCH.h"
 #include "UI_InputField.h"
 
-#include "InputManager.h"
-#include "ResourceManager.h"
+#include "Managers.h"
 #include "UI_Image.h"
 #include "UI_Text.h"
 
@@ -65,7 +64,7 @@ void UI_InputField::Update()
 {
 	if (m_IsSelected) 
 	{
-		if (INPUTMANAGER.IsPressed((char)SDLK_ESCAPE) || INPUTMANAGER.IsPressed(char(SDLK_RETURN)))
+		if (INPUTMANAGER->IsPressed((char)SDLK_ESCAPE) || INPUTMANAGER->IsPressed(char(SDLK_RETURN)))
 		{
 			m_IsSelected = false;
 			m_pText->SetColor(m_ColorInactive);
@@ -75,7 +74,7 @@ void UI_InputField::Update()
 			return;
 		}
 
-		std::vector<char> charsToAdd = INPUTMANAGER.GetKeysPressedThisFrame();
+		std::vector<char> charsToAdd = INPUTMANAGER->GetKeysPressedThisFrame();
 		if (charsToAdd.size())
 		{
 			for (auto character : charsToAdd)
@@ -84,10 +83,10 @@ void UI_InputField::Update()
 				{
 					char charToAdd = character;
 
-					if (charToAdd == '2' || charToAdd == 'é' && INPUTMANAGER.IsATSymbolDown())
+					if (charToAdd == '2' || charToAdd == 'é' && INPUTMANAGER->IsATSymbolDown())
 						charToAdd = '@';
 
-					if (INPUTMANAGER.IsUpperCase())
+					if (INPUTMANAGER->IsUpperCase())
 						charToAdd -= 32;
 
 					m_Text += charToAdd;

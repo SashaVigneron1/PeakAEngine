@@ -1,13 +1,12 @@
 #include "pch.h"
 #include "PeakAEngine/PeakAEngine.h"
 #include "PeakAEngine/Scene.h"
-#include "PeakAEngine/SceneManager.h"
 #include "RoomSelectorScene.h"
 #include "LoginScene.h"
 #include "TestScene.h"
+#include "GameScene.h"
 
-#include "PeakAEngine/PlayfabManager.h"
-#include "PeakAEngine/NetworkManager.h"
+#include "PeakAEngine/Managers.h"
 
 int main()
 {
@@ -22,24 +21,26 @@ int main()
 
     // Initialize
     ENGINE.Initialize();
-    PLAYFABMANAGER.Init("68BA8");
+    PLAYFABMANAGER->Init("68BA8");
 
     // Add Scenes
     Scene* pScene = new TestScene();
-    SCENEMANAGER.AddScene("TestScene", pScene);
+    SCENEMANAGER->AddScene("TestScene", pScene);
     pScene = new LoginScene();
-    SCENEMANAGER.AddScene("LoginScene", pScene);
+    SCENEMANAGER->AddScene("LoginScene", pScene);
     pScene = new RoomSelectorScene();
-    SCENEMANAGER.AddScene("RoomSelectorScene", pScene);
+    SCENEMANAGER->AddScene("RoomSelectorScene", pScene);
+    pScene = new GameScene();
+    SCENEMANAGER->AddScene("GameScene", pScene);
 
-    SCENEMANAGER.LoadScene("LoginScene");
+    SCENEMANAGER->LoadScene("LoginScene");
 
     ENGINE.Run();
 
     // DESTROY SHARED GROUP
     Json::Value functionParams;
     functionParams["roomId"] = "1";
-    PLAYFABMANAGER.ExecuteCloudScript("destroy_shared_group", functionParams,
+    PLAYFABMANAGER->ExecuteCloudScript("destroy_shared_group", functionParams,
         [](const PlayFab::ClientModels::ExecuteCloudScriptResult& /*result*/, void* /*customData*/) {
             Logger::LogSuccess("[CLOUDSCRIPT] Succesfully destroyed shared group");
         },
@@ -48,7 +49,7 @@ int main()
             Logger::LogError("[CLOUDSCRIPT] Couldn't destroy shared group: " + error.ErrorMessage);
         });
 
-    PLAYFABMANAGER.ForceUpdate();
+    PLAYFABMANAGER->ForceUpdate();
 
     return 0;
 }

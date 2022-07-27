@@ -4,13 +4,12 @@
 #include <gl/glew.h>
 #include <gl/wglew.h>
 
+#include "Managers.h"
+
 #include "PeakAEngine.h"
-#include "ResourceManager.h"
 #include "Texture2D.h"
 
-#include "SceneManager.h"
 
-#include "GUIManager.h"
 
 #include "GameObject.h"
 #include "Transform.h"
@@ -80,7 +79,7 @@ void RenderManager::Init(SDL_Window* window)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// INITIALIZE GUI
-	GUI.Initialize(window);
+	GUI->Initialize(window);
 }
 
 void RenderManager::Render()
@@ -119,7 +118,7 @@ void RenderManager::Render()
 		}
 
 		// Create Render Commands
-		SCENEMANAGER.Render();
+		SCENEMANAGER->Render();
 
 		// Execute Render Commands
 		for (auto& renderCommand : m_RenderCommands)
@@ -127,7 +126,7 @@ void RenderManager::Render()
 		m_RenderCommands.clear();
 
 		// Create DebugRender Commands
-		SCENEMANAGER.RenderGizmos();
+		SCENEMANAGER->RenderGizmos();
 
 		// Execute Debug Render Commands
 		for (auto& renderCommand : m_DebugRenderCommands)
@@ -147,9 +146,9 @@ void RenderManager::Render()
 	m_UIRenderCommands.clear();
 
 	// GUI Logic
-	GUI.StartFrame();
-	SCENEMANAGER.DrawImGui();
-	GUI.Render();
+	GUI->StartFrame();
+	SCENEMANAGER->DrawImGui();
+	GUI->Render();
 
 	// Present
 	SDL_GL_SwapWindow(m_Window);
@@ -158,7 +157,7 @@ void RenderManager::Render()
 void RenderManager::Destroy()
 {
 	SDL_GL_DeleteContext(m_pContext);
-	GUI.Destroy();
+	GUI->Destroy();
 }
 
 void RenderManager::RenderTexture(const std::shared_ptr<Texture2D>& texture, const glm::vec2& pos, const glm::vec2& scale, float rotation, const glm::vec2& pivot, const SDL_FRect& srcRect, int renderTarget)

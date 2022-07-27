@@ -1,23 +1,64 @@
-[Wed Jul 20 17:19:39 2022] [INFO] [Engine] Loading Engine Settings...
-[Wed Jul 20 17:19:39 2022] [SUCCESS] [Engine] Loaded Engine Settings...
-[Wed Jul 20 17:19:39 2022] [INFO] [SoundSystem] Loading Clip...
-[Wed Jul 20 17:19:39 2022] [INFO] [SoundSystem] Playing Sound: 	Id:0
-[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
-[Wed Jul 20 17:19:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
-[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
-[Wed Jul 20 17:19:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
-[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
-[Wed Jul 20 17:19:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
-[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
-[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Added Scene: TestScene
-[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Wed Jul 20 17:19:39 2022] [INFO] [ResourceManager] Loading Texture: UI/White.jpg
-[Wed Jul 20 17:19:39 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: UI/White.jpg
-[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Added Scene: LoginScene
-[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Added Scene: RoomSelectorScene
-[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
-[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Switching Scene...
-[Wed Jul 20 17:19:39 2022] [INFO] [SceneManager] Currently Active Scene: LoginScene
-[Wed Jul 20 17:19:40 2022] [INFO] [NetworkManager] Shutting down...
-[Wed Jul 20 17:19:41 2022] [ERROR] [CLOUDSCRIPT] Couldn't destroy shared group: Not Authenticated
+[Wed Jul 27 17:29:47 2022] [INFO] [Engine] Loading Engine Settings...
+[Wed Jul 27 17:29:47 2022] [SUCCESS] [Engine] Loaded Engine Settings...
+[Wed Jul 27 17:29:47 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Walking.png
+[Wed Jul 27 17:29:47 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Walking.png
+[Wed Jul 27 17:29:47 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Idle.png
+[Wed Jul 27 17:29:47 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Idle.png
+[Wed Jul 27 17:29:47 2022] [INFO] [ResourceManager] Loading Texture: Character/PeterPepper_Death.png
+[Wed Jul 27 17:29:47 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: Character/PeterPepper_Death.png
+[Wed Jul 27 17:29:47 2022] [INFO] [ResourceManager] Loading Font: UI/Cyber11.ttf
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Added Scene: TestScene
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 27 17:29:47 2022] [INFO] [ResourceManager] Loading Texture: UI/White.jpg
+[Wed Jul 27 17:29:47 2022] [SUCCESS] [ResourceManager] Texture Succesfully Loaded: UI/White.jpg
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Added Scene: LoginScene
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Added Scene: RoomSelectorScene
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Added Scene: GameScene
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Currently Active Scene: TestScene
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Switching Scene...
+[Wed Jul 27 17:29:47 2022] [INFO] [SceneManager] Currently Active Scene: LoginScene
+[Wed Jul 27 17:29:57 2022] [SUCCESS] [NETWORKMANAGER] Succesfully logged in.
+[Wed Jul 27 17:29:57 2022] [INFO] [NetworkManager] Initializing NetworkManager.
+
+[Wed Jul 27 17:29:57 2022] [INFO] [SceneManager] Switching Scene...
+[Wed Jul 27 17:29:57 2022] [INFO] [SceneManager] Currently Active Scene: RoomSelectorScene
+[Wed Jul 27 17:29:59 2022] [INFO] [NetworkManager] CreateAndConnectToNetwork()
+[Wed Jul 27 17:29:59 2022] [INFO] [SceneManager] Switching Scene...
+[Wed Jul 27 17:29:59 2022] [INFO] [SceneManager] Currently Active Scene: GameScene
+[Wed Jul 27 17:29:59 2022] [INFO] [GameStateManager] Received PlayerInfo for: PeakAlive
+[Wed Jul 27 17:29:59 2022] [INFO] Begin Hover
+[Wed Jul 27 17:29:59 2022] [INFO] [NetworkManager] PartyStateChangeType::ChatControlCreated
+[Wed Jul 27 17:29:59 2022] [INFO] [NetworkManager] Created ChatControl for: ACE6A4B809B45CEC
+[Wed Jul 27 17:29:59 2022] [INFO] [NetworkManager] PartyStateChangeType::CreateChatControlCompleted
+[Wed Jul 27 17:29:59 2022] [SUCCESS] [NetworkManager] Succeeded.
+[Wed Jul 27 17:29:59 2022] [INFO] End Hover
+[Wed Jul 27 17:30:00 2022] [INFO] [NetworkManager] PartyStateChangeType::LocalChatAudioInputChanged
+[Wed Jul 27 17:30:00 2022] [INFO] [NetworkManager] PartyStateChangeType::SetChatAudioInputCompleted
+[Wed Jul 27 17:30:00 2022] [SUCCESS] [NetworkManager] Succeeded.
+[Wed Jul 27 17:30:00 2022] [INFO] [NetworkManager] PartyStateChangeType::LocalChatAudioOutputChanged
+[Wed Jul 27 17:30:00 2022] [INFO] [NetworkManager] PartyStateChangeType::SetChatAudioOutputCompleted
+[Wed Jul 27 17:30:00 2022] [SUCCESS] [NetworkManager] Succeeded.
+[Wed Jul 27 17:30:01 2022] [INFO] [NetworkManager] PartyStateChangeType::RegionsChanged.
+[Wed Jul 27 17:30:03 2022] [INFO] [NetworkManager] PartyStateChangeType::CreateNewNetworkCompleted
+[Wed Jul 27 17:30:03 2022] [SUCCESS] [NetworkManager] CreateNewNetworkCompleted: SUCCESS
+[Wed Jul 27 17:30:03 2022] [SUCCESS] [NetworkManager] CreateNewNetworkCompleted: EntityId: ACE6A4B809B45CEC
+[Wed Jul 27 17:30:04 2022] [INFO] [NetworkManager] PartyStateChangeType::ConnectToNetworkCompleted
+[Wed Jul 27 17:30:04 2022] [SUCCESS] [NetworkManager] ConnectToNetworkCompleted: SUCCESS
+[Wed Jul 27 17:30:04 2022] [INFO] [Serialized value: ]AwCKwjOrjhJWtL1JJEa1P2frl7lg+ldlc3RFdXJvcGUAAAAAAAAAAAAAbnVkEL9Xa34rfnIgJk1n6olEkKykili28X3MawG4mvIpb0pkbnM4MWU1LWIxMjI0MTYzLTkzNDYtNDRiNS1hODJjLTkzZjg1YTVmNWJiZi53ZXN0ZXVyb3BlLmNsb3VkYXBwLmF6dXJlLmNvbQ==
+[Wed Jul 27 17:30:04 2022] [INFO] [NetworkManager] PartyStateChangeType::PopulateAvailableTextToSpeechProfilesCompleted.
+[Wed Jul 27 17:30:05 2022] [SUCCESS] [CLOUDSCRIPT] Descriptor Saved in Room Id 1
+[Wed Jul 27 17:30:05 2022] [INFO] [NetworkManager] PartyStateChangeType::AuthenticateLocalUserCompleted
+[Wed Jul 27 17:30:05 2022] [SUCCESS] [NetworkManager] SUCCESS
+[Wed Jul 27 17:30:05 2022] [INFO] [NetworkManager] PartyStateChangeType::NetworkConfigurationMadeAvailable
+[Wed Jul 27 17:30:05 2022] [INFO] [NetworkManager] PartyStateChangeType::EndpointCreated
+[Wed Jul 27 17:30:05 2022] [INFO] [NetworkManager] Established endpoint with user ACE6A4B809B45CEC (PeakAlive)
+[Wed Jul 27 17:30:05 2022] [INFO] [NetworkManager] PartyStateChangeType::CreateEndpointCompleted
+[Wed Jul 27 17:30:05 2022] [SUCCESS] [NetworkManager] CreateEndpointCompleted: SUCCESS
+[Wed Jul 27 17:30:05 2022] [INFO] [NetworkManager] PartyStateChangeType::InvitationCreated.
+[Wed Jul 27 17:30:05 2022] [INFO] [NetworkManager] PartyStateChangeType::ChatControlJoinedNetwork
+[Wed Jul 27 17:30:05 2022] [INFO] [NetworkManager] PartyStateChangeType::ConnectChatControlCompleted
+[Wed Jul 27 17:30:05 2022] [SUCCESS] [NetworkManager] Succeeded.
+[Wed Jul 27 17:30:10 2022] [INFO] [NetworkManager] Shutting down...
+[Wed Jul 27 17:30:11 2022] [SUCCESS] [CLOUDSCRIPT] Succesfully destroyed shared group

@@ -3,8 +3,7 @@
 
 #include "Scene.h"
 
-#include "UIManager.h"
-#include "InputManager.h"
+#include "Managers.h"
 
 void SceneManager::DrawImGui() const
 {
@@ -16,9 +15,9 @@ void SceneManager::Update() const
 	if (m_ActiveScene)
 	{
 		m_ActiveScene->Update();
-		m_ActiveScene->OnHover(INPUTMANAGER.GetMouseState().position);
+		m_ActiveScene->OnHover(INPUTMANAGER->GetMouseState().position);
 
-		if (INPUTMANAGER.GetMouseButtonPressed(MouseButton::LMB))
+		if (INPUTMANAGER->GetMouseButtonPressed(MouseButton::LMB))
 			m_ActiveScene->OnClick();
 	}
 }
@@ -88,7 +87,7 @@ void SceneManager::LoadScene(const std::string& sceneName)
 
 	// Set active
 	m_ActiveScene = m_Scenes[sceneName];
-	UI.ChangeScene(sceneName);
+	UI->ChangeScene(sceneName);
 
 	Logger::LogInfo("[SceneManager] Switching Scene...");
 	Logger::LogInfo("[SceneManager] Currently Active Scene: " + m_ActiveScene->GetName());

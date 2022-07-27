@@ -1,5 +1,6 @@
 #pragma once
 #include "SoundManager.h"
+#include "Singleton.h"
 
 #define SERVICELOCATOR ServiceLocator::GetInstance()
 

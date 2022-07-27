@@ -1,10 +1,8 @@
 #pragma once
+#include "Manager.h"
+
 #include <chrono>
-
 #include <functional>
-#include "Singleton.h"
-
-#define TIME Time::GetInstance()
 
 struct Timer 
 {
@@ -18,11 +16,21 @@ struct Timer
 	float timeLeft;
 	std::function<void()> executeFunction;
 };
-
-class Time final : public Singleton<Time>
+struct FrameCounter
 {
-	friend class Singleton<Time>;
+	FrameCounter(int totalFrames, std::function<void()> functionToExecute)
+		: totalFrames{ totalFrames }
+		, framesLeft{ totalFrames }
+		, executeFunction{ functionToExecute }
+	{}
 
+	int totalFrames;
+	int framesLeft;
+	std::function<void()> executeFunction;
+};
+
+class Time final : public Manager
+{
 public:
 	void CalculateTime();
 
@@ -35,6 +43,7 @@ public:
 	static std::string GetCurrentTimeAsString();
 
 	void AddTimer(std::shared_ptr<Timer> timer) { m_Timers.push_back(timer); }
+	void AddTimer(std::shared_ptr<FrameCounter> frameCounter) { m_FrameCounters.push_back(frameCounter); }
 	void UpdateTimers();
 private:
 	bool hasStarted = false;
@@ -45,6 +54,5 @@ private:
 	std::chrono::steady_clock::time_point lastTime;
 
 	std::vector<std::shared_ptr<Timer>> m_Timers;
+	std::vector<std::shared_ptr<FrameCounter>> m_FrameCounters;
 };
-
-//physics->OnTriggerExit = std::bind(&PeterPepper::OnTriggerExit, pPeterPepper, std::placeholders::_1);

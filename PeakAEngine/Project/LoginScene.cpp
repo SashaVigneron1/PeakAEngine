@@ -4,9 +4,9 @@
 //ToDoo: fix linker error
 #include "PeakAEngine/GameObject.h"
 
-#include "PeakAEngine/InputManager.h"
-#include "PeakAEngine/ResourceManager.h"
-#include "TestComponent.h"
+#include "PeakAEngine/Managers.h"
+
+#include "PeakAEngine/TestComponent.h"
 #include "PeakAEngine/RenderComponent.h"
 #include "PeakAEngine/RigidBody.h"
 #include "PeakAEngine/BoxCollider.h"
@@ -15,14 +15,10 @@
 #include "PeakAEngine/CameraComponent.h"
 #include <PeakAEngine/SpriteRenderer.h>
 
-#include "PeakAEngine/UIManager.h"
 #include "PeakAEngine/UI_Button.h"
 #include "PeakAEngine/UI_Text.h"
 #include "PeakAEngine/UI_InputField.h"
 
-#include "PeakAEngine/SceneManager.h"
-#include "PeakAEngine/PlayfabManager.h"
-#include "PeakAEngine/NetworkManager.h"
 
 
 
@@ -44,35 +40,35 @@ void LoginScene::Initialize()
 
 	// USERNAME
 	pos.y -= yOffsetPerElement;
-	int usernameInputId = UI.AddInputField("LoginScene", "Username", "UI/Cyber11.ttf", 0, 0, TextAlignment::Center, 20, "UI/White.jpg",
+	int usernameInputId = UI->AddInputField("LoginScene", "Username", "UI/Cyber11.ttf", 0, 0, TextAlignment::Center, 20, "UI/White.jpg",
 		pos, size, { 0.f,0.f }, AnchorPosition::MiddleCenter
 	);
-	auto usernameInputElement = UI.GetUIElement(usernameInputId);
+	auto usernameInputElement = UI->GetUIElement(usernameInputId);
 	auto usernameInputField = static_cast<UI_InputField*>(usernameInputElement);
 
 	// EMAIL
 	pos.y -= yOffsetPerElement;
-	int emailInputId = UI.AddInputField("LoginScene", "Email", "UI/Cyber11.ttf", 0, 0, TextAlignment::Center, 20, "UI/White.jpg",
+	int emailInputId = UI->AddInputField("LoginScene", "Email", "UI/Cyber11.ttf", 0, 0, TextAlignment::Center, 20, "UI/White.jpg",
 		pos, size, { 0.f,0.f }, AnchorPosition::MiddleCenter
 	);
-	auto emailInputElement = UI.GetUIElement(emailInputId);
+	auto emailInputElement = UI->GetUIElement(emailInputId);
 	auto emailInputField = static_cast<UI_InputField*>(emailInputElement);
 
 	// PASSWORD
 	pos.y -= yOffsetPerElement;
-	int passwordInputId = UI.AddInputField("LoginScene", "Password", "UI/Cyber11.ttf", 0, 0, TextAlignment::Center, 20, "UI/White.jpg",
+	int passwordInputId = UI->AddInputField("LoginScene", "Password", "UI/Cyber11.ttf", 0, 0, TextAlignment::Center, 20, "UI/White.jpg",
 		pos, size, { 0.f,0.f }, AnchorPosition::MiddleCenter
 	);
-	auto passwordInputElement = UI.GetUIElement(passwordInputId);
+	auto passwordInputElement = UI->GetUIElement(passwordInputId);
 	auto passwordInputField = static_cast<UI_InputField*>(passwordInputElement);
 	passwordInputField->SetHideState(true);
 
 	
 	// LOGIN
 	pos.y -= yOffsetPerElement;
-	int loginButtonId = UI.AddButton("LoginScene", new UI_Button{ "UI/White.jpg", "UI/White.jpg", "UI/White.jpg",
+	int loginButtonId = UI->AddButton("LoginScene", new UI_Button{ "UI/White.jpg", "UI/White.jpg", "UI/White.jpg",
 		pos, size, { 0.f,0.f }, AnchorPosition::MiddleCenter });
-	auto loginButtonElement = UI.GetUIElement(loginButtonId);
+	auto loginButtonElement = UI->GetUIElement(loginButtonId);
 	auto loginButton = static_cast<UI_Button*>(loginButtonElement);
 	loginButton->AddText("Login", "UI/Cyber11.ttf", 0, TextAlignment::Center, 50);
 	loginButton->SetTextColor({ 0,0,0,255 });
@@ -82,16 +78,16 @@ void LoginScene::Initialize()
 			std::string username = usernameInputField->GetText();
 			std::string password = passwordInputField->GetText();
 
-			PLAYFABMANAGER.LoginUser(username, password, [] {
-				SCENEMANAGER.LoadScene("RoomSelectorScene");
+			PLAYFABMANAGER->LoginUser(username, password, [] {
+				SCENEMANAGER->LoadScene("RoomSelectorScene");
 				});
 		});
 
 	// REGISTER
 	pos.y -= yOffsetPerElement;
-	int registerButtonId = UI.AddButton("LoginScene", new UI_Button{ "UI/White.jpg", "UI/White.jpg", "UI/White.jpg",
+	int registerButtonId = UI->AddButton("LoginScene", new UI_Button{ "UI/White.jpg", "UI/White.jpg", "UI/White.jpg",
 		pos, size, { 0.f,0.f }, AnchorPosition::MiddleCenter });
-	auto registerButtonElement = UI.GetUIElement(registerButtonId);
+	auto registerButtonElement = UI->GetUIElement(registerButtonId);
 	auto registerButton = static_cast<UI_Button*>(registerButtonElement);
 	registerButton->AddText("Register", "UI/Cyber11.ttf", 0, TextAlignment::Center, 50);
 	registerButton->SetTextColor({ 0,0,0,255 });
@@ -102,7 +98,7 @@ void LoginScene::Initialize()
 			std::string password = passwordInputField->GetText();
 			std::string email = emailInputField->GetText();
 
-			PLAYFABMANAGER.RegisterUser(username, password, email);
+			PLAYFABMANAGER->RegisterUser(username, password, email);
 		});
 
 	

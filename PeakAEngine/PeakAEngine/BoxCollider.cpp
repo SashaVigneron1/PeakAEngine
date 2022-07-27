@@ -5,7 +5,7 @@
 #include "RigidBody.h"
 #include "Transform.h"
 
-#include "RenderManager.h"
+#include "Managers.h"
 
 #include "CameraComponent.h"
 
@@ -138,7 +138,7 @@ bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
 
 	// Put Mouse Relative To Center Of Screen
 	auto position = pos;
-	position -= RENDERER.GetWindowSize() / 2.f;
+	position -= RENDERER->GetWindowSize() / 2.f;
 
 	// Calculate ScreenPos
 	glm::vec2 thisPos{ m_pGameObject->GetTransform()->GetWorldPosition().x + m_Offset.x
@@ -147,7 +147,7 @@ bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
 		m_pGameObject->GetTransform()->GetWorldScale().y * m_Size.y };
 
 	// Take Camera Pos Into Account
-	thisPos -= RENDERER.GetCamera()->GetGameObject()->GetTransform()->GetWorldPosition();
+	thisPos -= RENDERER->GetCamera()->GetGameObject()->GetTransform()->GetWorldPosition();
 
 	// Create Vertices
 	float vertexLeft{ -size.x/2 };
@@ -177,10 +177,10 @@ bool BoxCollider::IsOverlapping(const glm::vec2& pos, bool convertToScreenSpace)
 	// Apply Screen Space
 	if (convertToScreenSpace)
 	{
-		vertices[0] *= RENDERER.GetPixelsPerUnit();
-		vertices[1] *= RENDERER.GetPixelsPerUnit();
-		vertices[2] *= RENDERER.GetPixelsPerUnit();
-		vertices[3] *= RENDERER.GetPixelsPerUnit();
+		vertices[0] *= RENDERER->GetPixelsPerUnit();
+		vertices[1] *= RENDERER->GetPixelsPerUnit();
+		vertices[2] *= RENDERER->GetPixelsPerUnit();
+		vertices[3] *= RENDERER->GetPixelsPerUnit();
 	}
 
 	// Check If Overlapping
@@ -280,7 +280,7 @@ void BoxCollider::RenderGizmos() const
 	pos.x -= size.x / 2;
 	pos.y -= size.y / 2;
 
-	RENDERER.RenderDebugRect({ pos.x, pos.y, size.x, size.y }, true, m_DebugColor, m_pGameObject->GetTransform()->GetWorldRotation());
+	RENDERER->RenderDebugRect({ pos.x, pos.y, size.x, size.y }, true, m_DebugColor, m_pGameObject->GetTransform()->GetWorldRotation());
 }
 
 //void BoxCollider::DrawProperties()

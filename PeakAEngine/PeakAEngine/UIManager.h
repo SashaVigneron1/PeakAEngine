@@ -1,5 +1,5 @@
 #pragma once
-#include "Singleton.h"
+#include "Manager.h"
 
 #include "UIElement.h"
 
@@ -13,12 +13,8 @@ enum class TextAlignment
 class UI_Button;
 class UI_Text;
 
-#define UI UIManager::GetInstance()
-
-class UIManager final : public Singleton<UIManager>
+class UIManager final : public Manager
 {
-	friend class Singleton<UIManager>;
-
 public:
 	void Destroy();
 

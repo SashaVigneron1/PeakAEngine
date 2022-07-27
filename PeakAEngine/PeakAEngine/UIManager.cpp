@@ -1,7 +1,7 @@
 #include "PeakAEnginePCH.h"
 #include "UIManager.h"
 
-#include "InputManager.h"
+#include "Managers.h"
 #include "UI_Image.h"
 #include "UI_Button.h"
 #include "UI_Text.h"
@@ -115,7 +115,7 @@ void UIManager::Update()
 				uiElement->SetHovered(false);
 			}
 
-			if (uiElement->IsHovered() && INPUTMANAGER.GetMouseButtonPressed(MouseButton::LMB))
+			if (uiElement->IsHovered() && INPUTMANAGER->GetMouseButtonPressed(MouseButton::LMB))
 				uiElement->OnClick();
 
 			// UPDATE

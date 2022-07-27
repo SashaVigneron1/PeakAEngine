@@ -3,15 +3,14 @@
 
 #include <SDL_ttf.h>
 #include "Font.h"
-#include "RenderManager.h"
-#include "ResourceManager.h"
+#include "Managers.h"
 
 #include "Texture2D.h"
 
 UI_Text::UI_Text(const std::string& text, const std::string& fontPath, int lineSpacing, TextAlignment alignment
 	, const glm::vec2& pos, const glm::vec2& size, const glm::vec2& pivot, AnchorPosition anchor)
 	: UIElement{ pos, size, pivot, anchor }
-	, m_pFont{ RESOURCEMANAGER.LoadFont(fontPath, unsigned int(100))}
+	, m_pFont{ RESOURCEMANAGER->LoadFont(fontPath, unsigned int(100))}
 	, m_pTexture{ nullptr }
 	, m_Color{ 255,255,255,255 }
 	, m_LineSpacing{ lineSpacing }
@@ -37,7 +36,7 @@ void UI_Text::Render()
 	if (m_Text.empty())
 		return;
 
-	const auto& windowSize = RENDERER.GetWindowSize();
+	const auto& windowSize = RENDERER->GetWindowSize();
 
 	glm::vec2 actualPosition = m_Position;
 
@@ -109,7 +108,7 @@ void UI_Text::Render()
 	}
 
 
-	RENDERER.RenderUITexture(m_pTexture, actualPosition, m_Size, 0);
+	RENDERER->RenderUITexture(m_pTexture, actualPosition, m_Size, 0);
 }
 
 void UI_Text::ChangeText(const std::string& text)

@@ -3,20 +3,16 @@
 #include <mutex>
 #include <functional>
 
-#include "Singleton.h"
+#include "Manager.h"
 #include "RenderTarget.h"
-
-#define RENDERER RenderManager::GetInstance()
 
 class Texture2D;
 class CameraComponent;
 
 //ToDoo: Refactor Functions
 
-class RenderManager final : public Singleton<RenderManager>
+class RenderManager final : public Manager
 {
-	friend class Singleton<RenderManager>;
-
 public:
 	void Init(SDL_Window* window);
 	void Render();
@@ -73,7 +69,7 @@ private:
 
 	int m_PixelsPerUnit{ 10 };
 
-	bool m_ShouldRenderDebugGrid{ false };
+	bool m_ShouldRenderDebugGrid{ true };
 	float m_GridLineThickness{ 2.f };
 	SDL_Color m_GridColor{ 255,255,255,100 };
 };

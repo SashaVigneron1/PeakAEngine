@@ -1,16 +1,15 @@
 #pragma once
 #include <functional>
 
-#include "Singleton.h"
-
-#define SCENEMANAGER SceneManager::GetInstance()
+#include "Manager.h"
 
 class Scene;
 class GameObject;
 
-class SceneManager final : public Singleton<SceneManager>
+class SceneManager final : public Manager
 {
 public:
+	SceneManager() = default;
 	~SceneManager() override;
 
 	SceneManager(const SceneManager& other) = delete;
@@ -28,10 +27,8 @@ public:
 	void RenderGizmos() const;
 	void ChangeSceneGraph();
 
+	Scene* GetActiveScene() const { return m_ActiveScene; }
 private:
-	friend class Singleton<SceneManager>;
-	SceneManager() = default;
-
 	std::map<std::string, Scene*> m_Scenes{};
 	Scene* m_ActiveScene{};
 };
