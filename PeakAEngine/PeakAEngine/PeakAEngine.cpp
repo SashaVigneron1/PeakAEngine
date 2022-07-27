@@ -78,50 +78,50 @@ void Engine::Cleanup()
 
 void Engine::Run()
 {
-	auto& renderer = *RENDERER;
-	auto& timer = *TIME;
-	auto& input = *INPUTMANAGER;
-	auto& sceneManager = *SCENEMANAGER;
-	auto& networkManager = *NETWORKMANAGER;
-	auto& playfabManager = *PLAYFABMANAGER;
-	auto& ui = *UI;
+	auto renderer = RENDERER;
+	auto timer = TIME;
+	auto input = INPUTMANAGER;
+	auto sceneManager = SCENEMANAGER;
+	auto networkManager = NETWORKMANAGER;
+	auto playfabManager = PLAYFABMANAGER;
+	auto ui = UI;
 	
 	// Initialize Timer
-	timer.SetFixedTime(m_FixedUpdateInterval);
+	timer->SetFixedTime(m_FixedUpdateInterval);
 	float fixedUpdateTimer = 0.0f;
 	bool isRunning = true;
 
 	while (isRunning)
 	{
 		// Add, Remove, Enable, Disable ...
-		sceneManager.ChangeSceneGraph();
+		sceneManager->ChangeSceneGraph();
 
 		// Time Calculations
 		const auto startTime = std::chrono::high_resolution_clock::now();
-		timer.CalculateTime();
-		timer.UpdateTimers();
+		timer->CalculateTime();
+		timer->UpdateTimers();
 		fixedUpdateTimer += Time::DeltaTime();
 
 		// Update
-		isRunning = input.ProcessInput();
-		input.HandleInput();
-		ui.Update();
-		sceneManager.Update();
+		isRunning = input->ProcessInput();
+		input->HandleInput();
+		ui->Update();
+		sceneManager->Update();
 
 		// Fixed Update
 		int currFrame = 0;
 		while (fixedUpdateTimer >= m_FixedUpdateInterval && currFrame <= m_MaxFixedUpdatesPerFrame)
 		{
-			playfabManager.Update();
-			networkManager.Update();
-			sceneManager.FixedUpdate();
+			playfabManager->Update();
+			networkManager->Update();
+			sceneManager->FixedUpdate();
 			fixedUpdateTimer -= m_FixedUpdateInterval;
 			currFrame++;
 		}
 
 		// Render
-		ui.Render();
-		renderer.Render();
+		ui->Render();
+		renderer->Render();
 
 		// Wait for next frame
 		const auto sleepTime = startTime + std::chrono::milliseconds(16) - std::chrono::high_resolution_clock::now();
