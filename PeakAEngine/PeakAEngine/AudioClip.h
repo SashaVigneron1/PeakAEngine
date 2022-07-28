@@ -55,7 +55,7 @@ public:
 	void SetDontDestroyOnLoad(bool value) { m_DontDestroyOnLoad = value; }
 	bool IsDontDestroyOnLoad() const { return m_DontDestroyOnLoad; }
 private:
-	std::string m_FilePath;
+	const std::string m_FilePath;
 	Mix_Chunk* m_pChunk;
 	int m_Channel;
 	int m_Loops;

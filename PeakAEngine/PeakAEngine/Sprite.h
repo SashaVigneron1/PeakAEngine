@@ -68,14 +68,14 @@ private:
 
 	int m_NrRows{ 0 };
 	int m_NrCols{ 0 };
+	const float m_FrameSec{ 0.f };
 	float m_AccSec{ 0.f };
-	float m_FrameSec{ 0.f };
 	int m_ActFrame{ 0 };
 
-	glm::vec2 m_Scale{};
-	glm::vec2 m_Pivot{ 0.5f, 0.5f };
+	const glm::vec2 m_Scale{};
+	const glm::vec2 m_Pivot{ 0.5f, 0.5f };
 
-	int m_LayerId{ -1 };
+	const int m_LayerId{ -1 };
 };
 
 

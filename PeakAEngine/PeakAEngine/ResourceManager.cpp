@@ -6,7 +6,6 @@
 #include <SDL_image.h>
 
 #include "RenderManager.h"
-#include "RenderTarget.h"
 #include "Texture2D.h"
 
 #include "Font.h"
@@ -23,51 +22,7 @@ void ResourceManager::Init(const std::string& dataFilePath)
 	}
 }
 
-std::shared_ptr<RenderTarget> ResourceManager::CreateRenderTexture(int width, int height)
-{
-	//http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-14-render-to-texture/
 
-	GLuint frameBuffer{};
-	GLuint renderedTexture{};
-
-	// Make framebuffer which is going to be the render target
-	glGenFramebuffers(1, &frameBuffer);
-	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-
-	// Make the texture that will output the pixels
-	glGenTextures(1, &renderedTexture);
-
-	// Bind the created texture
-	glBindTexture(GL_TEXTURE_2D, renderedTexture);
-
-	// Give an empty image to OpenGl
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-
-	// Poor filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-	// Set m_RenderedTexture as our color attachment #0
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, renderedTexture, 0);
-
-	glClearColor(0, 0, 0, 0);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	GLuint status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-	if (status != GL_FRAMEBUFFER_COMPLETE)
-	{
-		Logger::LogError(std::string(reinterpret_cast<const char*>(glewGetErrorString(status))));
-		throw std::runtime_error("Was unable to create the render texture");
-	}
-
-	// Unbind texture
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	// Unbind buffer
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	return std::make_shared<RenderTarget>(frameBuffer, renderedTexture, width, height);
-}
 
 std::shared_ptr<Texture2D> ResourceManager::LoadTexture(const std::string& file)
 {
@@ -94,8 +49,8 @@ std::shared_ptr<Texture2D> ResourceManager::LoadTexture(const std::string& file)
 std::shared_ptr<Texture2D> ResourceManager::LoadTexture(SDL_Surface* pSurface)
 {
 	// Get Image Size
-	int width = pSurface->w;
-	int height = pSurface->h;
+	const int width = pSurface->w;
+	const int height = pSurface->h;
 	GLuint id;
 
 	// Get Pixel Format

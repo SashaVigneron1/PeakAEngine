@@ -117,6 +117,9 @@ void RenderManager::Render()
 			glTranslatef(-camPos.x, -camPos.y, 0.0f);
 		}
 
+		// Render Debug Grid
+		RenderDebugGrid();
+
 		// Create Render Commands
 		SCENEMANAGER->Render();
 
@@ -132,9 +135,6 @@ void RenderManager::Render()
 		for (auto& renderCommand : m_DebugRenderCommands)
 			renderCommand.Command();
 		m_DebugRenderCommands.clear();
-
-		// Render Debug Grid
-		RenderDebugGrid();
 	}
 	glPopMatrix();
 
@@ -197,11 +197,11 @@ void RenderManager::RenderDebugGrid() const
 
 	// Calculate How Many Rows & Columns Need to be visible
 	// + 2 to make sure we're always drawing the entire screen
-	int rows = m_GameResHeight / m_PixelsPerUnit + 2;
-	int cols = m_GameResWidth / m_PixelsPerUnit + 2;
+	const int rows = m_GameResHeight / m_PixelsPerUnit + 2;
+	const int cols = m_GameResWidth / m_PixelsPerUnit + 2;
 
-	int m_StartCol = int(cameraPos.x / m_PixelsPerUnit) - cols / 2;
-	int m_StartRow = int(cameraPos.y / m_PixelsPerUnit) - rows / 2;
+	const int m_StartCol = int(cameraPos.x / m_PixelsPerUnit) - cols / 2;
+	const int m_StartRow = int(cameraPos.y / m_PixelsPerUnit) - rows / 2;
 
 	// Draw Lines
 	for (int row{ m_StartRow }; row < m_StartRow + rows; ++row)

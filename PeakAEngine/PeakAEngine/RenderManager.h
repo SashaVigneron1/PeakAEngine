@@ -4,7 +4,7 @@
 #include <functional>
 
 #include "Manager.h"
-#include "RenderTarget.h"
+#include <gl/glew.h>
 
 class Texture2D;
 class CameraComponent;
@@ -70,9 +70,9 @@ private:
 	int m_GameResHeight{};
 
 	// Debug Grid
-	bool m_ShouldRenderDebugGrid{ true };
-	float m_GridLineThickness{ 2.f };
-	SDL_Color m_GridColor{ 255,255,255,100 };
+	const bool m_ShouldRenderDebugGrid{ true };
+	const float m_GridLineThickness{ 2.f };
+	const SDL_Color m_GridColor{ 255,255,255,100 };
 
 	// Other
 	CameraComponent* m_pCamera{ nullptr };

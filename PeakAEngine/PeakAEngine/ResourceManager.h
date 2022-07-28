@@ -12,7 +12,6 @@ class ResourceManager final : public Manager
 public:
 	void Init(const std::string& dataFilePath);
 
-	std::shared_ptr<RenderTarget> CreateRenderTexture(int width, int height);
 	std::shared_ptr<Texture2D> LoadTexture(const std::string& filePath);
 	std::shared_ptr<Texture2D> LoadTexture(SDL_Surface* pSurface);
 	
