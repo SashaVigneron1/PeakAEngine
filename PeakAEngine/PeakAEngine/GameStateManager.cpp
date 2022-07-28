@@ -22,6 +22,8 @@ void GameStateManager::ProcessNetworkMessage(const std::string& sender, std::sha
                     m_PeerObjects[sender]["PlayerManager"] = objectState;
 
                     Logger::LogInfo("[GameStateManager] Received PlayerJoin for: " + objectState->GetDisplayName());
+
+                    //ToDoo: Load All Objects From This Client
                 }
             }
             else
@@ -37,15 +39,7 @@ void GameStateManager::ProcessNetworkMessage(const std::string& sender, std::sha
             DestroyPeer(sender);
             break;
         }
-        case GameMessageType::ObjectCreated:
-        {
-            Logger::LogInfo("[GameStateManager] Received a ObjectCreated message from " + sender);
-            //ToDoo: Handle Object Creation
-
-                
-
-            break;
-        }
+        
         case GameMessageType::ObjectUpdated:
         {
             Logger::LogInfo("[GameStateManager] Received an ObjectUpdated message from " + sender + " for object: " + message->ObjectName());
@@ -62,10 +56,12 @@ void GameStateManager::ProcessNetworkMessage(const std::string& sender, std::sha
         }
         case GameMessageType::ObjectDestroyed:
         {
-            //ToDoo: Handle Object Deletion
+            Logger::LogInfo("[GameStateManager] Received an ObjectDestroyed message from " + sender + " for object: " + message->ObjectName());
+            DestroyObject(sender, message->ObjectName());
             break;
         }
     }
+    m_EventsThisFrame.push_back(NetworkEvent{ sender, *message.get()});
 }
 
 std::shared_ptr<ObjectState> GameStateManager::GetObjectState(const std::string& peer, const std::string& objName)
@@ -90,6 +86,29 @@ std::shared_ptr<ObjectState> GameStateManager::GetObjectState(const std::string&
     return nullptr;
 }
 
+void GameStateManager::ClearQueue()
+{
+    // Clear EventQueue
+    m_EventsThisFrame.clear();
+}
+
+void GameStateManager::CreateObject(std::shared_ptr<ObjectState> obj, int objTypeId, const std::string& peer, const std::string& objectName)
+{
+    if (peer == PLAYFABMANAGER->GetEntityKey().Id)
+    {
+        // If LocalPlayer
+        m_LocalObjects[objectName] = obj;
+        
+        // Notify Other Clients -> Other clients also instantiate on their end
+        NETWORKMANAGER->SendGameMessage(GameNetworkMessage(GameMessageType::ObjectCreated, objectName, objTypeId));
+    }
+    else
+    {
+        // If not LocalPlayer
+        m_PeerObjects[peer][objectName] = obj;
+    }
+}
+
 void GameStateManager::CreateLocalObject()
 {
     auto objectState = std::make_shared<ObjectState>(PLAYFABMANAGER->GetUsername().c_str(), PLAYFABMANAGER->GetEntityKey().Id);
@@ -98,14 +117,25 @@ void GameStateManager::CreateLocalObject()
     Logger::LogInfo("[GameStateManager] Created local object for " + objectState->GetDisplayName() + " with the name: " + "PlayerManager");
 }
 
-void GameStateManager::DestroyObject(const std::string& userId, const std::string& objectName)
+void GameStateManager::DestroyObject(const std::string& peer, const std::string& objectName)
 {
-    auto peerItr = m_PeerObjects.find(userId);
-    if (peerItr != m_PeerObjects.end())
+    if (peer == PLAYFABMANAGER->GetEntityKey().Id)
     {
-        auto objItr = peerItr->second.find(objectName);
-        if (objItr != peerItr->second.end())
+        // If LocalPlayer
+        auto objItr = m_LocalObjects.find(objectName);
+        if (objItr != m_LocalObjects.end())
             objItr->second = nullptr;
+    }
+    else
+    {
+        // If not LocalPlayer
+        auto peerItr = m_PeerObjects.find(peer);
+        if (peerItr != m_PeerObjects.end())
+        {
+            auto objItr = peerItr->second.find(objectName);
+            if (objItr != peerItr->second.end())
+                objItr->second = nullptr;
+        }
     }
 }
 
@@ -114,7 +144,7 @@ void GameStateManager::DestroyPeer(const std::string& peer)
     auto peerItr = m_PeerObjects.find(peer);
     if (peerItr != m_PeerObjects.end())
     {
-        for (auto obj : peerItr->second)
+        for (auto& obj : peerItr->second)
             obj.second = nullptr;
 
         return;

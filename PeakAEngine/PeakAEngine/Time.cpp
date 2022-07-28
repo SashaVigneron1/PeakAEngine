@@ -38,9 +38,16 @@ void Time::UpdateTimers()
 		{
 			m_Timers[i]->executeFunction();
 
-			// Delete This Timer
-			m_Timers[i] = m_Timers.back();
-			m_Timers.pop_back();
+			if (m_Timers[i]->shouldStartOver)
+			{
+				m_Timers[i]->timeLeft = m_Timers[i]->totalTime;
+			}
+			else 
+			{
+				// Delete This Timer
+				m_Timers[i] = m_Timers.back();
+				m_Timers.pop_back();
+			}
 		}
 	}
 
@@ -51,9 +58,16 @@ void Time::UpdateTimers()
 		{
 			m_FrameCounters[i]->executeFunction();
 
-			// Delete this counter
-			m_FrameCounters[i] = m_FrameCounters.back();
-			m_FrameCounters.pop_back();
+			if (m_FrameCounters[i]->shouldStartOver)
+			{
+				m_FrameCounters[i]->framesLeft = m_FrameCounters[i]->totalFrames;
+			}
+			else
+			{
+				// Delete This Timer
+				m_FrameCounters[i] = m_FrameCounters.back();
+				m_FrameCounters.pop_back();
+			}
 		}
 	}
 }

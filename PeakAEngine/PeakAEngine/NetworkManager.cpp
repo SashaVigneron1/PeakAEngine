@@ -7,9 +7,6 @@
 
 #include "Managers.h"
 
-//ToDoo: Check Comments (And remove obsolete)
-//ToDoo: Check Const Correctness
-
 using namespace Party;
 
 void NetworkManager::Initialize()
@@ -584,7 +581,8 @@ void NetworkManager::Update()
 
                 std::string userId(user);
                 Logger::LogInfo("[NetworkManager] Another user has disconnected: " + userId);
-                GAMESTATE->DestroyObject(userId, "PlayerManager");
+                GAMESTATE->DestroyPeer(userId);
+                //GAMESTATE->DestroyObject(userId, "PlayerManager");
             }
             break;
         }

@@ -8,10 +8,18 @@
 #include "TestScene.h"
 #include "GameScene.h"
 
+#include "GameNetworkManager.h"
 
 void InitializeMultiplayer()
 {
     PLAYFABMANAGER->Init("68BA8");
+
+    // This lambda will execute each frame
+    TIME->AddTimer(std::make_shared<FrameCounter>(1, [] 
+        {
+            GameNetworkManager::GetInstance().RunEventQueue();
+        }
+    , true));
 }
 void InitializeScenes()
 {

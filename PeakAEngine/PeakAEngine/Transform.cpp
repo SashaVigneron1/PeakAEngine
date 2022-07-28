@@ -5,6 +5,9 @@
 #include "BoxCollider.h"
 #include "RigidBody.h"
 
+#include "Managers.h"
+#include "ObjectState.h"
+
 glm::mat3x3 Transform::GetWorldMatrix()
 {
 	if (m_WorldMatrixDirty)
@@ -23,6 +26,14 @@ glm::mat3x3 Transform::GetWorldMatrix()
 		}
 
 		m_WorldMatrixDirty = false;
+
+		// If networking: sync this part
+		auto objState = GetGameObject()->GetObjectState();
+		if (objState)
+			NETWORKMANAGER->SendGameMessage(GameNetworkMessage(
+						GameMessageType::ObjectUpdated, GetGameObject()->GetName(),
+						objState->SerializeObjectStateData()
+					));
 	}
 
 	return m_WorldMatrix;

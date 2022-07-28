@@ -16,6 +16,9 @@
 
 #include "PeakAEngine/GameStateManager.h"
 
+
+#include "GameNetworkManager.h"
+
 RoomSelectorScene::RoomSelectorScene()
 {
 }
@@ -59,6 +62,8 @@ void RoomSelectorScene::Initialize()
 
 			SCENEMANAGER->LoadScene("GameScene");
 			GAMESTATE->CreateLocalObject();
+
+			GameNetworkManager::GetInstance().CreateObject("testObject", PLAYFABMANAGER->GetEntityKey().Id, ObjectType::TestObject);
 		});
 
 	// JOIN ROOM
@@ -100,6 +105,8 @@ void RoomSelectorScene::Initialize()
 					GAMESTATE->CreateLocalObject();
 
 					NETWORKMANAGER->ToggleVoiceChat(true);
+
+					GameNetworkManager::GetInstance().CreateObject("testObject", PLAYFABMANAGER->GetEntityKey().Id, ObjectType::TestObject);
 
 				});
 		});

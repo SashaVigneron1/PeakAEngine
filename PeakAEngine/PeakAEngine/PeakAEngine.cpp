@@ -82,6 +82,7 @@ void Engine::Run()
 	auto timer = TIME;
 	auto input = INPUTMANAGER;
 	auto sceneManager = SCENEMANAGER;
+	auto gamestateManager = GAMESTATE;
 	auto networkManager = NETWORKMANAGER;
 	auto playfabManager = PLAYFABMANAGER;
 	auto ui = UI;

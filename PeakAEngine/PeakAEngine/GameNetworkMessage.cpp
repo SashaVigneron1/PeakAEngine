@@ -62,9 +62,6 @@ GameNetworkMessage::UnsignedValue()
 
 
 
-
-
-
 GameNetworkMessage::GameNetworkMessage(const std::vector<uint8_t>& data)
 {
     if (data.size() < (sizeof(GameMessageType) + sizeof(uint8_t)))

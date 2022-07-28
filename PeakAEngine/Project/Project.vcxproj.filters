@@ -20,6 +20,15 @@
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="TestComponent.cpp">
+      <Filter>Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="TestPlayerState.cpp">
+      <Filter>Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="GameNetworkManager.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -41,6 +50,19 @@
     <ClInclude Include="HelperFunctions.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="TestComponent.h">
+      <Filter>Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="TestPlayerState.h">
+      <Filter>Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="GameNetworkManager.h">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkEnums.h">
+      <Filter>Networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -58,5 +80,11 @@
     <Filter Include="Main">
       <UniqueIdentifier>{0da0ee52-76ae-4392-a45b-b7df1c1587f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Networking">
+      <UniqueIdentifier>{87928bed-98dd-4c00-94a2-93ce3098e0eb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Project.rc" />
   </ItemGroup>
 </Project>

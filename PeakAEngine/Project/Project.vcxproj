@@ -317,6 +317,7 @@ EXIT /B 0</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ChatBoxComponent.cpp" />
+    <ClCompile Include="GameNetworkManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="LoginScene.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -327,15 +328,22 @@ EXIT /B 0</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RoomSelectorScene.cpp" />
+    <ClCompile Include="TestComponent.cpp" />
+    <ClCompile Include="TestPlayerState.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChatBoxComponent.h" />
+    <ClInclude Include="GameNetworkManager.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="HelperFunctions.h" />
     <ClInclude Include="LoginScene.h" />
+    <ClInclude Include="NetworkEnums.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="RoomSelectorScene.h" />
+    <ClInclude Include="TestComponent.h" />
+    <ClInclude Include="TestPlayerState.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -345,6 +353,9 @@ EXIT /B 0</Command>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Project.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

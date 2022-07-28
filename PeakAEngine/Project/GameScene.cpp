@@ -18,7 +18,7 @@
 #include "PeakAEngine/UI_Text.h"
 #include "PeakAEngine/UI_InputField.h"
 
-
+#include "TestPlayerState.h"
 
 GameScene::GameScene()
 	: Scene{}
@@ -55,8 +55,6 @@ void GameScene::Initialize()
 	collider->SetDebugColor({ 0,255,0,100 });
 	collider->EnableDebugDrawing(true);
 
-	TIME->AddTimer(std::make_shared<Timer>(20.0f, [=]
-		{
-			NETWORKMANAGER->SendTextMessage("Hello there!");
-		}));
+
+
 }

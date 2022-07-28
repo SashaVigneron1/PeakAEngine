@@ -6,26 +6,30 @@
 
 struct Timer 
 {
-	Timer(float totalTime, std::function<void()> functionToExecute)
+	Timer(float totalTime, std::function<void()> functionToExecute, bool shouldStartOver = false)
 		: totalTime{ totalTime }
 		, timeLeft{ totalTime }
 		, executeFunction{ functionToExecute }
+		, shouldStartOver{ shouldStartOver }
 	{}
 
 	float totalTime;
 	float timeLeft;
+	bool shouldStartOver;
 	std::function<void()> executeFunction;
 };
 struct FrameCounter
 {
-	FrameCounter(int totalFrames, std::function<void()> functionToExecute)
+	FrameCounter(int totalFrames, std::function<void()> functionToExecute, bool shouldStartOver = false)
 		: totalFrames{ totalFrames }
 		, framesLeft{ totalFrames }
 		, executeFunction{ functionToExecute }
+		, shouldStartOver{ shouldStartOver }
 	{}
 
 	int totalFrames;
 	int framesLeft;
+	bool shouldStartOver;
 	std::function<void()> executeFunction;
 };
 

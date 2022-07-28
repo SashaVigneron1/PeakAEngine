@@ -4,6 +4,7 @@ class BoxCollider;
 class Scene;
 class Component;
 class Transform;
+class ObjectState;
 
 class GameObject final
 {
@@ -42,6 +43,8 @@ public:
 	void Destroy();
 	bool IsMarkedForDestroy() const;
 
+	void SetObjectState(ObjectState* objectState) { m_ObjectState = objectState; }
+	ObjectState* GetObjectState() const { return m_ObjectState; }
 private:
 	friend class Scene;
 	friend class BoxCollider;
@@ -98,6 +101,9 @@ private:
 	bool m_CursorIsHoveringThis = false;
 
 	BoxCollider* m_BoxCollider = nullptr;
+
+	// Multiplayer
+	ObjectState* m_ObjectState = nullptr;
 };
 
 template<typename componentType, typename... argTypes>
