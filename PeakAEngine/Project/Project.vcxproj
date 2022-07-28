@@ -332,6 +332,7 @@ EXIT /B 0</Command>
   <ItemGroup>
     <ClInclude Include="ChatBoxComponent.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="HelperFunctions.h" />
     <ClInclude Include="LoginScene.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RoomSelectorScene.h" />

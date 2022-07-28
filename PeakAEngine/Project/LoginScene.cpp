@@ -5,7 +5,6 @@
 
 #include "PeakAEngine/GameObject.h"
 
-#include "PeakAEngine/TestComponent.h"
 #include "PeakAEngine/RenderComponent.h"
 #include "PeakAEngine/RigidBody.h"
 #include "PeakAEngine/BoxCollider.h"

@@ -147,12 +147,6 @@
     <ClInclude Include="GameNetworkMessage.h">
       <Filter>Networking</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="TestComponent.h">
-      <Filter>Scenegraph\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Manager.h">
       <Filter>Managers\Core</Filter>
     </ClInclude>
@@ -212,6 +206,9 @@
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>UtilityFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectState.h">
+      <Filter>Networking</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -298,12 +295,6 @@
     <ClCompile Include="GameNetworkMessage.cpp">
       <Filter>Networking</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="TestComponent.cpp">
-      <Filter>Scenegraph\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Managers.cpp">
       <Filter>Managers\Core</Filter>
     </ClCompile>
@@ -354,6 +345,9 @@
     </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>UtilityFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectState.cpp">
+      <Filter>Networking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

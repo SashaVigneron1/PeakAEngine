@@ -256,7 +256,7 @@
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Managers.h" />
     <ClInclude Include="NetworkManager.h" />
-    <ClInclude Include="PlayerState.h" />
+    <ClInclude Include="ObjectState.h" />
     <ClInclude Include="PlayfabManager.h" />
     <ClInclude Include="PeakAEngine.h" />
     <ClInclude Include="PeakAEnginePCH.h" />
@@ -273,7 +273,6 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Subject.h" />
-    <ClInclude Include="TestComponent.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
@@ -348,7 +347,7 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Managers.cpp" />
     <ClCompile Include="NetworkManager.cpp" />
-    <ClCompile Include="PlayerState.cpp" />
+    <ClCompile Include="ObjectState.cpp" />
     <ClCompile Include="PlayfabManager.cpp" />
     <ClCompile Include="PeakAEngine.cpp" />
     <ClCompile Include="PeakAEnginePCH.cpp">
@@ -368,7 +367,6 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Subject.cpp" />
-    <ClCompile Include="TestComponent.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="UIElement.cpp" />

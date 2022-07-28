@@ -5,7 +5,6 @@
 
 #include "PeakAEngine/GameObject.h"
 
-#include "PeakAEngine/TestComponent.h"
 #include "PeakAEngine/RenderComponent.h"
 #include "PeakAEngine/RigidBody.h"
 #include "PeakAEngine/BoxCollider.h"
@@ -47,9 +46,6 @@ void GameScene::Initialize()
 	spriteRenderer->SetEnabled(true);
 	spriteRenderer->SetPixelsPerUnit(16);
 
-	auto test = go->CreateComponent<TestComponent>();
-	test->SetEnabled(false);
-
 	go->GetTransform()->SetWorldPosition({ 0,-1 });
 	go->GetTransform()->SetWorldScale({ 30, 1 });
 
@@ -59,10 +55,8 @@ void GameScene::Initialize()
 	collider->SetDebugColor({ 0,255,0,100 });
 	collider->EnableDebugDrawing(true);
 
-	//FindObjectOfTypeTest
-	/*TIME->AddTimer(std::make_shared<Timer>(10.0f, [=]
+	TIME->AddTimer(std::make_shared<Timer>(20.0f, [=]
 		{
-			auto testObj = FindObjectsOfType<TestComponent>();
-			for (auto test : testObj) test->Destroy();
-		}));*/
+			NETWORKMANAGER->SendTextMessage("Hello there!");
+		}));
 }

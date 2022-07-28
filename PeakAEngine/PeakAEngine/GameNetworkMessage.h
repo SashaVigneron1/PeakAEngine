@@ -3,33 +3,22 @@
 enum class GameMessageType
 {
     Unknown,
-    GameStart,
-    GameTurn,
-    GameOver,
-    GameLeft,
-    GameSettings,
-    PlayerState,
-    PowerUpSpawn,
-    WorldSetup,
-    WorldData,
-    ShipSpawn,
-    ShipInput,
-    ShipData,
-    ShipDeath,
 
     PlayerJoin,
     PlayerLeave,
-    ObjectMove,
 
+    ObjectCreated,
+    ObjectUpdated,
+    ObjectDestroyed
 };
 
 class GameNetworkMessage
 {
 public:
     GameNetworkMessage();
-    GameNetworkMessage(GameMessageType type, unsigned data);
-    GameNetworkMessage(GameMessageType type, const std::string& data);
-    GameNetworkMessage(GameMessageType type, const std::vector<uint8_t>& data);
+    GameNetworkMessage(GameMessageType type, const std::string& objName, unsigned data);
+    GameNetworkMessage(GameMessageType type, const std::string& objName, const std::string& data);
+    GameNetworkMessage(GameMessageType type, const std::string& objName, const std::vector<uint8_t>& data);
     GameNetworkMessage(const std::vector<uint8_t>& data);
     ~GameNetworkMessage();
 
@@ -43,8 +32,11 @@ public:
     unsigned UnsignedValue();
 
     std::vector<uint8_t> Serialize() const;
+    std::string ObjectName() const { return m_ObjectName; }
 
 private:
     GameMessageType m_type;
     std::vector<uint8_t> m_data;
+    int m_ObjectNameLength;
+    std::string m_ObjectName;
 };

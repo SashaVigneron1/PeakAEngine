@@ -1,7 +1,7 @@
 #include "PeakAEnginePCH.h"
 #include "Managers.h"
 
-#include "PlayerState.h"
+#include "ObjectState.h"
 
 void GameStateManager::ProcessNetworkMessage(const std::string& sender, std::shared_ptr<GameNetworkMessage>& message)
 {
@@ -11,93 +11,113 @@ void GameStateManager::ProcessNetworkMessage(const std::string& sender, std::sha
     {
         case GameMessageType::PlayerJoin:
         {
-            auto itr = m_peers.find(sender);
-            if (itr == m_peers.end())
+            auto itr = m_PeerObjects.find(sender);
+            if (itr == m_PeerObjects.end())
             {
                 if (sender != localPeerId)
                 {
-                    // Sender != LocalPlayer
-                    auto playerState = std::make_shared<PlayerState>(message->StringValue().c_str());
-                    playerState->SetPeerId(sender);
+                    //Create Other Player RootObject
+                    auto objectState = std::make_shared<ObjectState>(message->StringValue(), sender);
 
-                    m_peers[sender] = playerState;
+                    m_PeerObjects[sender]["PlayerManager"] = objectState;
 
-                    Logger::LogInfo("[GameStateManager] Received PlayerInfo for: " + playerState->GetDisplayName());
+                    Logger::LogInfo("[GameStateManager] Received PlayerJoin for: " + objectState->GetDisplayName());
                 }
             }
             else
             {
-                // Sender is known
-                Logger::LogInfo("[GameStateManager] Received PlayerInfo from known peer: " + sender);
-            }
-            break;
-        }
-        case GameMessageType::ObjectMove:
-        {
-            Logger::LogInfo("[GameStateManager] Received an ObjectMove message from " + sender);
-            auto playerState = GetPlayerState(sender);
-            if (playerState != nullptr && sender != localPeerId)
-            {
-                playerState->DeserializePlayerStateData(message->RawData());
-            }
-            else
-            {
-                Logger::LogError("[GameStateManager] No PlayerState exists for peer " + sender);
+                // Sender is already known
+                Logger::LogInfo("[GameStateManager] Received PlayerJoin from known peer: " + sender);
             }
             break;
         }
         case GameMessageType::PlayerLeave:
+        {
             Logger::LogInfo("[GameStateManager] Received a PlayerLeave message from " + sender);
-            auto playerState = GetPlayerState(sender);
-            if (playerState != nullptr && sender != localPeerId)
+            DestroyPeer(sender);
+            break;
+        }
+        case GameMessageType::ObjectCreated:
+        {
+            Logger::LogInfo("[GameStateManager] Received a ObjectCreated message from " + sender);
+            //ToDoo: Handle Object Creation
+
+                
+
+            break;
+        }
+        case GameMessageType::ObjectUpdated:
+        {
+            Logger::LogInfo("[GameStateManager] Received an ObjectUpdated message from " + sender + " for object: " + message->ObjectName());
+            auto objectState = GetObjectState(sender, message->ObjectName());
+            if (objectState != nullptr && sender != localPeerId)
             {
-                auto itr = m_peers.find(sender);
-                if (itr == m_peers.end())
-                {
-                    m_peers[sender] = nullptr;
-                }
+                objectState->DeserializeObjectStateData(message->RawData());
             }
             else
             {
                 Logger::LogError("[GameStateManager] No PlayerState exists for peer " + sender);
             }
             break;
+        }
+        case GameMessageType::ObjectDestroyed:
+        {
+            //ToDoo: Handle Object Deletion
+            break;
+        }
     }
 }
 
-std::shared_ptr<PlayerState> GameStateManager::GetPlayerState(const std::string& peer)
+std::shared_ptr<ObjectState> GameStateManager::GetObjectState(const std::string& peer, const std::string& objName)
 {
     if (peer == PLAYFABMANAGER->GetEntityKey().Id)
     {
         // If LocalPlayer
-        return m_LocalPlayer;
+        if (m_LocalObjects.contains(objName))
+            return m_LocalObjects[objName];
     }
     else 
     {
         // If not LocalPlayer
-        auto itr = m_peers.find(peer);
-        if (itr != m_peers.end())
+        auto peerItr = m_PeerObjects.find(peer);
+        if (peerItr != m_PeerObjects.end())
         {
-            return (*itr).second;
+            auto objItr = peerItr->second.find(objName);
+            if (objItr != peerItr->second.end())
+                return (*objItr).second;
         }
     }
     return nullptr;
 }
 
-void GameStateManager::CreateLocalPlayer()
+void GameStateManager::CreateLocalObject()
 {
-    auto playerState = std::make_shared<PlayerState>(PLAYFABMANAGER->GetUsername().c_str(), true);
-    playerState->SetPeerId(PLAYFABMANAGER->GetEntityKey().Id);
+    auto objectState = std::make_shared<ObjectState>(PLAYFABMANAGER->GetUsername().c_str(), PLAYFABMANAGER->GetEntityKey().Id);
 
-    m_LocalPlayer = playerState;
-    Logger::LogInfo("[GameStateManager] Received PlayerInfo for: " + playerState->GetDisplayName());
+    m_LocalObjects["PlayerManager"] = objectState;
+    Logger::LogInfo("[GameStateManager] Created local object for " + objectState->GetDisplayName() + " with the name: " + "PlayerManager");
 }
 
-void GameStateManager::DestroyPlayerObject(const std::string& userId)
+void GameStateManager::DestroyObject(const std::string& userId, const std::string& objectName)
 {
-    auto itr = m_peers.find(userId);
-    if (itr != m_peers.end())
+    auto peerItr = m_PeerObjects.find(userId);
+    if (peerItr != m_PeerObjects.end())
     {
-        itr->second = nullptr;
+        auto objItr = peerItr->second.find(objectName);
+        if (objItr != peerItr->second.end())
+            objItr->second = nullptr;
     }
+}
+
+void GameStateManager::DestroyPeer(const std::string& peer)
+{
+    auto peerItr = m_PeerObjects.find(peer);
+    if (peerItr != m_PeerObjects.end())
+    {
+        for (auto obj : peerItr->second)
+            obj.second = nullptr;
+
+        return;
+    }
+    Logger::LogError("[GameStateManager] No such peer found: " + peer);
 }

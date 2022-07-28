@@ -17,8 +17,6 @@
 #include "PeakAEngine/UI_Text.h"
 #include "PeakAEngine/UI_InputField.h"
 
-#include "PeakAEngine/TestComponent.h"
-
 TestScene::TestScene()
 	: Scene{ }
 {
@@ -56,9 +54,6 @@ void TestScene::Initialize()
 	collider->SetDebugColor({ 0,0,255,100 });
 	collider->EnableDebugDrawing(true);
 
-	auto test = go->CreateComponent<TestComponent>();
-	test->SetEnabled(true);
-
 	go->GetTransform()->SetWorldPosition({ 0,0 });
 	go->GetTransform()->SetWorldScale({ 1, 1 });
 	go->GetTransform()->Rotate(45.f);
@@ -88,9 +83,6 @@ void TestScene::Initialize()
 	spriteRenderer->SetActiveSprite("Walking");
 	spriteRenderer->SetEnabled(true);
 	spriteRenderer->SetPixelsPerUnit(16);
-
-	test = go->CreateComponent<TestComponent>();
-	test->SetEnabled(false);
 
 	go->GetTransform()->SetWorldPosition({ 0,-1 });
 	go->GetTransform()->SetWorldScale({ 30, 1 });

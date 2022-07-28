@@ -3,7 +3,6 @@
 
 #include "PeakAEngine/Managers.h"
 
-#include "PeakAEngine/TestComponent.h"
 #include "PeakAEngine/SpriteRenderer.h"
 #include "PeakAEngine/RenderComponent.h"
 #include "PeakAEngine/RigidBody.h"
@@ -59,7 +58,7 @@ void RoomSelectorScene::Initialize()
 				});
 
 			SCENEMANAGER->LoadScene("GameScene");
-			GAMESTATE->CreateLocalPlayer();
+			GAMESTATE->CreateLocalObject();
 		});
 
 	// JOIN ROOM
@@ -98,9 +97,10 @@ void RoomSelectorScene::Initialize()
 					// Load Scene
 					SCENEMANAGER->LoadScene("GameScene");
 
-					GAMESTATE->CreateLocalPlayer();
+					GAMESTATE->CreateLocalObject();
 
 					NETWORKMANAGER->ToggleVoiceChat(true);
+
 				});
 		});
 

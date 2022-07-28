@@ -2,7 +2,7 @@
 #include "NetworkManager.h"
 
 #include "GameNetworkMessage.h"
-#include "PlayerState.h"
+#include "ObjectState.h"
 #include "PartyImpl.h"
 
 #include "Managers.h"
@@ -128,10 +128,10 @@ void NetworkManager::SendGameMessage(const GameNetworkMessage& message)
         // or sequentially, but the rest are needed for gameplay
         switch (message.MessageType())
         {
-        case GameMessageType::ShipInput:
-        case GameMessageType::ShipData:
-            deliveryOptions = PartySendMessageOptions::Default;
-            break;
+        case GameMessageType::PlayerJoin:
+        case GameMessageType::PlayerLeave:
+        case GameMessageType::ObjectCreated:
+        case GameMessageType::ObjectUpdated:
         default:
             deliveryOptions = PartySendMessageOptions::GuaranteedDelivery |
                 PartySendMessageOptions::SequentialDelivery;
@@ -513,7 +513,6 @@ void NetworkManager::Update()
             {
                 Logger::LogError("[NetworkManager] Failed: ");
                 LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
-                //Managers::Get<GameStateManager>()->ResetGame("Unable to establish network endpoint");
             }
             break;
         }
@@ -533,21 +532,22 @@ void NetworkManager::Update()
             {
                 // Send out our info packets to any new connections so
                 // they'll know about us.
-                auto playerState = GAMESTATE->GetPlayerState(PLAYFABMANAGER->GetEntityKey().Id);
-                auto displayName = playerState->GetDisplayName();
-
-                SendGameMessage(GameNetworkMessage(GameMessageType::PlayerJoin,
-                    displayName));
-
-                TIME->AddTimer(std::make_shared<FrameCounter>(1, [=] 
-                    {
-                    SendGameMessage(GameNetworkMessage(GameMessageType::PlayerState,
-                        playerState->SerializePlayerStateData()));
-                    }));
-                
-
-                Logger::LogInfo("[NetworkManager] Established endpoint with user " + std::string{ user } + " (" + displayName + ")");
-
+                auto playerState = GAMESTATE->GetObjectState(user, "PlayerManager");
+                if (playerState)
+                {
+                    auto displayName = playerState->GetDisplayName();
+                    SendGameMessage(GameNetworkMessage(GameMessageType::PlayerJoin, "PlayerManager", displayName));
+                    TIME->AddTimer(std::make_shared<FrameCounter>(1, [=]
+                        {
+                            SendGameMessage(GameNetworkMessage(GameMessageType::ObjectUpdated, "PlayerManager",
+                                playerState->SerializeObjectStateData()));
+                        }));
+                    Logger::LogInfo("[NetworkManager] Established endpoint with user " + std::string{ user } + " (" + displayName + ")");
+                }
+                else 
+                {
+                    Logger::LogWarning("[NetworkManager] Established endpoint with user " + std::string{ user } + ". But no playerinfo was found.");
+                }
             }
             break;
         }
@@ -564,11 +564,11 @@ void NetworkManager::Update()
                 // Our endpoint was disconnected
                 m_localEndpoint = nullptr;
 
-                auto playerState = GAMESTATE->GetPlayerState(PLAYFABMANAGER->GetEntityKey().Id);
+                auto playerState = GAMESTATE->GetObjectState(PLAYFABMANAGER->GetEntityKey().Id, "PlayerManager");
                 auto displayName = playerState->GetDisplayName();
+                SendGameMessage(GameNetworkMessage(GameMessageType::PlayerLeave, "PlayerManager",
+                        displayName));
 
-                SendGameMessage(GameNetworkMessage(GameMessageType::PlayerLeave,
-                    displayName));
             }
             else
             {
@@ -584,7 +584,7 @@ void NetworkManager::Update()
 
                 std::string userId(user);
                 Logger::LogInfo("[NetworkManager] Another user has disconnected: " + userId);
-                GAMESTATE->DestroyPlayerObject(userId);
+                GAMESTATE->DestroyObject(userId, "PlayerManager");
             }
             break;
         }
@@ -898,8 +898,8 @@ void NetworkManager::Update()
             }
 
             // Toast the text on the screen
+            Logger::LogInfo("[NetworkManager] Chat Text: " + std::string{ result->chatText });
             Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(result->senderChatControl) + ": " + message);
-            Logger::LogInfo("NetworkManager: Chat Text: " + std::string{ result->chatText });
 
             break;
         }
@@ -1043,7 +1043,7 @@ std::string NetworkManager::DisplayNameFromChatControl(PartyChatControl* control
         std::string senderid(sender);
 
         //// Get the display name of the sender
-        auto playerInfo = GAMESTATE->GetPlayerState(senderid);
+        auto playerInfo = GAMESTATE->GetObjectState(senderid, "PlayerManager");
 
         if (playerInfo != nullptr)
         {
