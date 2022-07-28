@@ -27,13 +27,12 @@ glm::mat3x3 Transform::GetWorldMatrix()
 
 		m_WorldMatrixDirty = false;
 
-		// If networking: sync this part
 		auto objState = GetGameObject()->GetObjectState();
 		if (objState)
 			NETWORKMANAGER->SendGameMessage(GameNetworkMessage(
-						GameMessageType::ObjectUpdated, GetGameObject()->GetName(),
-						objState->SerializeObjectStateData()
-					));
+				GameMessageType::ObjectUpdated, GetGameObject()->GetName(),
+				objState->SerializeObjectStateData()
+							));
 	}
 
 	return m_WorldMatrix;

@@ -1,9 +1,13 @@
 #include "PeakAEnginePCH.h"
 #include "GameObject.h"
 
+#include "Managers.h"
+
 #include "Component.h"
 #include "Transform.h"
 #include "BoxCollider.h"
+
+#include "ObjectState.h"
 
 GameObject::GameObject(const std::string& name, GameObject* parent, Scene* scene)
 	: m_Name{ name }
@@ -404,3 +408,19 @@ bool GameObject::IsMarkedForDestroy() const
 {
 	return m_IsMarkedForDestroy;
 }
+
+//void GameObject::SetObjectState(ObjectState* objectState, float timeBetweenSync)
+//{
+//	m_ObjectState = objectState;
+//
+//	TIME->AddTimer(std::make_shared<Timer>(timeBetweenSync, [=]
+//		{
+//			if (m_ObjectState)
+//			{
+//				NETWORKMANAGER->SendGameMessage(GameNetworkMessage(
+//					GameMessageType::ObjectUpdated, m_Name,
+//					m_ObjectState->SerializeObjectStateData()
+//				));
+//			}
+//		}, true));
+//}

@@ -4,6 +4,7 @@ class GameObject;
 
 struct ObjectStateData
 {
+    int objectTypeId;
     glm::vec2 newPos;
 };
 
@@ -24,11 +25,15 @@ public:
 
     void SetGameObject(GameObject* obj) { m_pGameObject = obj; }
     GameObject* GetGameObject() const { return m_pGameObject; }
+
+    int GetTypeId() const { return m_ObjectTypeId; }
+    void SetTypeId(int id) { m_ObjectTypeId = id; }
 private:
     std::string m_DisplayName;
     std::string m_PeerId;
     glm::vec2 m_Position;
 
+    int m_ObjectTypeId;
     GameObject* m_pGameObject;
 };
 

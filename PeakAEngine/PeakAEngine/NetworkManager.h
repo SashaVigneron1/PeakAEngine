@@ -19,7 +19,7 @@ public:
     void Initialize();
     void CreateAndConnectToNetwork(const char* inviteId, std::function<void(std::string)> onNetworkCreated = nullptr);
     void ConnectToNetwork(const char* inviteId, const char* descriptor, std::function<void(void)> onNetworkConnected = nullptr);
-    void SendGameMessage(const GameNetworkMessage& message);
+    void SendGameMessage(const GameNetworkMessage& message, bool useEndpointList = false, const std::string& entitiesToSendTo = "");
     void SendTextMessage(const std::string& text);
     void LeaveNetwork(std::function<void(void)> onNetworkDestroyed = nullptr);
     void Destroy();
@@ -66,6 +66,7 @@ private:
 
     // Other
     NetworkManagerState m_state{};
+    bool m_isDebugging{ false };
     bool m_partyInitialized{};
     bool m_enableCognitiveServices{};
 };

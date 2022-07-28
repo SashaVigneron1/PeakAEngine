@@ -50,5 +50,6 @@ void GameNetworkManager::CreateObject(const std::string& name, const std::string
 	}
 
 	// Send To GameState
+	object->SetTypeId((int)type);
 	GAMESTATE->CreateObject(object, int(type), peer, name);
 }

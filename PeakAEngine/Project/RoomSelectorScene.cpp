@@ -44,6 +44,8 @@ void RoomSelectorScene::Initialize()
 
 	createRoomButton->SetFunctionToExecute([=]
 		{
+			GAMESTATE->CreateLocalObject();
+
 			NETWORKMANAGER->CreateAndConnectToNetwork("1", [=](std::string desc) {
 
 				Json::Value functionParams;
@@ -61,7 +63,6 @@ void RoomSelectorScene::Initialize()
 				});
 
 			SCENEMANAGER->LoadScene("GameScene");
-			GAMESTATE->CreateLocalObject();
 
 			GameNetworkManager::GetInstance().CreateObject("testObject", PLAYFABMANAGER->GetEntityKey().Id, ObjectType::TestObject);
 		});
@@ -76,6 +77,8 @@ void RoomSelectorScene::Initialize()
 
 	joinRoomButton->SetFunctionToExecute([=]
 		{
+			GAMESTATE->CreateLocalObject();
+
 			std::string descriptor;
 
 			// RECEIVE SERIALIZED DESCRIPTOR
@@ -102,7 +105,6 @@ void RoomSelectorScene::Initialize()
 					// Load Scene
 					SCENEMANAGER->LoadScene("GameScene");
 
-					GAMESTATE->CreateLocalObject();
 
 					NETWORKMANAGER->ToggleVoiceChat(true);
 

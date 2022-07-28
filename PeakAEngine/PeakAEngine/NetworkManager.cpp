@@ -6,12 +6,13 @@
 #include "PartyImpl.h"
 
 #include "Managers.h"
+#include <set>
 
 using namespace Party;
 
 void NetworkManager::Initialize()
 {
-    Logger::LogInfo("[NetworkManager] Initializing NetworkManager.\n");
+    if (m_isDebugging) Logger::LogInfo("[NetworkManager] Initializing NetworkManager.\n");
 
     auto& partyManager = PartyManager::GetSingleton();
     PartyError err;
@@ -34,7 +35,7 @@ void NetworkManager::Initialize()
 
 void NetworkManager::CreateAndConnectToNetwork(const char* inviteId, std::function<void(std::string)> onNetworkCreated)
 {
-    Logger::LogInfo("[NetworkManager] CreateAndConnectToNetwork()");
+    if (m_isDebugging) Logger::LogInfo("[NetworkManager] CreateAndConnectToNetwork()");
 
     PartyNetworkConfiguration cfg = {};
 
@@ -84,7 +85,7 @@ void NetworkManager::CreateAndConnectToNetwork(const char* inviteId, std::functi
 
 void NetworkManager::ConnectToNetwork(const char* inviteId, const char* descriptor, std::function<void(void)> onNetworkConnected)
 {
-    Logger::LogInfo("[NetworkManager] ConnectToNetwork()");
+    if (m_isDebugging) Logger::LogInfo("[NetworkManager] ConnectToNetwork()");
 
     PartyNetworkDescriptor networkDescriptor = {};
 
@@ -105,7 +106,7 @@ void NetworkManager::ConnectToNetwork(const char* inviteId, const char* descript
     }
 }
 
-void NetworkManager::SendGameMessage(const GameNetworkMessage& message)
+void NetworkManager::SendGameMessage(const GameNetworkMessage& message, bool useEndpointList, const std::string& entitiesToSendTo)
 {
     if (m_localEndpoint && m_state == NetworkManagerState::NetworkConnected)
     {
@@ -134,10 +135,46 @@ void NetworkManager::SendGameMessage(const GameNetworkMessage& message)
                 PartySendMessageOptions::SequentialDelivery;
         }
 
+        uint32_t endpointCount = 0;
+        PartyEndpoint* pDestEndpoint = nullptr;
+        PartyEndpointArray endpointList = nullptr;
+
+        if (useEndpointList)
+        {
+            // Get EndpointsToSendTo:
+            std::stringstream sstr{ entitiesToSendTo };
+            std::set<std::string> entities;
+            while (sstr.good())
+            {
+                std::string substr;
+                getline(sstr, substr, ',');
+                entities.insert(substr);
+            }
+
+            // Get Endpoints
+            auto err = m_network->GetEndpoints(&endpointCount, &endpointList);
+            if (PARTY_FAILED(err))
+                LogPartyError("[NetworkManager] Failed To Get Endpoints: ", err);
+
+            // Filter Out Endpoints
+            for (uint32_t i{}; i < endpointCount; ++i)
+            {
+                const char* endpointEntityID = nullptr;
+                err = endpointList[i]->GetEntityId(&endpointEntityID);
+
+                if (entities.contains(endpointEntityID))
+                {
+                    endpointCount = 1;
+                    pDestEndpoint = endpointList[i];
+                    break;
+                }
+            }
+        }
+
         // Send out the message to all other peers
         PartyError err = m_localEndpoint->SendMessage(
-            0,                                      // endpoint count; 0 = broadcast
-            nullptr,                                // endpoint list
+            endpointCount,                                      // endpoint count; 0 = broadcast
+            &pDestEndpoint,                                // endpoint list
             deliveryOptions,                        // send message options
             nullptr,                                // configuration
             1,                                      // buffer count
@@ -156,7 +193,7 @@ void NetworkManager::SendTextMessage(const std::string& text)
 {
     if (m_localChatControl != nullptr)
     {
-        Logger::LogInfo("[NetworkManager] Send text message: " + text);
+        if (m_isDebugging) Logger::LogInfo("[NetworkManager] Send text message: " + text);
 
         std::vector<PartyChatControl*> targets;
 
@@ -186,13 +223,13 @@ void NetworkManager::SendTextMessage(const std::string& text)
         }
 
         // Toast the text on the screen
-        Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(m_localChatControl) + ": " + text);
+        if (m_isDebugging) Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(m_localChatControl) + ": " + text);
     }
 }
 
 void NetworkManager::LeaveNetwork(std::function<void(void)> onNetworkDestroyed)
 {
-    Logger::LogInfo("[NetworkManager] LeaveNetwork()");
+    if (m_isDebugging) Logger::LogInfo("[NetworkManager] LeaveNetwork()");
 
     if (m_state != NetworkManagerState::Leaving && m_network != nullptr)
     {
@@ -393,7 +430,7 @@ void NetworkManager::CreateLocalChatControl()
 
 void NetworkManager::Destroy()
 {
-    Logger::LogInfo("[NetworkManager] Shutting down...");
+    if (m_isDebugging) Logger::LogInfo("[NetworkManager] Shutting down...");
 
     m_state = NetworkManagerState::Initialize;
 
@@ -438,18 +475,18 @@ void NetworkManager::Update()
         {
         case PartyStateChangeType::CreateNewNetworkCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::CreateNewNetworkCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::CreateNewNetworkCompleted");
             auto result = static_cast<const PartyCreateNewNetworkCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
-                Logger::LogSuccess("[NetworkManager] CreateNewNetworkCompleted: SUCCESS");
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] CreateNewNetworkCompleted: SUCCESS");
                 PartyString entityId;
                 result->localUser->GetEntityId(&entityId);
-                Logger::LogSuccess("[NetworkManager] CreateNewNetworkCompleted: EntityId: " + std::string{entityId});
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] CreateNewNetworkCompleted: EntityId: " + std::string{entityId});
             }
             else
             {
-                Logger::LogError("[NetworkManager] Failed: ");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Failed: ");
                 LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
                 //Managers::Get<GameStateManager>()->ResetGame("Unable to create network");
             }
@@ -457,11 +494,11 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::ConnectToNetworkCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::ConnectToNetworkCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::ConnectToNetworkCompleted");
             auto result = static_cast<const PartyConnectToNetworkCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
-                Logger::LogSuccess("[NetworkManager] ConnectToNetworkCompleted: SUCCESS");
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] ConnectToNetworkCompleted: SUCCESS");
                 m_state = NetworkManagerState::NetworkConnected;
                 // Callback if ConnectToNetwork() was called
                 if (m_onNetworkConnected)
@@ -485,14 +522,14 @@ void NetworkManager::Update()
                         m_onNetworkCreated(std::string());
                     }
 
-                    Logger::LogInfo("[Serialized value: ]" + std::string{ descriptor });
+                    if (m_isDebugging) Logger::LogInfo("[Serialized value: ]" + std::string{ descriptor });
                     // Callback with the descriptor to be shared with connecting clients
                     m_onNetworkCreated(std::string(descriptor));
                 }
             }
             else
             {
-                Logger::LogError("[NetworkManager] Failed: ");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Failed: ");
                 LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
                 //Managers::Get<GameStateManager>()->ResetGame("Unable to connect to network");
             }
@@ -500,22 +537,22 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::CreateEndpointCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::CreateEndpointCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::CreateEndpointCompleted");
             auto result = static_cast<const PartyCreateEndpointCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
-                Logger::LogSuccess("[NetworkManager] CreateEndpointCompleted: SUCCESS");
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] CreateEndpointCompleted: SUCCESS");
             }
             else
             {
-                Logger::LogError("[NetworkManager] Failed: ");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Failed: ");
                 LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
             }
             break;
         }
         case PartyStateChangeType::EndpointCreated:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::EndpointCreated");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::EndpointCreated");
             auto result = static_cast<const PartyEndpointCreatedStateChange*>(change);
             PartyString user = nullptr;
 
@@ -529,31 +566,25 @@ void NetworkManager::Update()
             {
                 // Send out our info packets to any new connections so
                 // they'll know about us.
-                auto playerState = GAMESTATE->GetObjectState(user, "PlayerManager");
-                if (playerState)
-                {
-                    auto displayName = playerState->GetDisplayName();
-                    SendGameMessage(GameNetworkMessage(GameMessageType::PlayerJoin, "PlayerManager", displayName));
-                    TIME->AddTimer(std::make_shared<FrameCounter>(1, [=]
-                        {
-                            SendGameMessage(GameNetworkMessage(GameMessageType::ObjectUpdated, "PlayerManager",
-                                playerState->SerializeObjectStateData()));
-                        }));
-                    Logger::LogInfo("[NetworkManager] Established endpoint with user " + std::string{ user } + " (" + displayName + ")");
-                }
-                else 
-                {
-                    Logger::LogWarning("[NetworkManager] Established endpoint with user " + std::string{ user } + ". But no playerinfo was found.");
-                }
+                auto playerState = GAMESTATE->GetObjectState(PLAYFABMANAGER->GetEntityKey().Id, "PlayerManager");
+                auto displayName = playerState->GetDisplayName();
+                SendGameMessage(GameNetworkMessage(GameMessageType::PlayerJoin, "PlayerManager", displayName));
+
+                // Waiting one frame (because obj gets created 1 frame later)
+                TIME->AddTimer(std::make_shared<FrameCounter>(1, [=]
+                    {
+                        SendGameMessage(GameNetworkMessage(GameMessageType::ObjectUpdated, "PlayerManager",
+                            playerState->SerializeObjectStateData()));
+                    }));
             }
             break;
         }
         case PartyStateChangeType::EndpointDestroyed:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::EndpointDestroyed");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::EndpointDestroyed");
             auto result = static_cast<const PartyEndpointDestroyedStateChange*>(change);
 
-            Logger::LogInfo("Endpoint is \n" + (result->endpoint == m_localEndpoint) ? "local" : "remote");
+            if (m_isDebugging) Logger::LogInfo("Endpoint is \n" + (result->endpoint == m_localEndpoint) ? "local" : "remote");
             LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
 
             if (result->endpoint == m_localEndpoint)
@@ -565,7 +596,6 @@ void NetworkManager::Update()
                 auto displayName = playerState->GetDisplayName();
                 SendGameMessage(GameNetworkMessage(GameMessageType::PlayerLeave, "PlayerManager",
                         displayName));
-
             }
             else
             {
@@ -580,16 +610,15 @@ void NetworkManager::Update()
                 }
 
                 std::string userId(user);
-                Logger::LogInfo("[NetworkManager] Another user has disconnected: " + userId);
+                if (m_isDebugging) Logger::LogInfo("[NetworkManager] Another user has disconnected: " + userId);
                 GAMESTATE->DestroyPeer(userId);
-                //GAMESTATE->DestroyObject(userId, "PlayerManager");
             }
             break;
         }
         case PartyStateChangeType::EndpointMessageReceived:
         {
             // This is spammy, but can be useful when debugging
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::EndpointMessageReceived");
+            //Logger::LogInfo("[NetworkManager] PartyStateChangeType::EndpointMessageReceived");
 
             auto result = static_cast<const PartyEndpointMessageReceivedStateChange*>(change);
             auto buffer = static_cast<const uint8_t*>(result->messageBuffer);
@@ -616,15 +645,15 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::AuthenticateLocalUserCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::AuthenticateLocalUserCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::AuthenticateLocalUserCompleted");
             auto result = static_cast<const PartyAuthenticateLocalUserCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
-                Logger::LogSuccess("[NetworkManager] SUCCESS");
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] SUCCESS");
             }
             else
             {
-                Logger::LogError("[NetworkManager] Failed: ");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Failed: ");
                 LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
                 //Managers::Get<GameStateManager>()->ResetGame("Unable to authenticate local user");
             }
@@ -632,16 +661,16 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::LocalUserRemoved:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::LocalUserRemoved");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::LocalUserRemoved");
             if (m_state != NetworkManagerState::Leaving)
             {
-                Logger::LogWarning("[NetworkManager] Unexpected local user removal!");
+                if (m_isDebugging) Logger::LogWarning("[NetworkManager] Unexpected local user removal!");
             }
             break;
         }
         case PartyStateChangeType::LeaveNetworkCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::LeaveNetworkCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::LeaveNetworkCompleted");
             m_state = NetworkManagerState::Initialize;
             if (m_onNetworkDestroyed)
             {
@@ -651,53 +680,53 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::NetworkDestroyed:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::NetworkDestroyed");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::NetworkDestroyed");
             m_network = nullptr;
             if (m_state != NetworkManagerState::Leaving)
             {
-                Logger::LogWarning("[NetworkManager] Unexpected network destruction!");
+                if (m_isDebugging) Logger::LogWarning("[NetworkManager] Unexpected network destruction!");
                 //Managers::Get<GameStateManager>()->ResetGame("Unexpected network destruction");
             }
             break;
         }
         case PartyStateChangeType::NetworkConfigurationMadeAvailable:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::NetworkConfigurationMadeAvailable");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::NetworkConfigurationMadeAvailable");
             break;
         }
         case PartyStateChangeType::RemoteDeviceCreated:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::RemoteDeviceCreated");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::RemoteDeviceCreated");
             break;
         }
         case PartyStateChangeType::RemoteDeviceJoinedNetwork:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::RemoteDeviceJoinedNetwork");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::RemoteDeviceJoinedNetwork");
             break;
         }
         case PartyStateChangeType::RemoteDeviceDestroyed:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::RemoteDeviceDestroyed");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::RemoteDeviceDestroyed");
             break;
         }
         case PartyStateChangeType::RemoteDeviceLeftNetwork:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::RemoteDeviceLeftNetwork");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::RemoteDeviceLeftNetwork");
             break;
         }
         case PartyStateChangeType::ChatControlJoinedNetwork:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatControlJoinedNetwork");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatControlJoinedNetwork");
             break;
         }
         case PartyStateChangeType::ChatControlLeftNetwork:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatControlLeftNetwork");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatControlLeftNetwork");
             break;
         }
         case PartyStateChangeType::ChatControlDestroyed:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatControlDestroyed");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatControlDestroyed");
             auto result = static_cast<const PartyChatControlDestroyedStateChange*>(change);
             PartyString sender = nullptr;
             err = result->chatControl->GetEntityId(&sender);
@@ -708,11 +737,11 @@ void NetworkManager::Update()
             }
             else
             {
-                Logger::LogInfo("[NetworkManager] Created ChatControl from: " + std::string{ sender });
+                if (m_isDebugging) Logger::LogInfo("[NetworkManager] Created ChatControl from: " + std::string{ sender });
 
                 if (result->chatControl == m_localChatControl)
                 {
-                    Logger::LogInfo("[NetworkManager] Local ChatControl destroyed." + std::string{ sender });
+                    if (m_isDebugging) Logger::LogInfo("[NetworkManager] Local ChatControl destroyed." + std::string{ sender });
                     m_localChatControl = nullptr;
 
                     if (m_state == NetworkManagerState::Leaving)
@@ -730,7 +759,7 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::ChatControlCreated:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatControlCreated");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatControlCreated");
             auto result = static_cast<const PartyChatControlCreatedStateChange*>(change);
             PartyString sender = nullptr;
             err = result->chatControl->GetEntityId(&sender);
@@ -741,7 +770,7 @@ void NetworkManager::Update()
             }
             else
             {
-                Logger::LogInfo("[NetworkManager] Created ChatControl for: " + std::string{ sender });
+                if (m_isDebugging) Logger::LogInfo("[NetworkManager] Created ChatControl for: " + std::string{ sender });
                 m_chatControls[sender] = result->chatControl;
 
                 PartyLocalChatControl* local = nullptr;
@@ -753,7 +782,7 @@ void NetworkManager::Update()
                 }
                 else if (local == nullptr)
                 {
-                    Logger::LogInfo("[NetworkManager] ChatControl is remote.");
+                    if (m_isDebugging) Logger::LogInfo("[NetworkManager] ChatControl is remote.");
 
                     // Remote ChatControl added, set chat permissions
                     err = m_localChatControl->SetPermissions(
@@ -773,16 +802,16 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::ConnectChatControlCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::ConnectChatControlCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::ConnectChatControlCompleted");
             auto result = static_cast<const PartyConnectChatControlCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
                 //SetCognitiveServicesEnabled(m_enableCognitiveServices);
-                Logger::LogSuccess("[NetworkManager] Succeeded.");
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] Succeeded.");
             }
             else
             {
-                Logger::LogError("[NetworkManager] Failed: ");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Failed: ");
                 LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
                 //Managers::Get<ScreenManager>()->ShowError("Voice chat failed");
             }
@@ -790,15 +819,15 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::CreateChatControlCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::CreateChatControlCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::CreateChatControlCompleted");
             auto result = static_cast<const PartyCreateChatControlCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
-                Logger::LogSuccess("[NetworkManager] Succeeded.");
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] Succeeded.");
             }
             else
             {
-                Logger::LogError("[NetworkManager] Failed: ");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Failed: ");
                 LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
                 //Managers::Get<ScreenManager>()->ShowError("Voice chat failed");
             }
@@ -806,21 +835,21 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::DestroyChatControlCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::DestroyChatControlCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::DestroyChatControlCompleted");
             auto result = static_cast<const PartyDestroyChatControlCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
-                Logger::LogSuccess("[NetworkManager] Succeeded.");
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] Succeeded.");
             }
             else
             {
-                Logger::LogError("[NetworkManager] Failed: ");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Failed: ");
                 LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
             }
         }
         case PartyStateChangeType::LocalChatAudioInputChanged:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::LocalChatAudioInputChanged");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::LocalChatAudioInputChanged");
             auto result = static_cast<const PartyLocalChatAudioInputChangedStateChange*>(change);
             if (PARTY_FAILED(result->errorDetail))
             {
@@ -830,37 +859,37 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::SetChatAudioInputCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetChatAudioInputCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetChatAudioInputCompleted");
             auto result = static_cast<const PartySetChatAudioInputCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
-                Logger::LogSuccess("[NetworkManager] Succeeded.");
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] Succeeded.");
             }
             else
             {
-                Logger::LogError("[NetworkManager] Failed.");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Failed.");
                 //Managers::Get<ScreenManager>()->ShowError("Voice chat failed");
             }
             break;
         }
         case PartyStateChangeType::SetChatAudioOutputCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetChatAudioOutputCompleted");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetChatAudioOutputCompleted");
             auto result = static_cast<const PartySetChatAudioOutputCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
-                Logger::LogSuccess("[NetworkManager] Succeeded.");
+                if (m_isDebugging) Logger::LogSuccess("[NetworkManager] Succeeded.");
             }
             else
             {
-                Logger::LogError("[NetworkManager] Failed: ");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Failed: ");
                 LogPartyError("[NetworkManager] Error Detail: ", result->errorDetail);
             }
             break;
         }
         case PartyStateChangeType::LocalChatAudioOutputChanged:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::LocalChatAudioOutputChanged");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::LocalChatAudioOutputChanged");
             auto result = static_cast<const PartyLocalChatAudioOutputChangedStateChange*>(change);
             if (PARTY_FAILED(result->errorDetail))
             {
@@ -870,7 +899,7 @@ void NetworkManager::Update()
         }
         case PartyStateChangeType::ChatTextReceived:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatTextReceived.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::ChatTextReceived.");
             auto result = static_cast<const PartyChatTextReceivedStateChange*>(change);
 
             // Toast the text on the screen
@@ -886,7 +915,7 @@ void NetworkManager::Update()
                 }
                 else
                 {
-                    Logger::LogError("[NetworkManager] Something went wrong translating the ChatTextReceived.");
+                    if (m_isDebugging) Logger::LogError("[NetworkManager] Something went wrong translating the ChatTextReceived.");
                 }
             }
 
@@ -896,14 +925,14 @@ void NetworkManager::Update()
             }
 
             // Toast the text on the screen
-            Logger::LogInfo("[NetworkManager] Chat Text: " + std::string{ result->chatText });
-            Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(result->senderChatControl) + ": " + message);
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] Chat Text: " + std::string{ result->chatText });
+            if (m_isDebugging) Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(result->senderChatControl) + ": " + message);
 
             break;
         }
         case PartyStateChangeType::VoiceChatTranscriptionReceived:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::VoiceChatTranscriptionReceived.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::VoiceChatTranscriptionReceived.");
             auto result = static_cast<const PartyVoiceChatTranscriptionReceivedStateChange*>(change);
 
             if (PARTY_FAILED(result->errorDetail))
@@ -912,11 +941,11 @@ void NetworkManager::Update()
             }
             if (result->result != PartyStateChangeResult::Succeeded)
             {
-                Logger::LogError("[NetworkManager] Something went wrong receiving the VoiceChatTranscription.");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Something went wrong receiving the VoiceChatTranscription.");
             }
             else if (result->transcription == nullptr)
             {
-                Logger::LogError("[NetworkManager] Transcription is null");
+                if (m_isDebugging) Logger::LogError("[NetworkManager] Transcription is null");
             }
             else
             {
@@ -933,7 +962,7 @@ void NetworkManager::Update()
                     }
                     else
                     {
-                        Logger::LogError("[NetworkManager] Something went wrong translating the VoiceChatTranscription.");
+                        if (m_isDebugging) Logger::LogError("[NetworkManager] Something went wrong translating the VoiceChatTranscription.");
                     }
                 }
 
@@ -943,75 +972,75 @@ void NetworkManager::Update()
                 }
 
                 // Toast the text on the screen
-                Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(result->senderChatControl) + ": " + message);
+                if (m_isDebugging) Logger::LogInfo("[CHAT] " + DisplayNameFromChatControl(result->senderChatControl) + ": " + message);
 
-                Logger::LogInfo("[NetworkManager] Chat Transcription: " + std::string{ result->transcription });
+                if (m_isDebugging) Logger::LogInfo("[NetworkManager] Chat Transcription: " + std::string{ result->transcription });
             }
             break;
         }
         case PartyStateChangeType::SynthesizeTextToSpeechCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::SynthesizeTextToSpeechCompleted.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::SynthesizeTextToSpeechCompleted.");
             //auto result = static_cast<const PartySynthesizeTextToSpeechCompletedStateChange*>(change);
             //LogResult(result);
             break;
         }
         case PartyStateChangeType::SetTextToSpeechProfileCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetTextToSpeechProfileCompleted.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetTextToSpeechProfileCompleted.");
             //auto result = static_cast<const PartySetTextToSpeechProfileCompletedStateChange*>(change);
             //LogResult(result);
             break;
         }
         case PartyStateChangeType::RegionsChanged:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::RegionsChanged.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::RegionsChanged.");
             //auto result = static_cast<const PartyRegionsChangedStateChange*>(change);
             //LogResult(result);
             break;
         }
         case PartyStateChangeType::CreateInvitationCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::CreateInvitationCompleted.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::CreateInvitationCompleted.");
             break;
         }
         case PartyStateChangeType::RevokeInvitationCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::RevokeInvitationCompleted.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::RevokeInvitationCompleted.");
             break;
         }
         case PartyStateChangeType::InvitationCreated:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::InvitationCreated.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::InvitationCreated.");
             break;
         }
         case PartyStateChangeType::InvitationDestroyed:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::InvitationDestroyed.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::InvitationDestroyed.");
             break;
         }
         case PartyStateChangeType::PopulateAvailableTextToSpeechProfilesCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::PopulateAvailableTextToSpeechProfilesCompleted.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::PopulateAvailableTextToSpeechProfilesCompleted.");
             //UpdateTTSProfile();
             break;
         }
         case PartyStateChangeType::SetTranscriptionOptionsCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetTranscriptionOptionsCompleted.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetTranscriptionOptionsCompleted.");
             //auto result = static_cast<const PartySetTranscriptionOptionsCompletedStateChange*>(change);
             //LogResult(result);
             break;
         }
         case PartyStateChangeType::SetTextChatOptionsCompleted:
         {
-            Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetTextChatOptionsCompleted.");
+            if (m_isDebugging) Logger::LogInfo("[NetworkManager] PartyStateChangeType::SetTextChatOptionsCompleted.");
             //auto result = static_cast<const PartySetTextChatOptionsCompletedStateChange*>(change);
             //LogResult(result);
             break;
         }
         default:
-            Logger::LogWarning("[NetworkManager] PartyStateChange: Event not found.");
+            if (m_isDebugging) Logger::LogWarning("[NetworkManager] PartyStateChange: Event not found.");
             break;
         }
     }
@@ -1061,5 +1090,5 @@ void NetworkManager::LogPartyError(const std::string& message, PartyError error)
     PartyString errString = "";
     PartyGetErrorMessage(error, &errString);
 
-    Logger::LogError(message + errString);
+    if (m_isDebugging) Logger::LogError(message + errString);
 }

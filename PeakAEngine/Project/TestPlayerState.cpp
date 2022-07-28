@@ -30,6 +30,10 @@ TestPlayerState::TestPlayerState(bool hasInput)
     spriteRenderer->SetEnabled(true);
     spriteRenderer->SetPixelsPerUnit(16);
 
+    go->GetTransform()->SetWorldPosition({ 0,0 });
+    go->GetTransform()->SetWorldScale({ 1, 1 });
+    go->GetTransform()->Rotate(45.f);
+
     if (hasInput)
     {
         go->CreateComponent<RigidBody>(RigidBody::BodyType::Dynamic, RigidBody::PhysicsMaterial{ 1.f,0.f,0.f,1.f }, true, 10.f);
@@ -40,14 +44,11 @@ TestPlayerState::TestPlayerState(bool hasInput)
 
         auto test = go->CreateComponent<TestComponent>(this);
         test->SetEnabled(true);
+
+        go->SetObjectState(this);
     }
 
-    go->GetTransform()->SetWorldPosition({ 0,0 });
-    go->GetTransform()->SetWorldScale({ 1, 1 });
-    go->GetTransform()->Rotate(45.f);
-
     m_pGameObject = go;
-    m_pGameObject->SetObjectState(this);
 
     m_OldPos = { 0,0 };
 }

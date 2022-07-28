@@ -27,9 +27,12 @@ public:
     void CreateLocalObject();
     void DestroyObject(const std::string& peer, const std::string& objectName);
     void DestroyPeer(const std::string& peer);
+
+    void SendMyObjectsToPeer(const std::string& peer);
 private:
     //// Functions
     //// Variables
+    bool m_IsDebugging{ true };
     std::vector<NetworkEvent> m_EventsThisFrame;
 
     // map<peerId, map<objName, objState>>

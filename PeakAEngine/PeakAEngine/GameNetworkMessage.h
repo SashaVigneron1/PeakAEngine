@@ -9,7 +9,9 @@ enum class GameMessageType
 
     ObjectCreated,
     ObjectUpdated,
-    ObjectDestroyed
+    ObjectDestroyed,
+
+    AskForObjects,
 };
 
 class GameNetworkMessage

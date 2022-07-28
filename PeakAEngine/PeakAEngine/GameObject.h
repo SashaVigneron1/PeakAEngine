@@ -43,7 +43,7 @@ public:
 	void Destroy();
 	bool IsMarkedForDestroy() const;
 
-	void SetObjectState(ObjectState* objectState) { m_ObjectState = objectState; }
+	void SetObjectState(ObjectState* objectState/*, float timeBetweenSync = 0.1f*/) { m_ObjectState = objectState; }
 	ObjectState* GetObjectState() const { return m_ObjectState; }
 private:
 	friend class Scene;

@@ -14,18 +14,19 @@ ObjectState::ObjectState(const std::string& displayName, const std::string& id)
 
 void ObjectState::DeserializeObjectStateData(const std::vector<uint8_t>& data)
 {
-    ObjectStateData rcvdPlayerStateData = ObjectStateData();
-    CopyMemory(&rcvdPlayerStateData, data.data(), sizeof(ObjectStateData));
+    ObjectStateData rcvdObjectStateData = ObjectStateData();
+    CopyMemory(&rcvdObjectStateData, data.data(), sizeof(ObjectStateData));
 
-    if (rcvdPlayerStateData.newPos != m_Position)
+    if (rcvdObjectStateData.newPos != m_Position)
     {
         auto transform = m_pGameObject->GetTransform();
 
-        glm::vec2 diffVector{ rcvdPlayerStateData.newPos - m_Position };
+        glm::vec2 diffVector{ rcvdObjectStateData.newPos - m_Position };
 
         transform->Translate(diffVector);
         m_Position = transform->GetWorldPosition();
     }
+    m_ObjectTypeId = rcvdObjectStateData.objectTypeId;
 }
 
 std::vector<uint8_t> ObjectState::SerializeObjectStateData()
@@ -34,7 +35,7 @@ std::vector<uint8_t> ObjectState::SerializeObjectStateData()
     if (!m_pGameObject)
         return data;
 
-    ObjectStateData objectStateData = { m_pGameObject->GetTransform()->GetWorldPosition() };
+    ObjectStateData objectStateData = { m_ObjectTypeId, m_pGameObject->GetTransform()->GetWorldPosition() };
 
     CopyMemory(data.data(), &objectStateData, sizeof(ObjectStateData));
 
