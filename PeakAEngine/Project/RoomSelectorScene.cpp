@@ -29,10 +29,7 @@ RoomSelectorScene::~RoomSelectorScene()
 
 void RoomSelectorScene::Initialize()
 {
-	//int nrElements = 5;
-	//float yOffsetPerElement{ 120.f };
 	glm::vec2 size{ 300.f, 100.f };
-	//glm::vec2 pos{ -size.x / 2, ((nrElements + 1) * size.y) / 2 };
 
 	// CREATE ROOM
 	int createRoomButtonId = UI->AddButton("RoomSelectorScene", new UI_Button{ "UI/White.jpg", "UI/White.jpg", "UI/White.jpg",
@@ -112,16 +109,4 @@ void RoomSelectorScene::Initialize()
 
 				});
 		});
-
-	// CHAT TEST
-	/*auto go = AddChild("ChatObj");
-	auto chat = go->CreateComponent<ChatBoxComponent>();
-	chat->SetEnabled(true);*/
-
-
-
-
-
-
-	
 }

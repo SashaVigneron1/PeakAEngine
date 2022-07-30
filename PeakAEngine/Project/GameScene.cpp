@@ -55,6 +55,26 @@ void GameScene::Initialize()
 	collider->SetDebugColor({ 0,255,0,100 });
 	collider->EnableDebugDrawing(true);
 
+	// Physics TestObj
+	/*go = AddChild("physics");
+	spriteRenderer = go->CreateComponent<SpriteRenderer>();
+	spriteRenderer->AddSprite("Walking", std::make_shared<Sprite>("Character/PeterPepper_Idle.png",
+		std::vector<SpriteRow>{
+		SpriteRow{ Direction::FacingCamera, 0 },
+			SpriteRow{ Direction::FacingLeft, 1 },
+			SpriteRow{ Direction::FacingRight, 1, true },
+			SpriteRow{ Direction::FacingAwayFromCamera, 2 },
+	},
+		3, float(1), glm::vec2{ 1,1 }, 0));
+
+	go->GetTransform()->SetWorldPosition({ 0,1 });
+	go->GetTransform()->SetWorldScale({ 1, 1 });
+
+	go->CreateComponent<RigidBody>(RigidBody::BodyType::Dynamic, RigidBody::PhysicsMaterial{ 1.f,0.f,0.f,1.f });
+	collider = go->CreateComponent<BoxCollider>(glm::vec2{ 0,0 }, 0.f, false);
+	collider->SetEnabled(true);
+	collider->SetDebugColor({ 0,255,0,100 });
+	collider->EnableDebugDrawing(true);*/
 
 
 }
